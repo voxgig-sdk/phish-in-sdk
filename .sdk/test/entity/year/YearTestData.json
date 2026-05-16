@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "year": {
+      "YEAR00": {},
+      "YEAR01": {},
+      "YEAR02": {}
+    }
+  },
+  "new": {
+    "year": {
+      "year_ref01": {}
+    }
+  }
+}

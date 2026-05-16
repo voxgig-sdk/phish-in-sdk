@@ -1,0 +1,32 @@
+# BasicTrackFlow
+
+main: kit: flow: BasicTrackFlow:
+{
+  entity: "track",
+  kind: "basic",
+  name: "BasicTrackFlow",
+  step: [
+    {
+      input: {
+        ref: "track_ref01",
+        srcdatavar: "track_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "track01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-track_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTrackFlow"
+}

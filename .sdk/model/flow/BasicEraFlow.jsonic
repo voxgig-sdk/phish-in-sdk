@@ -1,0 +1,22 @@
+# BasicEraFlow
+
+main: kit: flow: BasicEraFlow:
+{
+  entity: "era",
+  kind: "basic",
+  name: "BasicEraFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "era_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEraFlow"
+}

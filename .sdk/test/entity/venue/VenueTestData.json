@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "venue": {
+      "VENUE00": {
+        "data": {},
+        "id": "VENUE00",
+        "latitude": 82,
+        "location": "s53",
+        "longitude": 84,
+        "name": "s55",
+        "shows_count": "s56",
+        "success": false
+      },
+      "VENUE01": {
+        "data": {},
+        "id": "VENUE01",
+        "latitude": 162,
+        "location": "sa3",
+        "longitude": 164,
+        "name": "sa5",
+        "shows_count": "sa6",
+        "success": false
+      },
+      "VENUE02": {
+        "data": {},
+        "id": "VENUE02",
+        "latitude": 242,
+        "location": "sf3",
+        "longitude": 244,
+        "name": "sf5",
+        "shows_count": "sf6",
+        "success": false
+      }
+    }
+  },
+  "new": {
+    "venue": {
+      "venue_ref01": {
+        "data": {},
+        "latitude": 322,
+        "location": "s143",
+        "longitude": 324,
+        "name": "s145",
+        "shows_count": "s146",
+        "success": false
+      }
+    }
+  }
+}

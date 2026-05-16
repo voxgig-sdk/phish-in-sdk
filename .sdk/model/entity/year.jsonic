@@ -1,0 +1,10 @@
+# Entity: year
+
+main: kit: entity: year: {
+
+  alias: field: {}
+
+  name: "year"
+
+
+}

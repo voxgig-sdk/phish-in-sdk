@@ -1,0 +1,29 @@
+{
+  "existing": {
+    "track": {
+      "TRACK00": {
+        "data": {},
+        "success": false,
+        "id": "TRACK00"
+      },
+      "TRACK01": {
+        "data": {},
+        "success": false,
+        "id": "TRACK01"
+      },
+      "TRACK02": {
+        "data": {},
+        "success": false,
+        "id": "TRACK02"
+      }
+    }
+  },
+  "new": {
+    "track": {
+      "track_ref01": {
+        "data": {},
+        "success": false
+      }
+    }
+  }
+}

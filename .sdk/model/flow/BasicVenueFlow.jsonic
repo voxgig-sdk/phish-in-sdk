@@ -1,0 +1,44 @@
+# BasicVenueFlow
+
+main: kit: flow: BasicVenueFlow:
+{
+  entity: "venue",
+  kind: "basic",
+  name: "BasicVenueFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "venue_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "venue_ref01",
+        srcdatavar: "venue_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "venue01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-venue_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicVenueFlow"
+}

@@ -1,0 +1,77 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 8
+  metrics: count: path: 15
+  metrics: count: method: 15
+
+  entity: era: {
+    path: "/eras": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: search: {
+    path: "/search": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: show: {
+    path: "/random-show": {
+      op: load: method: *GET
+    }
+    path: "/shows": {
+      op: list: method: *GET
+    }
+    path: "/shows/on-date/{date}": {
+      op: load: method: *GET
+    }
+    path: "/shows/{id}": {
+      op: load: method: *GET
+    }
+    path: "/years": {
+      op: list: method: *GET
+    }
+    path: "/years/{year}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: song: {
+    path: "/songs": {
+      op: list: method: *GET
+    }
+    path: "/songs/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: tour: {
+    path: "/tours": {
+      op: list: method: *GET
+    }
+    path: "/tours/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: track: {
+    path: "/tracks/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: venue: {
+    path: "/venues": {
+      op: list: method: *GET
+    }
+    path: "/venues/{id}": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: year: {
+  }
+
+}

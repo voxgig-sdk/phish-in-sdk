@@ -1,0 +1,49 @@
+{
+  "existing": {
+    "song": {
+      "SONG00": {
+        "alia": "s50",
+        "data": {},
+        "debut": "s52",
+        "id": "SONG00",
+        "last_played": "s54",
+        "success": false,
+        "times_played": "s56",
+        "title": "s57"
+      },
+      "SONG01": {
+        "alia": "sa0",
+        "data": {},
+        "debut": "sa2",
+        "id": "SONG01",
+        "last_played": "sa4",
+        "success": false,
+        "times_played": "sa6",
+        "title": "sa7"
+      },
+      "SONG02": {
+        "alia": "sf0",
+        "data": {},
+        "debut": "sf2",
+        "id": "SONG02",
+        "last_played": "sf4",
+        "success": false,
+        "times_played": "sf6",
+        "title": "sf7"
+      }
+    }
+  },
+  "new": {
+    "song": {
+      "song_ref01": {
+        "alia": "s140",
+        "data": {},
+        "debut": "s142",
+        "last_played": "s144",
+        "success": false,
+        "times_played": "s146",
+        "title": "s147"
+      }
+    }
+  }
+}

@@ -1,0 +1,167 @@
+package sdktest
+
+import (
+	"encoding/json"
+	"os"
+	"path/filepath"
+	"runtime"
+	"strings"
+	"testing"
+	"time"
+
+	sdk "github.com/voxgig-sdk/phish-in-sdk"
+	"github.com/voxgig-sdk/phish-in-sdk/core"
+
+	vs "github.com/voxgig/struct"
+)
+
+func TestTourEntity(t *testing.T) {
+	t.Run("instance", func(t *testing.T) {
+		testsdk := sdk.TestSDK(nil, nil)
+		ent := testsdk.Tour(nil)
+		if ent == nil {
+			t.Fatal("expected non-nil TourEntity")
+		}
+	})
+
+	t.Run("basic", func(t *testing.T) {
+		setup := tourBasicSetup(nil)
+		// Per-op sdk-test-control.json skip — basic test exercises a flow
+		// with multiple ops; skipping any op skips the whole flow.
+		_mode := "unit"
+		if setup.live {
+			_mode = "live"
+		}
+		for _, _op := range []string{"list", "load"} {
+			if _shouldSkip, _reason := isControlSkipped("entityOp", "tour." + _op, _mode); _shouldSkip {
+				if _reason == "" {
+					_reason = "skipped via sdk-test-control.json"
+				}
+				t.Skip(_reason)
+				return
+			}
+		}
+		// The basic flow consumes synthetic IDs from the fixture. In live mode
+		// without an *_ENTID env override, those IDs hit the live API and 4xx.
+		if setup.syntheticOnly {
+			t.Skip("live entity test uses synthetic IDs from fixture — set PHISHIN_TEST_TOUR_ENTID JSON to run live")
+			return
+		}
+		client := setup.client
+
+		// Bootstrap entity data from existing test data (no create step in flow).
+		tourRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.tour", setup.data)))
+		var tourRef01Data map[string]any
+		if len(tourRef01DataRaw) > 0 {
+			tourRef01Data = core.ToMapAny(tourRef01DataRaw[0][1])
+		}
+		// Discard guards against Go's unused-var check when the flow's steps
+		// happen not to consume the bootstrap data (e.g. list-only flows).
+		_ = tourRef01Data
+
+		// LIST
+		tourRef01Ent := client.Tour(nil)
+		tourRef01Match := map[string]any{}
+
+		tourRef01ListResult, err := tourRef01Ent.List(tourRef01Match, nil)
+		if err != nil {
+			t.Fatalf("list failed: %v", err)
+		}
+		_, tourRef01ListOk := tourRef01ListResult.([]any)
+		if !tourRef01ListOk {
+			t.Fatalf("expected list result to be an array, got %T", tourRef01ListResult)
+		}
+
+		// LOAD
+		tourRef01MatchDt0 := map[string]any{
+			"id": tourRef01Data["id"],
+		}
+		tourRef01DataDt0Loaded, err := tourRef01Ent.Load(tourRef01MatchDt0, nil)
+		if err != nil {
+			t.Fatalf("load failed: %v", err)
+		}
+		tourRef01DataDt0LoadResult := core.ToMapAny(tourRef01DataDt0Loaded)
+		if tourRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if tourRef01DataDt0LoadResult["id"] != tourRef01Data["id"] {
+			t.Fatal("expected load result id to match")
+		}
+
+	})
+}
+
+func tourBasicSetup(extra map[string]any) *entityTestSetup {
+	loadEnvLocal()
+
+	_, filename, _, _ := runtime.Caller(0)
+	dir := filepath.Dir(filename)
+
+	entityDataFile := filepath.Join(dir, "..", "..", ".sdk", "test", "entity", "tour", "TourTestData.json")
+
+	entityDataSource, err := os.ReadFile(entityDataFile)
+	if err != nil {
+		panic("failed to read tour test data: " + err.Error())
+	}
+
+	var entityData map[string]any
+	if err := json.Unmarshal(entityDataSource, &entityData); err != nil {
+		panic("failed to parse tour test data: " + err.Error())
+	}
+
+	options := map[string]any{}
+	options["entity"] = entityData["existing"]
+
+	client := sdk.TestSDK(options, extra)
+
+	// Generate idmap via transform, matching TS pattern.
+	idmap := vs.Transform(
+		[]any{"tour01", "tour02", "tour03"},
+		map[string]any{
+			"`$PACK`": []any{"", map[string]any{
+				"`$KEY`": "`$COPY`",
+				"`$VAL`": []any{"`$FORMAT`", "upper", "`$COPY`"},
+			}},
+		},
+	)
+
+	// Detect ENTID env override before envOverride consumes it. When live
+	// mode is on without a real override, the basic test runs against synthetic
+	// IDs from the fixture and 4xx's. Surface this so the test can skip.
+	entidEnvRaw := os.Getenv("PHISHIN_TEST_TOUR_ENTID")
+	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
+
+	env := envOverride(map[string]any{
+		"PHISHIN_TEST_TOUR_ENTID": idmap,
+		"PHISHIN_TEST_LIVE":      "FALSE",
+		"PHISHIN_TEST_EXPLAIN":   "FALSE",
+		"PHISHIN_APIKEY":         "NONE",
+	})
+
+	idmapResolved := core.ToMapAny(env["PHISHIN_TEST_TOUR_ENTID"])
+	if idmapResolved == nil {
+		idmapResolved = core.ToMapAny(idmap)
+	}
+
+	if env["PHISHIN_TEST_LIVE"] == "TRUE" {
+		mergedOpts := vs.Merge([]any{
+			map[string]any{
+				"apikey": env["PHISHIN_APIKEY"],
+			},
+			extra,
+		})
+		client = sdk.NewPhishInSDK(core.ToMapAny(mergedOpts))
+	}
+
+	live := env["PHISHIN_TEST_LIVE"] == "TRUE"
+	return &entityTestSetup{
+		client:        client,
+		data:          entityData,
+		idmap:         idmapResolved,
+		env:           env,
+		explain:       env["PHISHIN_TEST_EXPLAIN"] == "TRUE",
+		live:          live,
+		syntheticOnly: live && !idmapOverridden,
+		now:           time.Now().UnixMilli(),
+	}
+}

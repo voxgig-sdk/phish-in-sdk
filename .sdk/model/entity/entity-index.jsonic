@@ -1,0 +1,10 @@
+# Entity Models
+
+@"era.jsonic"
+@"search.jsonic"
+@"show.jsonic"
+@"song.jsonic"
+@"tour.jsonic"
+@"track.jsonic"
+@"venue.jsonic"
+@"year.jsonic"

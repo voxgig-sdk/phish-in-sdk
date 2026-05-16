@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://phish.in/api-docs"
+      }
+      description: "Phish.in provides a JSON API for accessing an extensive archive of live Phish audience recordings. It supports various functionalities including retrieving data on shows, songs, venues, and playlists, with options for sorting and pagination."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://phish.in/api/v1"
+        }
+      ]
+      title: "Phish.in API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

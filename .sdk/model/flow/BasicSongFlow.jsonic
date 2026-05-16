@@ -1,0 +1,44 @@
+# BasicSongFlow
+
+main: kit: flow: BasicSongFlow:
+{
+  entity: "song",
+  kind: "basic",
+  name: "BasicSongFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "song_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "song_ref01",
+        srcdatavar: "song_ref01_data",
+        suffix: "_dt0"
+      }
+
+      match: {
+        id: "song01"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-song_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSongFlow"
+}
