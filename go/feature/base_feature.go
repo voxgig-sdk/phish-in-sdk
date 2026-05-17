@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/phish-in-sdk/core"
+	"github.com/voxgig-sdk/phish-in-sdk/go/core"
 )
 
 type BaseFeature struct {

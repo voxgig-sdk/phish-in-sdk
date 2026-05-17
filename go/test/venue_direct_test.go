@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/phish-in-sdk"
-	"github.com/voxgig-sdk/phish-in-sdk/core"
+	sdk "github.com/voxgig-sdk/phish-in-sdk/go"
+	"github.com/voxgig-sdk/phish-in-sdk/go/core"
 )
 
 func TestVenueDirect(t *testing.T) {

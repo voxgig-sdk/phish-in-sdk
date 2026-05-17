@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/phish-in-sdk"
-	"github.com/voxgig-sdk/phish-in-sdk/core"
+	sdk "github.com/voxgig-sdk/phish-in-sdk/go"
+	"github.com/voxgig-sdk/phish-in-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/phish-in-sdk/go/utility/struct"
 )
 
 func TestEraEntity(t *testing.T) {

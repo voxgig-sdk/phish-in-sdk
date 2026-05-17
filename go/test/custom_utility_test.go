@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/phish-in-sdk"
+	sdk "github.com/voxgig-sdk/phish-in-sdk/go"
 )
 
 func TestCustomUtility(t *testing.T) {

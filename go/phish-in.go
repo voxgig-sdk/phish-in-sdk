@@ -1,10 +1,10 @@
 package voxgigphishinsdk
 
 import (
-	"github.com/voxgig-sdk/phish-in-sdk/core"
-	"github.com/voxgig-sdk/phish-in-sdk/entity"
-	"github.com/voxgig-sdk/phish-in-sdk/feature"
-	_ "github.com/voxgig-sdk/phish-in-sdk/utility"
+	"github.com/voxgig-sdk/phish-in-sdk/go/core"
+	"github.com/voxgig-sdk/phish-in-sdk/go/entity"
+	"github.com/voxgig-sdk/phish-in-sdk/go/feature"
+	_ "github.com/voxgig-sdk/phish-in-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

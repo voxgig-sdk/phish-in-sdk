@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/voxgig-sdk/phish-in-sdk/core"
+	"github.com/voxgig-sdk/phish-in-sdk/go/core"
 )
 
 type LogFeature struct {

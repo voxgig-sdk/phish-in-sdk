@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"math/rand"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/phish-in-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/phish-in-sdk/core"
+	"github.com/voxgig-sdk/phish-in-sdk/go/core"
 )
 
 type TestFeature struct {
