@@ -20,9 +20,7 @@ loading a specific record.
 <?php
 require_once 'phishin_sdk.php';
 
-$client = new PhishInSDK([
-    "apikey" => getenv("PHISH-IN_APIKEY"),
-]);
+$client = new PhishInSDK([]);
 ```
 
 ### 2. List eras
@@ -119,7 +117,6 @@ Create a `.env.local` file at the project root:
 
 ```
 PHISH-IN_TEST_LIVE=TRUE
-PHISH-IN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -142,7 +139,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

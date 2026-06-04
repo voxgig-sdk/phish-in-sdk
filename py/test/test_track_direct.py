@@ -69,14 +69,12 @@ def _track_direct_setup(mockres):
     env = runner.env_override({
         "PHISHIN_TEST_TRACK_ENTID": {},
         "PHISHIN_TEST_LIVE": "FALSE",
-        "PHISHIN_APIKEY": "NONE",
     })
 
     live = env.get("PHISHIN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("PHISHIN_APIKEY"),
         }
         client = PhishInSDK(merged_opts)
         return {

@@ -20,9 +20,6 @@ class PhishInConfig
             ],
             "options" => [
                 "base" => "https://phish.in/api/v1",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

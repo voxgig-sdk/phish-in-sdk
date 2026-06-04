@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from phishin_sdk import PhishInSDK
 
-client = PhishInSDK({
-    "apikey": os.environ.get("PHISH-IN_APIKEY"),
-})
+client = PhishInSDK({})
 ```
 
 ### 2. List eras
@@ -121,7 +118,6 @@ Create a `.env.local` file at the project root:
 
 ```
 PHISH-IN_TEST_LIVE=TRUE
-PHISH-IN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -145,7 +141,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

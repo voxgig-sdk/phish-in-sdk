@@ -194,14 +194,12 @@ func venueDirectSetup(mockres any) *venueDirectSetupResult {
 	env := envOverride(map[string]any{
 		"PHISHIN_TEST_VENUE_ENTID": map[string]any{},
 		"PHISHIN_TEST_LIVE":    "FALSE",
-		"PHISHIN_APIKEY":       "NONE",
 	})
 
 	live := env["PHISHIN_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["PHISHIN_APIKEY"],
 		}
 		client := sdk.NewPhishInSDK(mergedOpts)
 
