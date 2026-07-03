@@ -10,7 +10,7 @@ The Python SDK for the PhishIn API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install phish-in-sdk
+pip install voxgig-sdk-phish-in
 ```
 
 Or install from source:

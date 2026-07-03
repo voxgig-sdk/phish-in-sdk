@@ -10,13 +10,13 @@ The Ruby SDK for the PhishIn API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install phish-in-sdk
+gem install voxgig-sdk-phish-in
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "phish-in-sdk"
+gem "voxgig-sdk-phish-in"
 ```
 
 Then run:

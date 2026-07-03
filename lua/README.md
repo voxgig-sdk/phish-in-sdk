@@ -10,7 +10,7 @@ The Lua SDK for the PhishIn API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install phish-in-sdk
+luarocks install voxgig-sdk-phish-in
 ```
 
 If the module is not yet published, add the source directory to

@@ -10,7 +10,7 @@ The TypeScript SDK for the PhishIn API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install phish-in
+npm install @voxgig-sdk/phish-in
 ```
 ## Tutorial: your first API call
 

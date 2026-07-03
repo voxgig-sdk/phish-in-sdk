@@ -10,7 +10,7 @@ The PHP SDK for the PhishIn API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/phish-in-sdk
+composer require voxgig-sdk/phish-in
 ```
 
 
