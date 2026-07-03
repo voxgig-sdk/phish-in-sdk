@@ -137,12 +137,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'PHISHIN_TEST_SHOW_ENTID': {},
     'PHISHIN_TEST_LIVE': 'FALSE',
+    'PHISHIN_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.PHISHIN_TEST_LIVE
 
   if (live) {
     const client = new PhishInSDK({
+      apikey: env.PHISHIN_APIKEY,
     })
 
     let idmap: any = env['PHISHIN_TEST_SHOW_ENTID']

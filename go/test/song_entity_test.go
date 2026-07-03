@@ -135,6 +135,7 @@ func songBasicSetup(extra map[string]any) *entityTestSetup {
 		"PHISHIN_TEST_SONG_ENTID": idmap,
 		"PHISHIN_TEST_LIVE":      "FALSE",
 		"PHISHIN_TEST_EXPLAIN":   "FALSE",
+		"PHISHIN_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["PHISHIN_TEST_SONG_ENTID"])
@@ -145,6 +146,7 @@ func songBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["PHISHIN_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["PHISHIN_APIKEY"],
 			},
 			extra,
 		})

@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -131,7 +131,7 @@ local era = client:Era(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Era(nil):list(nil, nil)
+local results, err = client:Era():list()
 ```
 
 ### Common Methods
@@ -184,7 +184,7 @@ local search = client:Search(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Search(nil):load({ id = "search_id" }, nil)
+local result, err = client:Search():load({ id = "search_id" })
 ```
 
 ### Common Methods
@@ -250,7 +250,7 @@ local show = client:Show(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Show(nil):list(nil, nil)
+local results, err = client:Show():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -258,7 +258,7 @@ local results, err = client:Show(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Show(nil):load({ id = "show_id" }, nil)
+local result, err = client:Show():load({ id = "show_id" })
 ```
 
 ### Common Methods
@@ -317,7 +317,7 @@ local song = client:Song(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Song(nil):list(nil, nil)
+local results, err = client:Song():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -325,7 +325,7 @@ local results, err = client:Song(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Song(nil):load({ id = "song_id" }, nil)
+local result, err = client:Song():load({ id = "song_id" })
 ```
 
 ### Common Methods
@@ -383,7 +383,7 @@ local tour = client:Tour(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Tour(nil):list(nil, nil)
+local results, err = client:Tour():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -391,7 +391,7 @@ local results, err = client:Tour(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tour(nil):load({ id = "tour_id" }, nil)
+local result, err = client:Tour():load({ id = "tour_id" })
 ```
 
 ### Common Methods
@@ -444,7 +444,7 @@ local track = client:Track(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Track(nil):load({ id = "track_id" }, nil)
+local result, err = client:Track():load({ id = "track_id" })
 ```
 
 ### Common Methods
@@ -503,7 +503,7 @@ local venue = client:Venue(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Venue(nil):list(nil, nil)
+local results, err = client:Venue():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -511,7 +511,7 @@ local results, err = client:Venue(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Venue(nil):load({ id = "venue_id" }, nil)
+local result, err = client:Venue():load({ id = "venue_id" })
 ```
 
 ### Common Methods

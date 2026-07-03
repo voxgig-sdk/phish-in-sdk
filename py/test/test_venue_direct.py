@@ -109,12 +109,14 @@ def _venue_direct_setup(mockres):
     env = runner.env_override({
         "PHISHIN_TEST_VENUE_ENTID": {},
         "PHISHIN_TEST_LIVE": "FALSE",
+        "PHISHIN_APIKEY": "NONE",
     })
 
     live = env.get("PHISHIN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("PHISHIN_APIKEY"),
         }
         client = PhishInSDK(merged_opts)
         return {

@@ -102,6 +102,7 @@ def _tour_basic_setup(extra):
         "PHISHIN_TEST_TOUR_ENTID": idmap,
         "PHISHIN_TEST_LIVE": "FALSE",
         "PHISHIN_TEST_EXPLAIN": "FALSE",
+        "PHISHIN_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -112,6 +113,7 @@ def _tour_basic_setup(extra):
     if env.get("PHISHIN_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("PHISHIN_APIKEY"),
             },
             extra or {},
         ])

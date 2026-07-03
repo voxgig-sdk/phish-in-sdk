@@ -16,35 +16,7 @@ main: {
       ]
       title: "Phish.in API"
       version: "1.0.0"
-      tagline: "Browse the open archive of live Phish audience recordings, shows, songs, venues and tours"
-      homepage: "https://phish.in"
-      docs_url: "https://phish.in/api-docs"
-      license_short: "MIT licensed open source project; audio sourced under Phish's official taping policy"
-      license_md: `- Project code is MIT licensed per the GitHub repository.
-- Audio is MP3 sourced from public taper uploads and complies with Phish's official taping policy.
-- The project is privately funded and community-driven; please respect the band's taping policy when redistributing recordings.`
-      about_md: `[Phish.in](https://phish.in) is an open-source digital archive that catalogs live audience recordings of the band Phish. It exposes its catalogue as a JSON API so other apps, sites, and agents can browse the same data that powers the phish.in website.
-
-What you get from the API:
-
-- Shows organized by date, tour, and era, with track listings.
-- Songs with their full performance histories across shows.
-- Venues with geographic information and the shows played there.
-- Tours and eras that group shows into historical periods.
-- Search across the catalogue and browse by year.
-
-Audio is MP3, sourced from public taper uploads and complies with Phish's official taping policy. The project is open source and privately funded; a newer v2 API with OpenAPI/Swagger documentation is available at \`/api/v2/swagger_doc\`, and authenticated endpoints support user signup, login, playlist creation, and likes.`
-      entity_desc: {
-        era: "A high-level grouping of Phish history (e.g. 1.0, 2.0, 3.0) used to organize shows into historical periods."
-        search: "Full-text search across the catalogue covering shows, songs, venues, and tours."
-        show: "A single Phish concert, with date, venue, tour, and the list of tracks performed."
-        song: "A song in the Phish repertoire, with its full performance history across shows."
-        tour: "A named tour that groups a set of shows played over a defined period."
-        track: "An individual recorded performance of a song within a show, served as MP3 audio."
-        venue: "A physical location where shows were played, with geographic information and the shows held there."
-        year: "A calendar year used to browse shows chronologically across the archive."
-      }
-      auth: false
     }
   }
 }
+

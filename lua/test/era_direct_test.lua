@@ -63,12 +63,14 @@ function era_direct_setup(mockres)
   local env = runner.env_override({
     ["PHISHIN_TEST_ERA_ENTID"] = {},
     ["PHISHIN_TEST_LIVE"] = "FALSE",
+    ["PHISHIN_APIKEY"] = "NONE",
   })
 
   local live = env["PHISHIN_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["PHISHIN_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

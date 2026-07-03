@@ -85,6 +85,7 @@ function search_basic_setup($extra)
         "PHISHIN_TEST_SEARCH_ENTID" => $idmap,
         "PHISHIN_TEST_LIVE" => "FALSE",
         "PHISHIN_TEST_EXPLAIN" => "FALSE",
+        "PHISHIN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -96,6 +97,7 @@ function search_basic_setup($extra)
     if ($env["PHISHIN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["PHISHIN_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -1,22 +1,8 @@
 # PhishIn SDK
 
-Browse the open archive of live Phish audience recordings, shows, songs, venues and tours
+Phish.in API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Phish.in API
-
-[Phish.in](https://phish.in) is an open-source digital archive that catalogs live audience recordings of the band Phish. It exposes its catalogue as a JSON API so other apps, sites, and agents can browse the same data that powers the phish.in website.
-
-What you get from the API:
-
-- Shows organized by date, tour, and era, with track listings.
-- Songs with their full performance histories across shows.
-- Venues with geographic information and the shows played there.
-- Tours and eras that group shows into historical periods.
-- Search across the catalogue and browse by year.
-
-Audio is MP3, sourced from public taper uploads and complies with Phish's official taping policy. The project is open source and privately funded; a newer v2 API with OpenAPI/Swagger documentation is available at `/api/v2/swagger_doc`, and authenticated endpoints support user signup, login, playlist creation, and likes.
 
 ## Try it
 
@@ -50,29 +36,31 @@ gem install phish-in-sdk
 luarocks install phish-in-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { PhishInSDK } from 'phish-in'
 
-const client = new PhishInSDK({})
+const client = new PhishInSDK({
+  apikey: process.env.PHISH-IN_APIKEY,
+})
 
 // List all eras
 const eras = await client.Era().list()
+console.log(eras.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -102,14 +90,14 @@ The API exposes 8 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Era** | A high-level grouping of Phish history (e.g. 1.0, 2.0, 3.0) used to organize shows into historical periods. | `/eras` |
-| **Search** | Full-text search across the catalogue covering shows, songs, venues, and tours. | `/search` |
-| **Show** | A single Phish concert, with date, venue, tour, and the list of tracks performed. | `/shows` |
-| **Song** | A song in the Phish repertoire, with its full performance history across shows. | `/songs` |
-| **Tour** | A named tour that groups a set of shows played over a defined period. | `/tours` |
-| **Track** | An individual recorded performance of a song within a show, served as MP3 audio. | `/tracks/{id}` |
-| **Venue** | A physical location where shows were played, with geographic information and the shows held there. | `/venues` |
-| **Year** | A calendar year used to browse shows chronologically across the archive. | `` |
+| **Era** |  | `/eras` |
+| **Search** |  | `/search` |
+| **Show** |  | `/shows` |
+| **Song** |  | `/songs` |
+| **Tour** |  | `/tours` |
+| **Track** |  | `/tracks/{id}` |
+| **Venue** |  | `/venues` |
+| **Year** |  | `` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -119,12 +107,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from phishin_sdk import PhishInSDK
 
-client = PhishInSDK({})
+client = PhishInSDK({
+    "apikey": os.environ.get("PHISH-IN_APIKEY"),
+})
 
 # List all eras
-eras, err = client.Era(None).list(None, None)
+eras, err = client.Era().list()
+print(eras)
 ```
 
 ### PHP
@@ -133,10 +125,13 @@ eras, err = client.Era(None).list(None, None)
 <?php
 require_once 'phishin_sdk.php';
 
-$client = new PhishInSDK([]);
+$client = new PhishInSDK([
+    "apikey" => getenv("PHISH-IN_APIKEY"),
+]);
 
 // List all eras
-[$eras, $err] = $client->Era(null)->list(null, null);
+[$eras, $err] = $client->Era()->list();
+print_r($eras);
 ```
 
 ### Golang
@@ -144,10 +139,13 @@ $client = new PhishInSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/phish-in-sdk/go"
 
-client := sdk.NewPhishInSDK(map[string]any{})
+client := sdk.NewPhishInSDK(map[string]any{
+    "apikey": os.Getenv("PHISH-IN_APIKEY"),
+})
 
 // List all eras
 eras, err := client.Era(nil).List(nil, nil)
+fmt.Println(eras)
 ```
 
 ### Ruby
@@ -155,10 +153,13 @@ eras, err := client.Era(nil).List(nil, nil)
 ```ruby
 require_relative "PhishIn_sdk"
 
-client = PhishInSDK.new({})
+client = PhishInSDK.new({
+  "apikey" => ENV["PHISH-IN_APIKEY"],
+})
 
 # List all eras
-eras, err = client.Era(nil).list(nil, nil)
+eras, err = client.Era().list
+puts eras
 ```
 
 ### Lua
@@ -166,10 +167,13 @@ eras, err = client.Era(nil).list(nil, nil)
 ```lua
 local sdk = require("phish-in_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("PHISH-IN_APIKEY"),
+})
 
 -- List all eras
-local eras, err = client:Era(nil):list(nil, nil)
+local eras, err = client:Era():list()
+print(eras)
 ```
 
 ## Unit testing in offline mode
@@ -188,25 +192,21 @@ const result = await client.Era().load({ id: 'test01' })
 ### Python
 
 ```python
-client = PhishInSDK.test(None, None)
-result, err = client.Era(None).load(
-    {"id": "test01"}, None
-)
+client = PhishInSDK.test()
+result, err = client.Era().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = PhishInSDK::test(null, null);
-[$result, $err] = $client->Era(null)->load(
-    ["id" => "test01"], null
-);
+$client = PhishInSDK::test();
+[$result, $err] = $client->Era()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Era(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -215,19 +215,15 @@ result, err := client.Era(nil).Load(
 ### Ruby
 
 ```ruby
-client = PhishInSDK.test(nil, nil)
-result, err = client.Era(nil).load(
-  { "id" => "test01" }, nil
-)
+client = PhishInSDK.test
+result, err = client.Era().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Era(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Era():load({ id = "test01" })
 ```
 
 ## How it works
@@ -331,15 +327,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Phish.in API
-
-- Upstream: [https://phish.in](https://phish.in)
-- API docs: [https://phish.in/api-docs](https://phish.in/api-docs)
-
-- Project code is MIT licensed per the GitHub repository.
-- Audio is MP3 sourced from public taper uploads and complies with Phish's official taping policy.
-- The project is privately funded and community-driven; please respect the band's taping policy when redistributing recordings.
 
 ---
 

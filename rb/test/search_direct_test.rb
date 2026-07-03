@@ -61,12 +61,14 @@ def search_direct_setup(mockres)
   env = Runner.env_override({
     "PHISHIN_TEST_SEARCH_ENTID" => {},
     "PHISHIN_TEST_LIVE" => "FALSE",
+    "PHISHIN_APIKEY" => "NONE",
   })
 
   live = env["PHISHIN_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["PHISHIN_APIKEY"],
     }
     client = PhishInSDK.new(merged_opts)
     return {

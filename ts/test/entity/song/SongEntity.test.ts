@@ -120,6 +120,7 @@ function basicSetup(extra?: any) {
     'PHISH_IN_TEST_SONG_ENTID': idmap,
     'PHISH_IN_TEST_LIVE': 'FALSE',
     'PHISH_IN_TEST_EXPLAIN': 'FALSE',
+    'PHISH_IN_APIKEY': 'NONE',
   })
 
   idmap = env['PHISH_IN_TEST_SONG_ENTID']
@@ -129,6 +130,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new PhishInSDK(merge([
       {
+        apikey: env.PHISH_IN_APIKEY,
       },
       extra
     ]))
