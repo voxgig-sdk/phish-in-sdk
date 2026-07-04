@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch EraListMatch
+---@param ctrl? table
+---@return Era[]
+---@return string? err
 function EraEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

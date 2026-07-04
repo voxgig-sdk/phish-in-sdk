@@ -9,6 +9,8 @@ import { TrackEntity } from './entity/TrackEntity'
 import { VenueEntity } from './entity/VenueEntity'
 import { YearEntity } from './entity/YearEntity'
 
+export type * from './PhishInTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -209,48 +211,112 @@ class PhishInSDK {
 
 
 
+  _era?: EraEntity
+
+  // Idiomatic facade: `client.era.list()` / `client.era.load({ id })`.
+  get era(): EraEntity {
+    return (this._era ??= new EraEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.era` instead. */
   Era(data?: any) {
     const self = this
     return new EraEntity(self,data)
   }
 
 
+  _search?: SearchEntity
+
+  // Idiomatic facade: `client.search.list()` / `client.search.load({ id })`.
+  get search(): SearchEntity {
+    return (this._search ??= new SearchEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.search` instead. */
   Search(data?: any) {
     const self = this
     return new SearchEntity(self,data)
   }
 
 
+  _show?: ShowEntity
+
+  // Idiomatic facade: `client.show.list()` / `client.show.load({ id })`.
+  get show(): ShowEntity {
+    return (this._show ??= new ShowEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.show` instead. */
   Show(data?: any) {
     const self = this
     return new ShowEntity(self,data)
   }
 
 
+  _song?: SongEntity
+
+  // Idiomatic facade: `client.song.list()` / `client.song.load({ id })`.
+  get song(): SongEntity {
+    return (this._song ??= new SongEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.song` instead. */
   Song(data?: any) {
     const self = this
     return new SongEntity(self,data)
   }
 
 
+  _tour?: TourEntity
+
+  // Idiomatic facade: `client.tour.list()` / `client.tour.load({ id })`.
+  get tour(): TourEntity {
+    return (this._tour ??= new TourEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.tour` instead. */
   Tour(data?: any) {
     const self = this
     return new TourEntity(self,data)
   }
 
 
+  _track?: TrackEntity
+
+  // Idiomatic facade: `client.track.list()` / `client.track.load({ id })`.
+  get track(): TrackEntity {
+    return (this._track ??= new TrackEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.track` instead. */
   Track(data?: any) {
     const self = this
     return new TrackEntity(self,data)
   }
 
 
+  _venue?: VenueEntity
+
+  // Idiomatic facade: `client.venue.list()` / `client.venue.load({ id })`.
+  get venue(): VenueEntity {
+    return (this._venue ??= new VenueEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.venue` instead. */
   Venue(data?: any) {
     const self = this
     return new VenueEntity(self,data)
   }
 
 
+  _year?: YearEntity
+
+  // Idiomatic facade: `client.year.list()` / `client.year.load({ id })`.
+  get year(): YearEntity {
+    return (this._year ??= new YearEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.year` instead. */
   Year(data?: any) {
     const self = this
     return new YearEntity(self,data)

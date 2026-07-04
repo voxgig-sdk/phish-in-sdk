@@ -43,16 +43,14 @@ class TourEntityTest < Minitest::Test
     tour_ref01_ent = client.Tour(nil)
     tour_ref01_match = {}
 
-    tour_ref01_list_result, err = tour_ref01_ent.list(tour_ref01_match, nil)
-    assert_nil err
+    tour_ref01_list_result = tour_ref01_ent.list(tour_ref01_match, nil)
     assert tour_ref01_list_result.is_a?(Array)
 
     # LOAD
     tour_ref01_match_dt0 = {
       "id" => tour_ref01_data["id"],
     }
-    tour_ref01_data_dt0_loaded, err = tour_ref01_ent.load(tour_ref01_match_dt0, nil)
-    assert_nil err
+    tour_ref01_data_dt0_loaded = tour_ref01_ent.load(tour_ref01_match_dt0, nil)
     tour_ref01_data_dt0_load_result = Helpers.to_map(tour_ref01_data_dt0_loaded)
     assert !tour_ref01_data_dt0_load_result.nil?
     assert_equal tour_ref01_data_dt0_load_result["id"], tour_ref01_data["id"]
@@ -93,7 +91,6 @@ def tour_basic_setup(extra)
     "PHISHIN_TEST_TOUR_ENTID" => idmap,
     "PHISHIN_TEST_LIVE" => "FALSE",
     "PHISHIN_TEST_EXPLAIN" => "FALSE",
-    "PHISHIN_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def tour_basic_setup(extra)
   if env["PHISHIN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["PHISHIN_APIKEY"],
       },
       extra || {},
     ])

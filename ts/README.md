@@ -9,9 +9,12 @@ The TypeScript SDK for the PhishIn API — a type-safe, entity-oriented client w
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/phish-in
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/phish-in-sdk/releases](https://github.com/voxgig-sdk/phish-in-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PhishInSDK } from 'phish-in'
+import { PhishInSDK } from '@voxgig-sdk/phish-in'
 
-const client = new PhishInSDK({
-  apikey: process.env.PHISH-IN_APIKEY,
-})
+const client = new PhishInSDK()
 ```
 
 ### 2. List eras
 
 ```ts
-const result = await client.Era().list()
+const result = await client.era.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PhishInSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.era.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new PhishInSDK({ apikey: '...' })
+const client = new PhishInSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.era
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new PhishInSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new PhishInSDK({
 Create a `.env.local` file at the project root:
 
 ```
-PHISH-IN_TEST_LIVE=TRUE
-PHISH-IN_APIKEY=<your-key>
+PHISH_IN_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new PhishInSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new PhishInSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -383,7 +380,7 @@ API path: ``
 
 ### Era
 
-Create an instance: `const era = client.Era()`
+Create an instance: `const era = client.era`
 
 #### Operations
 
@@ -403,13 +400,13 @@ Create an instance: `const era = client.Era()`
 #### Example: List
 
 ```ts
-const eras = await client.Era().list()
+const eras = await client.era.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -427,13 +424,13 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.search.load({ id: 'search_id' })
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.Show()`
+Create an instance: `const show = client.show`
 
 #### Operations
 
@@ -465,19 +462,19 @@ Create an instance: `const show = client.Show()`
 #### Example: Load
 
 ```ts
-const show = await client.Show().load({ id: 'show_id' })
+const show = await client.show.load({ id: 'show_id' })
 ```
 
 #### Example: List
 
 ```ts
-const shows = await client.Show().list()
+const shows = await client.show.list()
 ```
 
 
 ### Song
 
-Create an instance: `const song = client.Song()`
+Create an instance: `const song = client.song`
 
 #### Operations
 
@@ -502,19 +499,19 @@ Create an instance: `const song = client.Song()`
 #### Example: Load
 
 ```ts
-const song = await client.Song().load({ id: 'song_id' })
+const song = await client.song.load({ id: 'song_id' })
 ```
 
 #### Example: List
 
 ```ts
-const songs = await client.Song().list()
+const songs = await client.song.list()
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.Tour()`
+Create an instance: `const tour = client.tour`
 
 #### Operations
 
@@ -538,19 +535,19 @@ Create an instance: `const tour = client.Tour()`
 #### Example: Load
 
 ```ts
-const tour = await client.Tour().load({ id: 'tour_id' })
+const tour = await client.tour.load({ id: 'tour_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tours = await client.Tour().list()
+const tours = await client.tour.list()
 ```
 
 
 ### Track
 
-Create an instance: `const track = client.Track()`
+Create an instance: `const track = client.track`
 
 #### Operations
 
@@ -568,13 +565,13 @@ Create an instance: `const track = client.Track()`
 #### Example: Load
 
 ```ts
-const track = await client.Track().load({ id: 'track_id' })
+const track = await client.track.load({ id: 'track_id' })
 ```
 
 
 ### Venue
 
-Create an instance: `const venue = client.Venue()`
+Create an instance: `const venue = client.venue`
 
 #### Operations
 
@@ -599,19 +596,19 @@ Create an instance: `const venue = client.Venue()`
 #### Example: Load
 
 ```ts
-const venue = await client.Venue().load({ id: 'venue_id' })
+const venue = await client.venue.load({ id: 'venue_id' })
 ```
 
 #### Example: List
 
 ```ts
-const venues = await client.Venue().list()
+const venues = await client.venue.list()
 ```
 
 
 ### Year
 
-Create an instance: `const year = client.Year()`
+Create an instance: `const year = client.year`
 
 
 ## Explanation
@@ -671,7 +668,7 @@ phish-in/
 Import the SDK from the package root:
 
 ```ts
-import { PhishInSDK } from 'phish-in'
+import { PhishInSDK } from '@voxgig-sdk/phish-in'
 ```
 
 ### Entity state
@@ -681,11 +678,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const era = client.era
+await era.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// era.data() now returns the loaded era data
+// era.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch VenueLoadMatch
+---@param ctrl? table
+---@return Venue
+---@return string? err
 function VenueEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch VenueListMatch
+---@param ctrl? table
+---@return Venue[]
+---@return string? err
 function VenueEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

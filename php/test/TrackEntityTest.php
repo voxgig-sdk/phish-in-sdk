@@ -49,8 +49,7 @@ class TrackEntityTest extends TestCase
         // LOAD
         $track_ref01_ent = $client->Track(null);
         $track_ref01_match_dt0 = [];
-        [$track_ref01_data_dt0_loaded, $err] = $track_ref01_ent->load($track_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $track_ref01_data_dt0_loaded = $track_ref01_ent->load($track_ref01_match_dt0, null);
         $this->assertNotNull($track_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function track_basic_setup($extra)
         "PHISHIN_TEST_TRACK_ENTID" => $idmap,
         "PHISHIN_TEST_LIVE" => "FALSE",
         "PHISHIN_TEST_EXPLAIN" => "FALSE",
-        "PHISHIN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function track_basic_setup($extra)
     if ($env["PHISHIN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PHISHIN_APIKEY"],
             ],
             $extra ?? [],
         ]);

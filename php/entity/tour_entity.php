@@ -55,6 +55,9 @@ class TourEntity
         return new TourEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Tour|array $args Tour data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class TourEntity
         }
     }
 
+    /**
+     * @return Tour|array The current Tour data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Tour fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class TourEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Tour fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class TourEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Tour.
+     *
+     * @param TourLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed TourLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Tour|array The loaded Tour as an assoc-array at the
+     *   SDK boundary; throws PhishInError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class TourEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Tour items matching the given filter.
+     *
+     * @param TourListMatch|array|null $reqmatch Match filter (any subset
+     *   of Tour fields) as an assoc-array; TourListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Tour[]|array A list of Tour items as assoc-arrays at
+     *   the SDK boundary; throws PhishInError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class TourEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

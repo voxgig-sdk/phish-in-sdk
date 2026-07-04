@@ -50,16 +50,14 @@ class TestVenueEntity:
         venue_ref01_ent = client.Venue(None)
         venue_ref01_match = {}
 
-        venue_ref01_list_result, err = venue_ref01_ent.list(venue_ref01_match, None)
-        assert err is None
+        venue_ref01_list_result = venue_ref01_ent.list(venue_ref01_match, None)
         assert isinstance(venue_ref01_list_result, list)
 
         # LOAD
         venue_ref01_match_dt0 = {
             "id": venue_ref01_data["id"],
         }
-        venue_ref01_data_dt0_loaded, err = venue_ref01_ent.load(venue_ref01_match_dt0, None)
-        assert err is None
+        venue_ref01_data_dt0_loaded = venue_ref01_ent.load(venue_ref01_match_dt0, None)
         venue_ref01_data_dt0_load_result = helpers.to_map(venue_ref01_data_dt0_loaded)
         assert venue_ref01_data_dt0_load_result is not None
         assert venue_ref01_data_dt0_load_result["id"] == venue_ref01_data["id"]
@@ -102,7 +100,6 @@ def _venue_basic_setup(extra):
         "PHISHIN_TEST_VENUE_ENTID": idmap,
         "PHISHIN_TEST_LIVE": "FALSE",
         "PHISHIN_TEST_EXPLAIN": "FALSE",
-        "PHISHIN_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _venue_basic_setup(extra):
     if env.get("PHISHIN_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PHISHIN_APIKEY"),
             },
             extra or {},
         ])

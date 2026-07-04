@@ -103,7 +103,7 @@ class PhishInSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class PhishInSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class PhishInSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,73 +216,161 @@ class PhishInSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Era($data = null)
+    private $_era = null;
+
+    // Idiomatic facade: $client->era()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Era() (PHP method
+    // names are case-insensitive).
+    public function era($data = null)
     {
         require_once __DIR__ . '/entity/era_entity.php';
+        if ($data === null) {
+            if ($this->_era === null) {
+                $this->_era = new EraEntity($this, null);
+            }
+            return $this->_era;
+        }
         return new EraEntity($this, $data);
     }
 
 
-    public function Search($data = null)
+    private $_search = null;
+
+    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Search() (PHP method
+    // names are case-insensitive).
+    public function search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
+        if ($data === null) {
+            if ($this->_search === null) {
+                $this->_search = new SearchEntity($this, null);
+            }
+            return $this->_search;
+        }
         return new SearchEntity($this, $data);
     }
 
 
-    public function Show($data = null)
+    private $_show = null;
+
+    // Idiomatic facade: $client->show()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Show() (PHP method
+    // names are case-insensitive).
+    public function show($data = null)
     {
         require_once __DIR__ . '/entity/show_entity.php';
+        if ($data === null) {
+            if ($this->_show === null) {
+                $this->_show = new ShowEntity($this, null);
+            }
+            return $this->_show;
+        }
         return new ShowEntity($this, $data);
     }
 
 
-    public function Song($data = null)
+    private $_song = null;
+
+    // Idiomatic facade: $client->song()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Song() (PHP method
+    // names are case-insensitive).
+    public function song($data = null)
     {
         require_once __DIR__ . '/entity/song_entity.php';
+        if ($data === null) {
+            if ($this->_song === null) {
+                $this->_song = new SongEntity($this, null);
+            }
+            return $this->_song;
+        }
         return new SongEntity($this, $data);
     }
 
 
-    public function Tour($data = null)
+    private $_tour = null;
+
+    // Idiomatic facade: $client->tour()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Tour() (PHP method
+    // names are case-insensitive).
+    public function tour($data = null)
     {
         require_once __DIR__ . '/entity/tour_entity.php';
+        if ($data === null) {
+            if ($this->_tour === null) {
+                $this->_tour = new TourEntity($this, null);
+            }
+            return $this->_tour;
+        }
         return new TourEntity($this, $data);
     }
 
 
-    public function Track($data = null)
+    private $_track = null;
+
+    // Idiomatic facade: $client->track()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Track() (PHP method
+    // names are case-insensitive).
+    public function track($data = null)
     {
         require_once __DIR__ . '/entity/track_entity.php';
+        if ($data === null) {
+            if ($this->_track === null) {
+                $this->_track = new TrackEntity($this, null);
+            }
+            return $this->_track;
+        }
         return new TrackEntity($this, $data);
     }
 
 
-    public function Venue($data = null)
+    private $_venue = null;
+
+    // Idiomatic facade: $client->venue()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Venue() (PHP method
+    // names are case-insensitive).
+    public function venue($data = null)
     {
         require_once __DIR__ . '/entity/venue_entity.php';
+        if ($data === null) {
+            if ($this->_venue === null) {
+                $this->_venue = new VenueEntity($this, null);
+            }
+            return $this->_venue;
+        }
         return new VenueEntity($this, $data);
     }
 
 
-    public function Year($data = null)
+    private $_year = null;
+
+    // Idiomatic facade: $client->year()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Year() (PHP method
+    // names are case-insensitive).
+    public function year($data = null)
     {
         require_once __DIR__ . '/entity/year_entity.php';
+        if ($data === null) {
+            if ($this->_year === null) {
+                $this->_year = new YearEntity($this, null);
+            }
+            return $this->_year;
+        }
         return new YearEntity($this, $data);
     }
 

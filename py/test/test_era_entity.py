@@ -50,8 +50,7 @@ class TestEraEntity:
         era_ref01_ent = client.Era(None)
         era_ref01_match = {}
 
-        era_ref01_list_result, err = era_ref01_ent.list(era_ref01_match, None)
-        assert err is None
+        era_ref01_list_result = era_ref01_ent.list(era_ref01_match, None)
         assert isinstance(era_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _era_basic_setup(extra):
         "PHISHIN_TEST_ERA_ENTID": idmap,
         "PHISHIN_TEST_LIVE": "FALSE",
         "PHISHIN_TEST_EXPLAIN": "FALSE",
-        "PHISHIN_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _era_basic_setup(extra):
     if env.get("PHISHIN_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PHISHIN_APIKEY"),
             },
             extra or {},
         ])

@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Era,
+  EraListMatch,
+} from '../PhishInTypes'
 
 // TODO: needs Entity superclass
-class EraEntity extends PhishInEntityBase {
+class EraEntity extends PhishInEntityBase<Era> {
 
   constructor(client: PhishInSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class EraEntity extends PhishInEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: EraListMatch, ctrl?: Control): Promise<Era[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class EraEntity extends PhishInEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Era[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

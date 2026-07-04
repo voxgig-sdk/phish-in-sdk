@@ -50,16 +50,14 @@ class VenueEntityTest extends TestCase
         $venue_ref01_ent = $client->Venue(null);
         $venue_ref01_match = [];
 
-        [$venue_ref01_list_result, $err] = $venue_ref01_ent->list($venue_ref01_match, null);
-        $this->assertNull($err);
+        $venue_ref01_list_result = $venue_ref01_ent->list($venue_ref01_match, null);
         $this->assertIsArray($venue_ref01_list_result);
 
         // LOAD
         $venue_ref01_match_dt0 = [
             "id" => $venue_ref01_data["id"],
         ];
-        [$venue_ref01_data_dt0_loaded, $err] = $venue_ref01_ent->load($venue_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $venue_ref01_data_dt0_loaded = $venue_ref01_ent->load($venue_ref01_match_dt0, null);
         $venue_ref01_data_dt0_load_result = Helpers::to_map($venue_ref01_data_dt0_loaded);
         $this->assertNotNull($venue_ref01_data_dt0_load_result);
         $this->assertEquals($venue_ref01_data_dt0_load_result["id"], $venue_ref01_data["id"]);
@@ -96,7 +94,6 @@ function venue_basic_setup($extra)
         "PHISHIN_TEST_VENUE_ENTID" => $idmap,
         "PHISHIN_TEST_LIVE" => "FALSE",
         "PHISHIN_TEST_EXPLAIN" => "FALSE",
-        "PHISHIN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -108,7 +105,6 @@ function venue_basic_setup($extra)
     if ($env["PHISHIN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PHISHIN_APIKEY"],
             ],
             $extra ?? [],
         ]);

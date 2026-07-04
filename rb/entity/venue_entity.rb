@@ -45,6 +45,7 @@ class VenueEntity
     end
   end
 
+  # @return [Venue, Hash] the current Venue data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class VenueEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Venue fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Venue.
+  #
+  # @param reqmatch [VenueLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Venue, Hash] the loaded Venue; raises PhishInError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class VenueEntity
 
 
   
+  # List Venue items matching the given filter.
+  #
+  # @param reqmatch [VenueListMatch, Hash, nil] match filter (any subset of Venue fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Venue>, Array] the matching Venue items; raises PhishInError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

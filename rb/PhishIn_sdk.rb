@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'PhishIn_types'
+
 
 class PhishInSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class PhishInSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class PhishInSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue PhishInError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = PhishInHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class PhishInSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,58 +198,114 @@ class PhishInSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.era.list / client.era.load({ "id" => ... })
+  def era
+    require_relative 'entity/era_entity'
+    @era ||= EraEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.era instead.
   def Era(data = nil)
     require_relative 'entity/era_entity'
     EraEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
+  def search
+    require_relative 'entity/search_entity'
+    @search ||= SearchEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.search instead.
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.show.list / client.show.load({ "id" => ... })
+  def show
+    require_relative 'entity/show_entity'
+    @show ||= ShowEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.show instead.
   def Show(data = nil)
     require_relative 'entity/show_entity'
     ShowEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.song.list / client.song.load({ "id" => ... })
+  def song
+    require_relative 'entity/song_entity'
+    @song ||= SongEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.song instead.
   def Song(data = nil)
     require_relative 'entity/song_entity'
     SongEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.tour.list / client.tour.load({ "id" => ... })
+  def tour
+    require_relative 'entity/tour_entity'
+    @tour ||= TourEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.tour instead.
   def Tour(data = nil)
     require_relative 'entity/tour_entity'
     TourEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.track.list / client.track.load({ "id" => ... })
+  def track
+    require_relative 'entity/track_entity'
+    @track ||= TrackEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.track instead.
   def Track(data = nil)
     require_relative 'entity/track_entity'
     TrackEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.venue.list / client.venue.load({ "id" => ... })
+  def venue
+    require_relative 'entity/venue_entity'
+    @venue ||= VenueEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.venue instead.
   def Venue(data = nil)
     require_relative 'entity/venue_entity'
     VenueEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.year.list / client.year.load({ "id" => ... })
+  def year
+    require_relative 'entity/year_entity'
+    @year ||= YearEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.year instead.
   def Year(data = nil)
     require_relative 'entity/year_entity'
     YearEntity.new(self, data)

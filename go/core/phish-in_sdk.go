@@ -245,41 +245,65 @@ func (sdk *PhishInSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// Era returns a Era entity bound to this client.
+// Idiomatic usage: client.Era(nil).List(nil, nil) or
+// client.Era(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhishInSDK) Era(data map[string]any) PhishInEntity {
 	return NewEraEntityFunc(sdk, data)
 }
 
 
+// Search returns a Search entity bound to this client.
+// Idiomatic usage: client.Search(nil).List(nil, nil) or
+// client.Search(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhishInSDK) Search(data map[string]any) PhishInEntity {
 	return NewSearchEntityFunc(sdk, data)
 }
 
 
+// Show returns a Show entity bound to this client.
+// Idiomatic usage: client.Show(nil).List(nil, nil) or
+// client.Show(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhishInSDK) Show(data map[string]any) PhishInEntity {
 	return NewShowEntityFunc(sdk, data)
 }
 
 
+// Song returns a Song entity bound to this client.
+// Idiomatic usage: client.Song(nil).List(nil, nil) or
+// client.Song(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhishInSDK) Song(data map[string]any) PhishInEntity {
 	return NewSongEntityFunc(sdk, data)
 }
 
 
+// Tour returns a Tour entity bound to this client.
+// Idiomatic usage: client.Tour(nil).List(nil, nil) or
+// client.Tour(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhishInSDK) Tour(data map[string]any) PhishInEntity {
 	return NewTourEntityFunc(sdk, data)
 }
 
 
+// Track returns a Track entity bound to this client.
+// Idiomatic usage: client.Track(nil).List(nil, nil) or
+// client.Track(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhishInSDK) Track(data map[string]any) PhishInEntity {
 	return NewTrackEntityFunc(sdk, data)
 }
 
 
+// Venue returns a Venue entity bound to this client.
+// Idiomatic usage: client.Venue(nil).List(nil, nil) or
+// client.Venue(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhishInSDK) Venue(data map[string]any) PhishInEntity {
 	return NewVenueEntityFunc(sdk, data)
 }
 
 
+// Year returns a Year entity bound to this client.
+// Idiomatic usage: client.Year(nil).List(nil, nil) or
+// client.Year(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *PhishInSDK) Year(data map[string]any) PhishInEntity {
 	return NewYearEntityFunc(sdk, data)
 }

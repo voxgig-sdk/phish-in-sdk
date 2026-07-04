@@ -14,9 +14,12 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Year,
+} from '../PhishInTypes'
 
 // TODO: needs Entity superclass
-class YearEntity extends PhishInEntityBase {
+class YearEntity extends PhishInEntityBase<Year> {
 
   constructor(client: PhishInSDK, entopts: any) {
     super(client, entopts)

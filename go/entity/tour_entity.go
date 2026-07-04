@@ -85,6 +85,27 @@ func (e *TourEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Tour; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *TourEntity) DataTyped(data ...Tour) Tour {
+	if len(data) > 0 {
+		return typedFrom[Tour](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Tour](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Tour (all fields
+// optional at the wire level).
+func (e *TourEntity) MatchTyped(match ...Tour) Tour {
+	if len(match) > 0 {
+		return typedFrom[Tour](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Tour](e.Match())
+}
+
 
 func (e *TourEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
@@ -111,6 +132,17 @@ func (e *TourEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, er
 	})
 }
 
+// LoadTyped is the statically-typed variant of Load: it takes an
+// TourLoadMatch and returns an Tour. It delegates to the untyped
+// Load (identical runtime) and converts at the typed boundary.
+func (e *TourEntity) LoadTyped(reqmatch TourLoadMatch, ctrl map[string]any) (Tour, error) {
+	res, err := e.Load(asMap(reqmatch), ctrl)
+	if err != nil {
+		return Tour{}, err
+	}
+	return typedFrom[Tour](res), nil
+}
+
 
 
 
@@ -131,6 +163,17 @@ func (e *TourEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, er
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// TourListMatch and returns []Tour. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *TourEntity) ListTyped(reqmatch TourListMatch, ctrl map[string]any) ([]Tour, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[Tour](res), nil
 }
 
 

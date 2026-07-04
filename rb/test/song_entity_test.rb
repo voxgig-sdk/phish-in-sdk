@@ -43,16 +43,14 @@ class SongEntityTest < Minitest::Test
     song_ref01_ent = client.Song(nil)
     song_ref01_match = {}
 
-    song_ref01_list_result, err = song_ref01_ent.list(song_ref01_match, nil)
-    assert_nil err
+    song_ref01_list_result = song_ref01_ent.list(song_ref01_match, nil)
     assert song_ref01_list_result.is_a?(Array)
 
     # LOAD
     song_ref01_match_dt0 = {
       "id" => song_ref01_data["id"],
     }
-    song_ref01_data_dt0_loaded, err = song_ref01_ent.load(song_ref01_match_dt0, nil)
-    assert_nil err
+    song_ref01_data_dt0_loaded = song_ref01_ent.load(song_ref01_match_dt0, nil)
     song_ref01_data_dt0_load_result = Helpers.to_map(song_ref01_data_dt0_loaded)
     assert !song_ref01_data_dt0_load_result.nil?
     assert_equal song_ref01_data_dt0_load_result["id"], song_ref01_data["id"]
@@ -93,7 +91,6 @@ def song_basic_setup(extra)
     "PHISHIN_TEST_SONG_ENTID" => idmap,
     "PHISHIN_TEST_LIVE" => "FALSE",
     "PHISHIN_TEST_EXPLAIN" => "FALSE",
-    "PHISHIN_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def song_basic_setup(extra)
   if env["PHISHIN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["PHISHIN_APIKEY"],
       },
       extra || {},
     ])

@@ -144,16 +144,23 @@ class PhishInSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class PhishInSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,50 +212,138 @@ class PhishInSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def era(self):
+        """Idiomatic facade: client.era.list() / client.era.load({"id": ...})."""
+        from entity.era_entity import EraEntity
+        cached = getattr(self, "_era", None)
+        if cached is None:
+            cached = EraEntity(self, None)
+            self._era = cached
+        return cached
 
     def Era(self, data=None):
+        # Deprecated: use client.era instead.
         from entity.era_entity import EraEntity
         return EraEntity(self, data)
 
 
+    @property
+    def search(self):
+        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
+        from entity.search_entity import SearchEntity
+        cached = getattr(self, "_search", None)
+        if cached is None:
+            cached = SearchEntity(self, None)
+            self._search = cached
+        return cached
+
     def Search(self, data=None):
+        # Deprecated: use client.search instead.
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
+    @property
+    def show(self):
+        """Idiomatic facade: client.show.list() / client.show.load({"id": ...})."""
+        from entity.show_entity import ShowEntity
+        cached = getattr(self, "_show", None)
+        if cached is None:
+            cached = ShowEntity(self, None)
+            self._show = cached
+        return cached
+
     def Show(self, data=None):
+        # Deprecated: use client.show instead.
         from entity.show_entity import ShowEntity
         return ShowEntity(self, data)
 
 
+    @property
+    def song(self):
+        """Idiomatic facade: client.song.list() / client.song.load({"id": ...})."""
+        from entity.song_entity import SongEntity
+        cached = getattr(self, "_song", None)
+        if cached is None:
+            cached = SongEntity(self, None)
+            self._song = cached
+        return cached
+
     def Song(self, data=None):
+        # Deprecated: use client.song instead.
         from entity.song_entity import SongEntity
         return SongEntity(self, data)
 
 
+    @property
+    def tour(self):
+        """Idiomatic facade: client.tour.list() / client.tour.load({"id": ...})."""
+        from entity.tour_entity import TourEntity
+        cached = getattr(self, "_tour", None)
+        if cached is None:
+            cached = TourEntity(self, None)
+            self._tour = cached
+        return cached
+
     def Tour(self, data=None):
+        # Deprecated: use client.tour instead.
         from entity.tour_entity import TourEntity
         return TourEntity(self, data)
 
 
+    @property
+    def track(self):
+        """Idiomatic facade: client.track.list() / client.track.load({"id": ...})."""
+        from entity.track_entity import TrackEntity
+        cached = getattr(self, "_track", None)
+        if cached is None:
+            cached = TrackEntity(self, None)
+            self._track = cached
+        return cached
+
     def Track(self, data=None):
+        # Deprecated: use client.track instead.
         from entity.track_entity import TrackEntity
         return TrackEntity(self, data)
 
 
+    @property
+    def venue(self):
+        """Idiomatic facade: client.venue.list() / client.venue.load({"id": ...})."""
+        from entity.venue_entity import VenueEntity
+        cached = getattr(self, "_venue", None)
+        if cached is None:
+            cached = VenueEntity(self, None)
+            self._venue = cached
+        return cached
+
     def Venue(self, data=None):
+        # Deprecated: use client.venue instead.
         from entity.venue_entity import VenueEntity
         return VenueEntity(self, data)
 
 
+    @property
+    def year(self):
+        """Idiomatic facade: client.year.list() / client.year.load({"id": ...})."""
+        from entity.year_entity import YearEntity
+        cached = getattr(self, "_year", None)
+        if cached is None:
+            cached = YearEntity(self, None)
+            self._year = cached
+        return cached
+
     def Year(self, data=None):
+        # Deprecated: use client.year instead.
         from entity.year_entity import YearEntity
         return YearEntity(self, data)
 

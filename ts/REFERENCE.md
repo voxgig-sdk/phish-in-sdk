@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -194,7 +193,7 @@ Alias for `PhishInSDK.test()`.
 ## EraEntity
 
 ```ts
-const era = client.Era()
+const era = client.era
 ```
 
 ### Fields
@@ -213,7 +212,7 @@ const era = client.Era()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Era().list()
+const results = await client.era.list()
 ```
 
 ### Common Methods
@@ -247,7 +246,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.Search()
+const search = client.search
 ```
 
 ### Fields
@@ -264,7 +263,7 @@ const search = client.Search()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Search().load({ id: 'search_id' })
+const result = await client.search.load({ id: 'search_id' })
 ```
 
 ### Common Methods
@@ -298,7 +297,7 @@ Return a copy of the entity options.
 ## ShowEntity
 
 ```ts
-const show = client.Show()
+const show = client.show
 ```
 
 ### Fields
@@ -328,7 +327,7 @@ const show = client.Show()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Show().list()
+const results = await client.show.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -336,7 +335,7 @@ const results = await client.Show().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Show().load({ id: 'show_id' })
+const result = await client.show.load({ id: 'show_id' })
 ```
 
 ### Common Methods
@@ -370,7 +369,7 @@ Return a copy of the entity options.
 ## SongEntity
 
 ```ts
-const song = client.Song()
+const song = client.song
 ```
 
 ### Fields
@@ -393,7 +392,7 @@ const song = client.Song()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Song().list()
+const results = await client.song.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -401,7 +400,7 @@ const results = await client.Song().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Song().load({ id: 'song_id' })
+const result = await client.song.load({ id: 'song_id' })
 ```
 
 ### Common Methods
@@ -435,7 +434,7 @@ Return a copy of the entity options.
 ## TourEntity
 
 ```ts
-const tour = client.Tour()
+const tour = client.tour
 ```
 
 ### Fields
@@ -457,7 +456,7 @@ const tour = client.Tour()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Tour().list()
+const results = await client.tour.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -465,7 +464,7 @@ const results = await client.Tour().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Tour().load({ id: 'tour_id' })
+const result = await client.tour.load({ id: 'tour_id' })
 ```
 
 ### Common Methods
@@ -499,7 +498,7 @@ Return a copy of the entity options.
 ## TrackEntity
 
 ```ts
-const track = client.Track()
+const track = client.track
 ```
 
 ### Fields
@@ -516,7 +515,7 @@ const track = client.Track()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Track().load({ id: 'track_id' })
+const result = await client.track.load({ id: 'track_id' })
 ```
 
 ### Common Methods
@@ -550,7 +549,7 @@ Return a copy of the entity options.
 ## VenueEntity
 
 ```ts
-const venue = client.Venue()
+const venue = client.venue
 ```
 
 ### Fields
@@ -573,7 +572,7 @@ const venue = client.Venue()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Venue().list()
+const results = await client.venue.list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -581,7 +580,7 @@ const results = await client.Venue().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Venue().load({ id: 'venue_id' })
+const result = await client.venue.load({ id: 'venue_id' })
 ```
 
 ### Common Methods
@@ -615,7 +614,7 @@ Return a copy of the entity options.
 ## YearEntity
 
 ```ts
-const year = client.Year()
+const year = client.year
 ```
 
 ### Common Methods

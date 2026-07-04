@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TourLoadMatch
+---@param ctrl? table
+---@return Tour
+---@return string? err
 function TourEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch TourListMatch
+---@param ctrl? table
+---@return Tour[]
+---@return string? err
 function TourEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

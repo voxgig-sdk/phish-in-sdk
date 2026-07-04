@@ -244,48 +244,152 @@ end
 
 
 
+-- Idiomatic facade: client:era():list() / client:era():load({ id = ... })
+function PhishInSDK:era(data)
+  local EntityMod = require("entity.era_entity")
+  if data == nil then
+    if self._era == nil then
+      self._era = EntityMod.new(self, nil)
+    end
+    return self._era
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:era() instead.
 function PhishInSDK:Era(data)
   local EntityMod = require("entity.era_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
+function PhishInSDK:search(data)
+  local EntityMod = require("entity.search_entity")
+  if data == nil then
+    if self._search == nil then
+      self._search = EntityMod.new(self, nil)
+    end
+    return self._search
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:search() instead.
 function PhishInSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:show():list() / client:show():load({ id = ... })
+function PhishInSDK:show(data)
+  local EntityMod = require("entity.show_entity")
+  if data == nil then
+    if self._show == nil then
+      self._show = EntityMod.new(self, nil)
+    end
+    return self._show
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:show() instead.
 function PhishInSDK:Show(data)
   local EntityMod = require("entity.show_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:song():list() / client:song():load({ id = ... })
+function PhishInSDK:song(data)
+  local EntityMod = require("entity.song_entity")
+  if data == nil then
+    if self._song == nil then
+      self._song = EntityMod.new(self, nil)
+    end
+    return self._song
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:song() instead.
 function PhishInSDK:Song(data)
   local EntityMod = require("entity.song_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:tour():list() / client:tour():load({ id = ... })
+function PhishInSDK:tour(data)
+  local EntityMod = require("entity.tour_entity")
+  if data == nil then
+    if self._tour == nil then
+      self._tour = EntityMod.new(self, nil)
+    end
+    return self._tour
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:tour() instead.
 function PhishInSDK:Tour(data)
   local EntityMod = require("entity.tour_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:track():list() / client:track():load({ id = ... })
+function PhishInSDK:track(data)
+  local EntityMod = require("entity.track_entity")
+  if data == nil then
+    if self._track == nil then
+      self._track = EntityMod.new(self, nil)
+    end
+    return self._track
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:track() instead.
 function PhishInSDK:Track(data)
   local EntityMod = require("entity.track_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:venue():list() / client:venue():load({ id = ... })
+function PhishInSDK:venue(data)
+  local EntityMod = require("entity.venue_entity")
+  if data == nil then
+    if self._venue == nil then
+      self._venue = EntityMod.new(self, nil)
+    end
+    return self._venue
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:venue() instead.
 function PhishInSDK:Venue(data)
   local EntityMod = require("entity.venue_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:year():list() / client:year():load({ id = ... })
+function PhishInSDK:year(data)
+  local EntityMod = require("entity.year_entity")
+  if data == nil then
+    if self._year == nil then
+      self._year = EntityMod.new(self, nil)
+    end
+    return self._year
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:year() instead.
 function PhishInSDK:Year(data)
   local EntityMod = require("entity.year_entity")
   return EntityMod.new(self, data)

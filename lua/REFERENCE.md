@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -112,7 +111,7 @@ same parameters as `direct()`.
 ## EraEntity
 
 ```lua
-local era = client:Era(nil)
+local era = client:era(nil)
 ```
 
 ### Fields
@@ -131,7 +130,7 @@ local era = client:Era(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Era():list()
+local results, err = client:era():list()
 ```
 
 ### Common Methods
@@ -167,7 +166,7 @@ Return the entity name.
 ## SearchEntity
 
 ```lua
-local search = client:Search(nil)
+local search = client:search(nil)
 ```
 
 ### Fields
@@ -184,7 +183,7 @@ local search = client:Search(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Search():load({ id = "search_id" })
+local result, err = client:search():load({ id = "search_id" })
 ```
 
 ### Common Methods
@@ -220,7 +219,7 @@ Return the entity name.
 ## ShowEntity
 
 ```lua
-local show = client:Show(nil)
+local show = client:show(nil)
 ```
 
 ### Fields
@@ -250,7 +249,7 @@ local show = client:Show(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Show():list()
+local results, err = client:show():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -258,7 +257,7 @@ local results, err = client:Show():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Show():load({ id = "show_id" })
+local result, err = client:show():load({ id = "show_id" })
 ```
 
 ### Common Methods
@@ -294,7 +293,7 @@ Return the entity name.
 ## SongEntity
 
 ```lua
-local song = client:Song(nil)
+local song = client:song(nil)
 ```
 
 ### Fields
@@ -317,7 +316,7 @@ local song = client:Song(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Song():list()
+local results, err = client:song():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -325,7 +324,7 @@ local results, err = client:Song():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Song():load({ id = "song_id" })
+local result, err = client:song():load({ id = "song_id" })
 ```
 
 ### Common Methods
@@ -361,7 +360,7 @@ Return the entity name.
 ## TourEntity
 
 ```lua
-local tour = client:Tour(nil)
+local tour = client:tour(nil)
 ```
 
 ### Fields
@@ -383,7 +382,7 @@ local tour = client:Tour(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Tour():list()
+local results, err = client:tour():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -391,7 +390,7 @@ local results, err = client:Tour():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tour():load({ id = "tour_id" })
+local result, err = client:tour():load({ id = "tour_id" })
 ```
 
 ### Common Methods
@@ -427,7 +426,7 @@ Return the entity name.
 ## TrackEntity
 
 ```lua
-local track = client:Track(nil)
+local track = client:track(nil)
 ```
 
 ### Fields
@@ -444,7 +443,7 @@ local track = client:Track(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Track():load({ id = "track_id" })
+local result, err = client:track():load({ id = "track_id" })
 ```
 
 ### Common Methods
@@ -480,7 +479,7 @@ Return the entity name.
 ## VenueEntity
 
 ```lua
-local venue = client:Venue(nil)
+local venue = client:venue(nil)
 ```
 
 ### Fields
@@ -503,7 +502,7 @@ local venue = client:Venue(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Venue():list()
+local results, err = client:venue():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -511,7 +510,7 @@ local results, err = client:Venue():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Venue():load({ id = "venue_id" })
+local result, err = client:venue():load({ id = "venue_id" })
 ```
 
 ### Common Methods
@@ -547,7 +546,7 @@ Return the entity name.
 ## YearEntity
 
 ```lua
-local year = client:Year(nil)
+local year = client:year(nil)
 ```
 
 ### Common Methods

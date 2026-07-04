@@ -42,8 +42,7 @@ class TrackEntityTest < Minitest::Test
     # LOAD
     track_ref01_ent = client.Track(nil)
     track_ref01_match_dt0 = {}
-    track_ref01_data_dt0_loaded, err = track_ref01_ent.load(track_ref01_match_dt0, nil)
-    assert_nil err
+    track_ref01_data_dt0_loaded = track_ref01_ent.load(track_ref01_match_dt0, nil)
     assert !track_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def track_basic_setup(extra)
     "PHISHIN_TEST_TRACK_ENTID" => idmap,
     "PHISHIN_TEST_LIVE" => "FALSE",
     "PHISHIN_TEST_EXPLAIN" => "FALSE",
-    "PHISHIN_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def track_basic_setup(extra)
   if env["PHISHIN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["PHISHIN_APIKEY"],
       },
       extra || {},
     ])

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch TrackLoadMatch
+---@param ctrl? table
+---@return Track
+---@return string? err
 function TrackEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

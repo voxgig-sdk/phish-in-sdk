@@ -9,21 +9,10 @@ The Ruby SDK for the PhishIn API — an entity-oriented client using idiomatic R
 
 
 ## Install
-```bash
-gem install voxgig-sdk-phish-in
-```
+This package is not yet published to RubyGems. Install it from the
+GitHub release tag (`rb/vX.Y.Z`):
 
-Or add to your `Gemfile`:
-
-```ruby
-gem "voxgig-sdk-phish-in"
-```
-
-Then run:
-
-```bash
-bundle install
-```
+- Releases: [https://github.com/voxgig-sdk/phish-in-sdk/releases](https://github.com/voxgig-sdk/phish-in-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -36,22 +25,22 @@ loading a specific record.
 ```ruby
 require_relative "PhishIn_sdk"
 
-client = PhishInSDK.new({
-  "apikey" => ENV["PHISH-IN_APIKEY"],
-})
+client = PhishInSDK.new
 ```
 
 ### 2. List eras
 
 ```ruby
-result, err = client.Era().list
-raise err if err
-
-if result.is_a?(Array)
-  result.each do |item|
-    d = item.data_get
-    puts "#{d["id"]} #{d["name"]}"
+begin
+  result = client.era.list
+  if result.is_a?(Array)
+    result.each do |item|
+      d = item.data_get
+      puts "#{d["id"]} #{d["name"]}"
+    end
   end
+rescue => err
+  warn "list failed: #{err}"
 end
 ```
 
@@ -63,32 +52,35 @@ end
 For endpoints not covered by entity methods:
 
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },
 })
-raise err if err
 
 if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
+else
+  warn result["err"]
 end
 ```
 
 ### Prepare a request without sending it
 
 ```ruby
-fetchdef, err = client.prepare({
-  "path" => "/api/resource/{id}",
-  "method" => "DELETE",
-  "params" => { "id" => "example" },
-})
-raise err if err
-
-puts fetchdef["url"]
-puts fetchdef["method"]
-puts fetchdef["headers"]
+begin
+  fetchdef = client.prepare({
+    "path" => "/api/resource/{id}",
+    "method" => "DELETE",
+    "params" => { "id" => "example" },
+  })
+  puts fetchdef["url"]
+  puts fetchdef["method"]
+  puts fetchdef["headers"]
+rescue => err
+  warn "prepare failed: #{err}"
+end
 ```
 
 ### Use test mode
@@ -98,7 +90,7 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = PhishInSDK.test
 
-result, err = client.PhishIn().load({ "id" => "test01" })
+result = client.era.load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -129,8 +121,7 @@ client = PhishInSDK.new({
 Create a `.env.local` file at the project root:
 
 ```
-PHISH-IN_TEST_LIVE=TRUE
-PHISH-IN_APIKEY=<your-key>
+PHISH_IN_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -153,7 +144,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |
@@ -175,8 +165,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | --- | --- | --- |
 | `options_map` | `() -> Hash` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> [Hash, err]` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> [Hash, err]` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Era` | `(data) -> EraEntity` | Create a Era entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Show` | `(data) -> ShowEntity` | Create a Show entity instance. |
@@ -192,11 +182,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> [any, err]` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> [any, err]` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> [any, err]` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> [any, err]` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> [any, err]` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -206,8 +196,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[any, err]`. The first value is a
-`Hash` with these keys:
+Entity operations return the result data directly. On failure they
+raise a `PhishInError` (a `StandardError` subclass), so wrap
+calls in `begin`/`rescue` where you need to handle errors.
+
+The `direct` escape hatch is the exception: it never raises and instead
+returns a result `Hash` with these keys:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -215,8 +209,7 @@ Entity operations return `[any, err]`. The first value is a
 | `status` | `Integer` | HTTP status code. |
 | `headers` | `Hash` | Response headers. |
 | `data` | `any` | Parsed JSON response body. |
-
-On error, `ok` is `false` and `err` contains the error value.
+| `err` | `Error` | Present when `ok` is `false`. |
 
 ### Entities
 
@@ -345,7 +338,7 @@ API path: ``
 
 ### Era
 
-Create an instance: `const era = client.Era()`
+Create an instance: `const era = client.era`
 
 #### Operations
 
@@ -365,13 +358,13 @@ Create an instance: `const era = client.Era()`
 #### Example: List
 
 ```ts
-const eras = await client.Era().list()
+const eras = await client.era.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -389,13 +382,13 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.search.load({ id: 'search_id' })
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.Show()`
+Create an instance: `const show = client.show`
 
 #### Operations
 
@@ -427,19 +420,19 @@ Create an instance: `const show = client.Show()`
 #### Example: Load
 
 ```ts
-const show = await client.Show().load({ id: 'show_id' })
+const show = await client.show.load({ id: 'show_id' })
 ```
 
 #### Example: List
 
 ```ts
-const shows = await client.Show().list()
+const shows = await client.show.list()
 ```
 
 
 ### Song
 
-Create an instance: `const song = client.Song()`
+Create an instance: `const song = client.song`
 
 #### Operations
 
@@ -464,19 +457,19 @@ Create an instance: `const song = client.Song()`
 #### Example: Load
 
 ```ts
-const song = await client.Song().load({ id: 'song_id' })
+const song = await client.song.load({ id: 'song_id' })
 ```
 
 #### Example: List
 
 ```ts
-const songs = await client.Song().list()
+const songs = await client.song.list()
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.Tour()`
+Create an instance: `const tour = client.tour`
 
 #### Operations
 
@@ -500,19 +493,19 @@ Create an instance: `const tour = client.Tour()`
 #### Example: Load
 
 ```ts
-const tour = await client.Tour().load({ id: 'tour_id' })
+const tour = await client.tour.load({ id: 'tour_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tours = await client.Tour().list()
+const tours = await client.tour.list()
 ```
 
 
 ### Track
 
-Create an instance: `const track = client.Track()`
+Create an instance: `const track = client.track`
 
 #### Operations
 
@@ -530,13 +523,13 @@ Create an instance: `const track = client.Track()`
 #### Example: Load
 
 ```ts
-const track = await client.Track().load({ id: 'track_id' })
+const track = await client.track.load({ id: 'track_id' })
 ```
 
 
 ### Venue
 
-Create an instance: `const venue = client.Venue()`
+Create an instance: `const venue = client.venue`
 
 #### Operations
 
@@ -561,19 +554,19 @@ Create an instance: `const venue = client.Venue()`
 #### Example: Load
 
 ```ts
-const venue = await client.Venue().load({ id: 'venue_id' })
+const venue = await client.venue.load({ id: 'venue_id' })
 ```
 
 #### Example: List
 
 ```ts
-const venues = await client.Venue().list()
+const venues = await client.venue.list()
 ```
 
 
 ### Year
 
-Create an instance: `const year = client.Year()`
+Create an instance: `const year = client.year`
 
 
 ## Explanation
@@ -647,11 +640,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-moon = client.Moon
-moon.load({ "planet_id" => "earth", "id" => "luna" })
+era = client.era
+era.load({ "id" => "example_id" })
 
-# moon.data_get now returns the loaded moon data
-# moon.match_get returns the last match criteria
+# era.data_get now returns the loaded era data
+# era.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

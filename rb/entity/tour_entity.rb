@@ -45,6 +45,7 @@ class TourEntity
     end
   end
 
+  # @return [Tour, Hash] the current Tour data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class TourEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Tour fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Tour.
+  #
+  # @param reqmatch [TourLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Tour, Hash] the loaded Tour; raises PhishInError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
@@ -86,6 +93,11 @@ class TourEntity
 
 
   
+  # List Tour items matching the given filter.
+  #
+  # @param reqmatch [TourListMatch, Hash, nil] match filter (any subset of Tour fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Tour>, Array] the matching Tour items; raises PhishInError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

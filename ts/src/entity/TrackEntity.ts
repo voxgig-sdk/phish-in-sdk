@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Track,
+  TrackLoadMatch,
+} from '../PhishInTypes'
 
 // TODO: needs Entity superclass
-class TrackEntity extends PhishInEntityBase {
+class TrackEntity extends PhishInEntityBase<Track> {
 
   constructor(client: PhishInSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class TrackEntity extends PhishInEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: TrackLoadMatch, ctrl?: Control): Promise<Track> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class TrackEntity extends PhishInEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Track> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

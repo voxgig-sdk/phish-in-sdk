@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Song,
+  SongLoadMatch,
+  SongListMatch,
+} from '../PhishInTypes'
 
 // TODO: needs Entity superclass
-class SongEntity extends PhishInEntityBase {
+class SongEntity extends PhishInEntityBase<Song> {
 
   constructor(client: PhishInSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class SongEntity extends PhishInEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: SongLoadMatch, ctrl?: Control): Promise<Song> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class SongEntity extends PhishInEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Song> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: SongListMatch, ctrl?: Control): Promise<Song[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class SongEntity extends PhishInEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Song[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

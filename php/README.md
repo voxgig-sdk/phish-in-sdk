@@ -9,9 +9,10 @@ The PHP SDK for the PhishIn API — an entity-oriented client using PHP conventi
 
 
 ## Install
-```bash
-composer require voxgig-sdk/phish-in
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/phish-in-sdk/releases](https://github.com/voxgig-sdk/phish-in-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,22 +26,22 @@ loading a specific record.
 <?php
 require_once 'phishin_sdk.php';
 
-$client = new PhishInSDK([
-    "apikey" => getenv("PHISH-IN_APIKEY"),
-]);
+$client = new PhishInSDK();
 ```
 
 ### 2. List eras
 
 ```php
-[$result, $err] = $client->Era()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->era()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
@@ -52,28 +53,31 @@ if (is_array($result)) {
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -87,7 +91,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = PhishInSDK::test();
 
-[$result, $err] = $client->PhishIn()->load(["id" => "test01"]);
+$result = $client->era()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -121,8 +125,7 @@ $client = new PhishInSDK([
 Create a `.env.local` file at the project root:
 
 ```
-PHISH-IN_TEST_LIVE=TRUE
-PHISH-IN_APIKEY=<your-key>
+PHISH_IN_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -145,7 +148,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -198,8 +200,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -337,7 +343,7 @@ API path: ``
 
 ### Era
 
-Create an instance: `const era = client.Era()`
+Create an instance: `const era = client.era`
 
 #### Operations
 
@@ -357,13 +363,13 @@ Create an instance: `const era = client.Era()`
 #### Example: List
 
 ```ts
-const eras = await client.Era().list()
+const eras = await client.era.list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.Search()`
+Create an instance: `const search = client.search`
 
 #### Operations
 
@@ -381,13 +387,13 @@ Create an instance: `const search = client.Search()`
 #### Example: Load
 
 ```ts
-const search = await client.Search().load({ id: 'search_id' })
+const search = await client.search.load({ id: 'search_id' })
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.Show()`
+Create an instance: `const show = client.show`
 
 #### Operations
 
@@ -419,19 +425,19 @@ Create an instance: `const show = client.Show()`
 #### Example: Load
 
 ```ts
-const show = await client.Show().load({ id: 'show_id' })
+const show = await client.show.load({ id: 'show_id' })
 ```
 
 #### Example: List
 
 ```ts
-const shows = await client.Show().list()
+const shows = await client.show.list()
 ```
 
 
 ### Song
 
-Create an instance: `const song = client.Song()`
+Create an instance: `const song = client.song`
 
 #### Operations
 
@@ -456,19 +462,19 @@ Create an instance: `const song = client.Song()`
 #### Example: Load
 
 ```ts
-const song = await client.Song().load({ id: 'song_id' })
+const song = await client.song.load({ id: 'song_id' })
 ```
 
 #### Example: List
 
 ```ts
-const songs = await client.Song().list()
+const songs = await client.song.list()
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.Tour()`
+Create an instance: `const tour = client.tour`
 
 #### Operations
 
@@ -492,19 +498,19 @@ Create an instance: `const tour = client.Tour()`
 #### Example: Load
 
 ```ts
-const tour = await client.Tour().load({ id: 'tour_id' })
+const tour = await client.tour.load({ id: 'tour_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tours = await client.Tour().list()
+const tours = await client.tour.list()
 ```
 
 
 ### Track
 
-Create an instance: `const track = client.Track()`
+Create an instance: `const track = client.track`
 
 #### Operations
 
@@ -522,13 +528,13 @@ Create an instance: `const track = client.Track()`
 #### Example: Load
 
 ```ts
-const track = await client.Track().load({ id: 'track_id' })
+const track = await client.track.load({ id: 'track_id' })
 ```
 
 
 ### Venue
 
-Create an instance: `const venue = client.Venue()`
+Create an instance: `const venue = client.venue`
 
 #### Operations
 
@@ -553,19 +559,19 @@ Create an instance: `const venue = client.Venue()`
 #### Example: Load
 
 ```ts
-const venue = await client.Venue().load({ id: 'venue_id' })
+const venue = await client.venue.load({ id: 'venue_id' })
 ```
 
 #### Example: List
 
 ```ts
-const venues = await client.Venue().list()
+const venues = await client.venue.list()
 ```
 
 
 ### Year
 
-Create an instance: `const year = client.Year()`
+Create an instance: `const year = client.year`
 
 
 ## Explanation
@@ -639,11 +645,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$era = $client->era();
+$era->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $era->dataGet() now returns the loaded era data
+// $era->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

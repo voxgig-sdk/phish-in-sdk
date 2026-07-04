@@ -50,8 +50,7 @@ class EraEntityTest extends TestCase
         $era_ref01_ent = $client->Era(null);
         $era_ref01_match = [];
 
-        [$era_ref01_list_result, $err] = $era_ref01_ent->list($era_ref01_match, null);
-        $this->assertNull($err);
+        $era_ref01_list_result = $era_ref01_ent->list($era_ref01_match, null);
         $this->assertIsArray($era_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function era_basic_setup($extra)
         "PHISHIN_TEST_ERA_ENTID" => $idmap,
         "PHISHIN_TEST_LIVE" => "FALSE",
         "PHISHIN_TEST_EXPLAIN" => "FALSE",
-        "PHISHIN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function era_basic_setup($extra)
     if ($env["PHISHIN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["PHISHIN_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -55,6 +55,9 @@ class VenueEntity
         return new VenueEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Venue|array $args Venue data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class VenueEntity
         }
     }
 
+    /**
+     * @return Venue|array The current Venue data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Venue fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class VenueEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Venue fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -84,7 +96,16 @@ class VenueEntity
     }
 
     
-    public function load($reqmatch, $ctrl = null): array
+    /**
+     * Load a single Venue.
+     *
+     * @param VenueLoadMatch|array|null $reqmatch Match criteria (id/query
+     *   fields) as an assoc-array; a typed VenueLoadMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Venue|array The loaded Venue as an assoc-array at the
+     *   SDK boundary; throws PhishInError on failure (item-5 convention).
+     */
+    public function load(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -110,7 +131,16 @@ class VenueEntity
 
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Venue items matching the given filter.
+     *
+     * @param VenueListMatch|array|null $reqmatch Match filter (any subset
+     *   of Venue fields) as an assoc-array; VenueListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Venue[]|array A list of Venue items as assoc-arrays at
+     *   the SDK boundary; throws PhishInError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -138,7 +168,7 @@ class VenueEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

@@ -50,16 +50,14 @@ class TestSongEntity:
         song_ref01_ent = client.Song(None)
         song_ref01_match = {}
 
-        song_ref01_list_result, err = song_ref01_ent.list(song_ref01_match, None)
-        assert err is None
+        song_ref01_list_result = song_ref01_ent.list(song_ref01_match, None)
         assert isinstance(song_ref01_list_result, list)
 
         # LOAD
         song_ref01_match_dt0 = {
             "id": song_ref01_data["id"],
         }
-        song_ref01_data_dt0_loaded, err = song_ref01_ent.load(song_ref01_match_dt0, None)
-        assert err is None
+        song_ref01_data_dt0_loaded = song_ref01_ent.load(song_ref01_match_dt0, None)
         song_ref01_data_dt0_load_result = helpers.to_map(song_ref01_data_dt0_loaded)
         assert song_ref01_data_dt0_load_result is not None
         assert song_ref01_data_dt0_load_result["id"] == song_ref01_data["id"]
@@ -102,7 +100,6 @@ def _song_basic_setup(extra):
         "PHISHIN_TEST_SONG_ENTID": idmap,
         "PHISHIN_TEST_LIVE": "FALSE",
         "PHISHIN_TEST_EXPLAIN": "FALSE",
-        "PHISHIN_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -113,7 +110,6 @@ def _song_basic_setup(extra):
     if env.get("PHISHIN_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PHISHIN_APIKEY"),
             },
             extra or {},
         ])

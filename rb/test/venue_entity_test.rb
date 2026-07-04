@@ -43,16 +43,14 @@ class VenueEntityTest < Minitest::Test
     venue_ref01_ent = client.Venue(nil)
     venue_ref01_match = {}
 
-    venue_ref01_list_result, err = venue_ref01_ent.list(venue_ref01_match, nil)
-    assert_nil err
+    venue_ref01_list_result = venue_ref01_ent.list(venue_ref01_match, nil)
     assert venue_ref01_list_result.is_a?(Array)
 
     # LOAD
     venue_ref01_match_dt0 = {
       "id" => venue_ref01_data["id"],
     }
-    venue_ref01_data_dt0_loaded, err = venue_ref01_ent.load(venue_ref01_match_dt0, nil)
-    assert_nil err
+    venue_ref01_data_dt0_loaded = venue_ref01_ent.load(venue_ref01_match_dt0, nil)
     venue_ref01_data_dt0_load_result = Helpers.to_map(venue_ref01_data_dt0_loaded)
     assert !venue_ref01_data_dt0_load_result.nil?
     assert_equal venue_ref01_data_dt0_load_result["id"], venue_ref01_data["id"]
@@ -93,7 +91,6 @@ def venue_basic_setup(extra)
     "PHISHIN_TEST_VENUE_ENTID" => idmap,
     "PHISHIN_TEST_LIVE" => "FALSE",
     "PHISHIN_TEST_EXPLAIN" => "FALSE",
-    "PHISHIN_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -105,7 +102,6 @@ def venue_basic_setup(extra)
   if env["PHISHIN_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["PHISHIN_APIKEY"],
       },
       extra || {},
     ])
