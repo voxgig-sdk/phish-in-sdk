@@ -220,137 +220,57 @@ class PhishInSDK:
         }
 
 
-    @property
-    def era(self):
-        """Idiomatic facade: client.era.list() / client.era.load({"id": ...})."""
-        from entity.era_entity import EraEntity
-        cached = getattr(self, "_era", None)
-        if cached is None:
-            cached = EraEntity(self, None)
-            self._era = cached
-        return cached
-
-    def Era(self, data=None):
-        # Deprecated: use client.era instead.
+    def Era(self, data=None) -> "EraEntity":
+        """Entity factory: client.Era().list({}) / client.Era().load({"id": ...})."""
         from entity.era_entity import EraEntity
         return EraEntity(self, data)
 
 
-    @property
-    def search(self):
-        """Idiomatic facade: client.search.list() / client.search.load({"id": ...})."""
-        from entity.search_entity import SearchEntity
-        cached = getattr(self, "_search", None)
-        if cached is None:
-            cached = SearchEntity(self, None)
-            self._search = cached
-        return cached
-
-    def Search(self, data=None):
-        # Deprecated: use client.search instead.
+    def Search(self, data=None) -> "SearchEntity":
+        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
-    @property
-    def show(self):
-        """Idiomatic facade: client.show.list() / client.show.load({"id": ...})."""
-        from entity.show_entity import ShowEntity
-        cached = getattr(self, "_show", None)
-        if cached is None:
-            cached = ShowEntity(self, None)
-            self._show = cached
-        return cached
-
-    def Show(self, data=None):
-        # Deprecated: use client.show instead.
+    def Show(self, data=None) -> "ShowEntity":
+        """Entity factory: client.Show().list({}) / client.Show().load({"id": ...})."""
         from entity.show_entity import ShowEntity
         return ShowEntity(self, data)
 
 
-    @property
-    def song(self):
-        """Idiomatic facade: client.song.list() / client.song.load({"id": ...})."""
-        from entity.song_entity import SongEntity
-        cached = getattr(self, "_song", None)
-        if cached is None:
-            cached = SongEntity(self, None)
-            self._song = cached
-        return cached
-
-    def Song(self, data=None):
-        # Deprecated: use client.song instead.
+    def Song(self, data=None) -> "SongEntity":
+        """Entity factory: client.Song().list({}) / client.Song().load({"id": ...})."""
         from entity.song_entity import SongEntity
         return SongEntity(self, data)
 
 
-    @property
-    def tour(self):
-        """Idiomatic facade: client.tour.list() / client.tour.load({"id": ...})."""
-        from entity.tour_entity import TourEntity
-        cached = getattr(self, "_tour", None)
-        if cached is None:
-            cached = TourEntity(self, None)
-            self._tour = cached
-        return cached
-
-    def Tour(self, data=None):
-        # Deprecated: use client.tour instead.
+    def Tour(self, data=None) -> "TourEntity":
+        """Entity factory: client.Tour().list({}) / client.Tour().load({"id": ...})."""
         from entity.tour_entity import TourEntity
         return TourEntity(self, data)
 
 
-    @property
-    def track(self):
-        """Idiomatic facade: client.track.list() / client.track.load({"id": ...})."""
-        from entity.track_entity import TrackEntity
-        cached = getattr(self, "_track", None)
-        if cached is None:
-            cached = TrackEntity(self, None)
-            self._track = cached
-        return cached
-
-    def Track(self, data=None):
-        # Deprecated: use client.track instead.
+    def Track(self, data=None) -> "TrackEntity":
+        """Entity factory: client.Track().list({}) / client.Track().load({"id": ...})."""
         from entity.track_entity import TrackEntity
         return TrackEntity(self, data)
 
 
-    @property
-    def venue(self):
-        """Idiomatic facade: client.venue.list() / client.venue.load({"id": ...})."""
-        from entity.venue_entity import VenueEntity
-        cached = getattr(self, "_venue", None)
-        if cached is None:
-            cached = VenueEntity(self, None)
-            self._venue = cached
-        return cached
-
-    def Venue(self, data=None):
-        # Deprecated: use client.venue instead.
+    def Venue(self, data=None) -> "VenueEntity":
+        """Entity factory: client.Venue().list({}) / client.Venue().load({"id": ...})."""
         from entity.venue_entity import VenueEntity
         return VenueEntity(self, data)
 
 
-    @property
-    def year(self):
-        """Idiomatic facade: client.year.list() / client.year.load({"id": ...})."""
-        from entity.year_entity import YearEntity
-        cached = getattr(self, "_year", None)
-        if cached is None:
-            cached = YearEntity(self, None)
-            self._year = cached
-        return cached
-
-    def Year(self, data=None):
-        # Deprecated: use client.year instead.
+    def Year(self, data=None) -> "YearEntity":
+        """Entity factory: client.Year().list({}) / client.Year().load({"id": ...})."""
         from entity.year_entity import YearEntity
         return YearEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "PhishInSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -370,3 +290,16 @@ class PhishInSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.era_entity import EraEntity
+    from entity.search_entity import SearchEntity
+    from entity.show_entity import ShowEntity
+    from entity.song_entity import SongEntity
+    from entity.tour_entity import TourEntity
+    from entity.track_entity import TrackEntity
+    from entity.venue_entity import VenueEntity
+    from entity.year_entity import YearEntity

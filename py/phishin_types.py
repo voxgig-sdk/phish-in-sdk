@@ -4,183 +4,168 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Era:
-    end_date: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    start_date: Optional[str] = None
+class Era(TypedDict, total=False):
+    end_date: str
+    id: int
+    name: str
+    start_date: str
 
 
-@dataclass
-class EraListMatch:
-    end_date: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    start_date: Optional[str] = None
+class EraListMatch(TypedDict, total=False):
+    end_date: str
+    id: int
+    name: str
+    start_date: str
 
 
-@dataclass
-class Search:
-    data: Optional[dict] = None
-    success: Optional[bool] = None
+class Search(TypedDict, total=False):
+    data: dict
+    success: bool
 
 
-@dataclass
-class SearchLoadMatch:
-    data: Optional[dict] = None
-    success: Optional[bool] = None
+class SearchLoadMatch(TypedDict, total=False):
+    data: dict
+    success: bool
 
 
-@dataclass
-class Show:
-    data: Optional[list] = None
-    date: Optional[str] = None
-    id: Optional[int] = None
-    location: Optional[str] = None
-    page: Optional[int] = None
-    show_count: Optional[int] = None
-    success: Optional[bool] = None
-    total_entry: Optional[int] = None
-    total_page: Optional[int] = None
-    tour_id: Optional[int] = None
-    tour_name: Optional[str] = None
-    track: Optional[list] = None
-    venue_id: Optional[int] = None
-    venue_name: Optional[str] = None
-    year: Optional[int] = None
+class Show(TypedDict, total=False):
+    data: list
+    date: str
+    id: int
+    location: str
+    page: int
+    show_count: int
+    success: bool
+    total_entry: int
+    total_page: int
+    tour_id: int
+    tour_name: str
+    track: list
+    venue_id: int
+    venue_name: str
+    year: int
 
 
-@dataclass
-class ShowLoadMatch:
+class ShowLoadMatch(TypedDict):
     date: str
     id: int
     year: int
 
 
-@dataclass
-class ShowListMatch:
-    data: Optional[list] = None
-    date: Optional[str] = None
-    id: Optional[int] = None
-    location: Optional[str] = None
-    page: Optional[int] = None
-    show_count: Optional[int] = None
-    success: Optional[bool] = None
-    total_entry: Optional[int] = None
-    total_page: Optional[int] = None
-    tour_id: Optional[int] = None
-    tour_name: Optional[str] = None
-    track: Optional[list] = None
-    venue_id: Optional[int] = None
-    venue_name: Optional[str] = None
-    year: Optional[int] = None
+class ShowListMatch(TypedDict, total=False):
+    data: list
+    date: str
+    id: int
+    location: str
+    page: int
+    show_count: int
+    success: bool
+    total_entry: int
+    total_page: int
+    tour_id: int
+    tour_name: str
+    track: list
+    venue_id: int
+    venue_name: str
+    year: int
 
 
-@dataclass
-class Song:
-    alia: Optional[str] = None
-    data: Optional[dict] = None
-    debut: Optional[str] = None
-    id: Optional[int] = None
-    last_played: Optional[str] = None
-    success: Optional[bool] = None
-    times_played: Optional[int] = None
-    title: Optional[str] = None
+class Song(TypedDict, total=False):
+    alia: str
+    data: dict
+    debut: str
+    id: int
+    last_played: str
+    success: bool
+    times_played: int
+    title: str
 
 
-@dataclass
-class SongLoadMatch:
+class SongLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class SongListMatch:
-    alia: Optional[str] = None
-    data: Optional[dict] = None
-    debut: Optional[str] = None
-    id: Optional[int] = None
-    last_played: Optional[str] = None
-    success: Optional[bool] = None
-    times_played: Optional[int] = None
-    title: Optional[str] = None
+class SongListMatch(TypedDict, total=False):
+    alia: str
+    data: dict
+    debut: str
+    id: int
+    last_played: str
+    success: bool
+    times_played: int
+    title: str
 
 
-@dataclass
-class Tour:
-    data: Optional[dict] = None
-    end_date: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    shows_count: Optional[int] = None
-    start_date: Optional[str] = None
-    success: Optional[bool] = None
+class Tour(TypedDict, total=False):
+    data: dict
+    end_date: str
+    id: int
+    name: str
+    shows_count: int
+    start_date: str
+    success: bool
 
 
-@dataclass
-class TourLoadMatch:
+class TourLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class TourListMatch:
-    data: Optional[dict] = None
-    end_date: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    shows_count: Optional[int] = None
-    start_date: Optional[str] = None
-    success: Optional[bool] = None
+class TourListMatch(TypedDict, total=False):
+    data: dict
+    end_date: str
+    id: int
+    name: str
+    shows_count: int
+    start_date: str
+    success: bool
 
 
-@dataclass
-class Track:
-    data: Optional[dict] = None
-    success: Optional[bool] = None
+class Track(TypedDict, total=False):
+    data: dict
+    success: bool
 
 
-@dataclass
-class TrackLoadMatch:
+class TrackLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class Venue:
-    data: Optional[dict] = None
-    id: Optional[int] = None
-    latitude: Optional[float] = None
-    location: Optional[str] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    shows_count: Optional[int] = None
-    success: Optional[bool] = None
+class Venue(TypedDict, total=False):
+    data: dict
+    id: int
+    latitude: float
+    location: str
+    longitude: float
+    name: str
+    shows_count: int
+    success: bool
 
 
-@dataclass
-class VenueLoadMatch:
+class VenueLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class VenueListMatch:
-    data: Optional[dict] = None
-    id: Optional[int] = None
-    latitude: Optional[float] = None
-    location: Optional[str] = None
-    longitude: Optional[float] = None
-    name: Optional[str] = None
-    shows_count: Optional[int] = None
-    success: Optional[bool] = None
+class VenueListMatch(TypedDict, total=False):
+    data: dict
+    id: int
+    latitude: float
+    location: str
+    longitude: float
+    name: str
+    shows_count: int
+    success: bool
 
 
-@dataclass
-class Year:
+class Year(TypedDict):
     pass
-

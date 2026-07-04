@@ -233,10 +233,10 @@ class PhishInSDK
 
     private $_era = null;
 
-    // Idiomatic facade: $client->era()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Era() (PHP method
-    // names are case-insensitive).
-    public function era($data = null)
+    // Canonical facade: $client->Era()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->era()
+    // resolves here too.
+    public function Era($data = null)
     {
         require_once __DIR__ . '/entity/era_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class PhishInSDK
 
     private $_search = null;
 
-    // Idiomatic facade: $client->search()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Search() (PHP method
-    // names are case-insensitive).
-    public function search($data = null)
+    // Canonical facade: $client->Search()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->search()
+    // resolves here too.
+    public function Search($data = null)
     {
         require_once __DIR__ . '/entity/search_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class PhishInSDK
 
     private $_show = null;
 
-    // Idiomatic facade: $client->show()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Show() (PHP method
-    // names are case-insensitive).
-    public function show($data = null)
+    // Canonical facade: $client->Show()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->show()
+    // resolves here too.
+    public function Show($data = null)
     {
         require_once __DIR__ . '/entity/show_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class PhishInSDK
 
     private $_song = null;
 
-    // Idiomatic facade: $client->song()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Song() (PHP method
-    // names are case-insensitive).
-    public function song($data = null)
+    // Canonical facade: $client->Song()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->song()
+    // resolves here too.
+    public function Song($data = null)
     {
         require_once __DIR__ . '/entity/song_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class PhishInSDK
 
     private $_tour = null;
 
-    // Idiomatic facade: $client->tour()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Tour() (PHP method
-    // names are case-insensitive).
-    public function tour($data = null)
+    // Canonical facade: $client->Tour()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->tour()
+    // resolves here too.
+    public function Tour($data = null)
     {
         require_once __DIR__ . '/entity/tour_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class PhishInSDK
 
     private $_track = null;
 
-    // Idiomatic facade: $client->track()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Track() (PHP method
-    // names are case-insensitive).
-    public function track($data = null)
+    // Canonical facade: $client->Track()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->track()
+    // resolves here too.
+    public function Track($data = null)
     {
         require_once __DIR__ . '/entity/track_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class PhishInSDK
 
     private $_venue = null;
 
-    // Idiomatic facade: $client->venue()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Venue() (PHP method
-    // names are case-insensitive).
-    public function venue($data = null)
+    // Canonical facade: $client->Venue()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->venue()
+    // resolves here too.
+    public function Venue($data = null)
     {
         require_once __DIR__ . '/entity/venue_entity.php';
         if ($data === null) {
@@ -359,10 +359,10 @@ class PhishInSDK
 
     private $_year = null;
 
-    // Idiomatic facade: $client->year()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Year() (PHP method
-    // names are case-insensitive).
-    public function year($data = null)
+    // Canonical facade: $client->Year()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->year()
+    // resolves here too.
+    public function Year($data = null)
     {
         require_once __DIR__ . '/entity/year_entity.php';
         if ($data === null) {

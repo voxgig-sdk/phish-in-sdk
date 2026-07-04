@@ -108,7 +108,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## EraEntity
 
 ```python
-era = client.era
+era = client.Era()
 ```
 
 ### Fields
@@ -127,7 +127,9 @@ era = client.era
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.era.list({})
+results = client.Era().list({})
+for era in results:
+    print(era)
 ```
 
 ### Common Methods
@@ -162,7 +164,7 @@ Return the entity name.
 ## SearchEntity
 
 ```python
-search = client.search
+search = client.Search()
 ```
 
 ### Fields
@@ -179,7 +181,7 @@ search = client.search
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.search.load({"id": "search_id"})
+result = client.Search().load({"id": "search_id"})
 ```
 
 ### Common Methods
@@ -214,7 +216,7 @@ Return the entity name.
 ## ShowEntity
 
 ```python
-show = client.show
+show = client.Show()
 ```
 
 ### Fields
@@ -244,7 +246,9 @@ show = client.show
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.show.list({})
+results = client.Show().list({})
+for show in results:
+    print(show)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -252,7 +256,7 @@ results = client.show.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.show.load({"id": "show_id"})
+result = client.Show().load({"id": "show_id"})
 ```
 
 ### Common Methods
@@ -287,7 +291,7 @@ Return the entity name.
 ## SongEntity
 
 ```python
-song = client.song
+song = client.Song()
 ```
 
 ### Fields
@@ -310,7 +314,9 @@ song = client.song
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.song.list({})
+results = client.Song().list({})
+for song in results:
+    print(song)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -318,7 +324,7 @@ results = client.song.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.song.load({"id": "song_id"})
+result = client.Song().load({"id": "song_id"})
 ```
 
 ### Common Methods
@@ -353,7 +359,7 @@ Return the entity name.
 ## TourEntity
 
 ```python
-tour = client.tour
+tour = client.Tour()
 ```
 
 ### Fields
@@ -375,7 +381,9 @@ tour = client.tour
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.tour.list({})
+results = client.Tour().list({})
+for tour in results:
+    print(tour)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -383,7 +391,7 @@ results = client.tour.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.tour.load({"id": "tour_id"})
+result = client.Tour().load({"id": "tour_id"})
 ```
 
 ### Common Methods
@@ -418,7 +426,7 @@ Return the entity name.
 ## TrackEntity
 
 ```python
-track = client.track
+track = client.Track()
 ```
 
 ### Fields
@@ -435,7 +443,7 @@ track = client.track
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.track.load({"id": "track_id"})
+result = client.Track().load({"id": "track_id"})
 ```
 
 ### Common Methods
@@ -470,7 +478,7 @@ Return the entity name.
 ## VenueEntity
 
 ```python
-venue = client.venue
+venue = client.Venue()
 ```
 
 ### Fields
@@ -493,7 +501,9 @@ venue = client.venue
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.venue.list({})
+results = client.Venue().list({})
+for venue in results:
+    print(venue)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -501,7 +511,7 @@ results = client.venue.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.venue.load({"id": "venue_id"})
+result = client.Venue().load({"id": "venue_id"})
 ```
 
 ### Common Methods
@@ -536,7 +546,7 @@ Return the entity name.
 ## YearEntity
 
 ```python
-year = client.year
+year = client.Year()
 ```
 
 ### Common Methods

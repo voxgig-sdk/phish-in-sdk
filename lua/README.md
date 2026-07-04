@@ -31,17 +31,17 @@ local sdk = require("phish-in_sdk")
 local client = sdk.new()
 ```
 
-### 2. List eras
+### 2. List era records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:era():list()
+local eras, err = client:Era():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(eras) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -88,8 +88,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:era():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Era():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -167,7 +167,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
-| `Era` | `(data) -> EraEntity` | Create a Era entity instance. |
+| `Era` | `(data) -> EraEntity` | Create an Era entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Show` | `(data) -> ShowEntity` | Create a Show entity instance. |
 | `Song` | `(data) -> SongEntity` | Create a Song entity instance. |
@@ -196,17 +196,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local era, err = client:Era():load({ id = "example_id" })
+    if err then error(err) end
+    -- era is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -335,7 +340,7 @@ API path: ``
 
 ### Era
 
-Create an instance: `const era = client.era`
+Create an instance: `local era = client:Era(nil)`
 
 #### Operations
 
@@ -354,14 +359,14 @@ Create an instance: `const era = client.era`
 
 #### Example: List
 
-```ts
-const eras = await client.era.list()
+```lua
+local eras, err = client:Era():list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `local search = client:Search(nil)`
 
 #### Operations
 
@@ -378,14 +383,14 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```lua
+local search, err = client:Search():load({ id = "search_id" })
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.show`
+Create an instance: `local show = client:Show(nil)`
 
 #### Operations
 
@@ -416,20 +421,20 @@ Create an instance: `const show = client.show`
 
 #### Example: Load
 
-```ts
-const show = await client.show.load({ id: 'show_id' })
+```lua
+local show, err = client:Show():load({ id = "show_id" })
 ```
 
 #### Example: List
 
-```ts
-const shows = await client.show.list()
+```lua
+local shows, err = client:Show():list()
 ```
 
 
 ### Song
 
-Create an instance: `const song = client.song`
+Create an instance: `local song = client:Song(nil)`
 
 #### Operations
 
@@ -453,20 +458,20 @@ Create an instance: `const song = client.song`
 
 #### Example: Load
 
-```ts
-const song = await client.song.load({ id: 'song_id' })
+```lua
+local song, err = client:Song():load({ id = "song_id" })
 ```
 
 #### Example: List
 
-```ts
-const songs = await client.song.list()
+```lua
+local songs, err = client:Song():list()
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `local tour = client:Tour(nil)`
 
 #### Operations
 
@@ -489,20 +494,20 @@ Create an instance: `const tour = client.tour`
 
 #### Example: Load
 
-```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+```lua
+local tour, err = client:Tour():load({ id = "tour_id" })
 ```
 
 #### Example: List
 
-```ts
-const tours = await client.tour.list()
+```lua
+local tours, err = client:Tour():list()
 ```
 
 
 ### Track
 
-Create an instance: `const track = client.track`
+Create an instance: `local track = client:Track(nil)`
 
 #### Operations
 
@@ -519,14 +524,14 @@ Create an instance: `const track = client.track`
 
 #### Example: Load
 
-```ts
-const track = await client.track.load({ id: 'track_id' })
+```lua
+local track, err = client:Track():load({ id = "track_id" })
 ```
 
 
 ### Venue
 
-Create an instance: `const venue = client.venue`
+Create an instance: `local venue = client:Venue(nil)`
 
 #### Operations
 
@@ -550,20 +555,20 @@ Create an instance: `const venue = client.venue`
 
 #### Example: Load
 
-```ts
-const venue = await client.venue.load({ id: 'venue_id' })
+```lua
+local venue, err = client:Venue():load({ id = "venue_id" })
 ```
 
 #### Example: List
 
-```ts
-const venues = await client.venue.list()
+```lua
+local venues, err = client:Venue():list()
 ```
 
 
 ### Year
 
-Create an instance: `const year = client.year`
+Create an instance: `local year = client:Year(nil)`
 
 
 ## Explanation
@@ -637,7 +642,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local era = client:era()
+local era = client:Era()
 era:load({ id = "example_id" })
 
 -- era:data_get() now returns the loaded era data

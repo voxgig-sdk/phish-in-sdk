@@ -30,37 +30,33 @@ go mod edit -replace github.com/voxgig-sdk/phish-in-sdk/go=../phish-in-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/phish-in-sdk/go"
-    "github.com/voxgig-sdk/phish-in-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 2. List eras
-
-```go
-    result, err := client.Era(nil).List(nil, nil)
+    // List era records — the value is the array of records itself.
+    eras, err := client.Era(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range eras.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -110,10 +106,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Era(nil).Load(
+era, err := client.Era(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(era) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -190,7 +189,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Era` | `(data map[string]any) PhishInEntity` | Create a Era entity instance. |
+| `Era` | `(data map[string]any) PhishInEntity` | Create an Era entity instance. |
 | `Search` | `(data map[string]any) PhishInEntity` | Create a Search entity instance. |
 | `Show` | `(data map[string]any) PhishInEntity` | Create a Show entity instance. |
 | `Song` | `(data map[string]any) PhishInEntity` | Create a Song entity instance. |
@@ -217,17 +216,24 @@ All entities implement the `PhishInEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    era, err := client.Era(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // era is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -376,7 +382,11 @@ Create an instance: `era := client.Era(nil)`
 #### Example: List
 
 ```go
-results, err := client.Era(nil).List(nil, nil)
+eras, err := client.Era(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(eras) // the array of records
 ```
 
 
@@ -400,7 +410,11 @@ Create an instance: `search := client.Search(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+search, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(search) // the loaded record
 ```
 
 
@@ -438,13 +452,21 @@ Create an instance: `show := client.Show(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Show(nil).Load(map[string]any{"id": "show_id"}, nil)
+show, err := client.Show(nil).Load(map[string]any{"id": "show_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(show) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Show(nil).List(nil, nil)
+shows, err := client.Show(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(shows) // the array of records
 ```
 
 
@@ -475,13 +497,21 @@ Create an instance: `song := client.Song(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Song(nil).Load(map[string]any{"id": "song_id"}, nil)
+song, err := client.Song(nil).Load(map[string]any{"id": "song_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(song) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Song(nil).List(nil, nil)
+songs, err := client.Song(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(songs) // the array of records
 ```
 
 
@@ -511,13 +541,21 @@ Create an instance: `tour := client.Tour(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Tour(nil).Load(map[string]any{"id": "tour_id"}, nil)
+tour, err := client.Tour(nil).Load(map[string]any{"id": "tour_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tour) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Tour(nil).List(nil, nil)
+tours, err := client.Tour(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tours) // the array of records
 ```
 
 
@@ -541,7 +579,11 @@ Create an instance: `track := client.Track(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Track(nil).Load(map[string]any{"id": "track_id"}, nil)
+track, err := client.Track(nil).Load(map[string]any{"id": "track_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(track) // the loaded record
 ```
 
 
@@ -572,13 +614,21 @@ Create an instance: `venue := client.Venue(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Venue(nil).Load(map[string]any{"id": "venue_id"}, nil)
+venue, err := client.Venue(nil).Load(map[string]any{"id": "venue_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(venue) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Venue(nil).List(nil, nil)
+venues, err := client.Venue(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(venues) // the array of records
 ```
 
 

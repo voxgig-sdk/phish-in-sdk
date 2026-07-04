@@ -28,15 +28,15 @@ import { PhishInSDK } from '@voxgig-sdk/phish-in'
 const client = new PhishInSDK()
 ```
 
-### 2. List eras
+### 2. List era records
+
+`list()` resolves to an array of Era objects — iterate it directly:
 
 ```ts
-const result = await client.era.list()
+const eras = await client.Era().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const era of eras) {
+  console.log(era)
 }
 ```
 
@@ -54,6 +54,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +85,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PhishInSDK.test()
 
-const result = await client.era.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const era = await client.Era().load({ id: 'test01' })
+// era is a bare entity populated with mock response data
+console.log(era)
 ```
 
 You can also use the instance method:
@@ -99,7 +102,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.era
+const entity = client.Era()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -177,7 +180,7 @@ new PhishInSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Era(data?)` | `EraEntity` | Create a Era entity instance. |
+| `Era(data?)` | `EraEntity` | Create an Era entity instance. |
 | `Search(data?)` | `SearchEntity` | Create a Search entity instance. |
 | `Show(data?)` | `ShowEntity` | Create a Show entity instance. |
 | `Song(data?)` | `SongEntity` | Create a Song entity instance. |
@@ -201,29 +204,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): PhishInSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -380,7 +384,7 @@ API path: ``
 
 ### Era
 
-Create an instance: `const era = client.era`
+Create an instance: `const era = client.Era()`
 
 #### Operations
 
@@ -400,13 +404,13 @@ Create an instance: `const era = client.era`
 #### Example: List
 
 ```ts
-const eras = await client.era.list()
+const eras = await client.Era().list()
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `const search = client.Search()`
 
 #### Operations
 
@@ -424,13 +428,13 @@ Create an instance: `const search = client.search`
 #### Example: Load
 
 ```ts
-const search = await client.search.load({ id: 'search_id' })
+const search = await client.Search().load({ id: 'search_id' })
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.show`
+Create an instance: `const show = client.Show()`
 
 #### Operations
 
@@ -462,19 +466,19 @@ Create an instance: `const show = client.show`
 #### Example: Load
 
 ```ts
-const show = await client.show.load({ id: 'show_id' })
+const show = await client.Show().load({ id: 'show_id' })
 ```
 
 #### Example: List
 
 ```ts
-const shows = await client.show.list()
+const shows = await client.Show().list()
 ```
 
 
 ### Song
 
-Create an instance: `const song = client.song`
+Create an instance: `const song = client.Song()`
 
 #### Operations
 
@@ -499,19 +503,19 @@ Create an instance: `const song = client.song`
 #### Example: Load
 
 ```ts
-const song = await client.song.load({ id: 'song_id' })
+const song = await client.Song().load({ id: 'song_id' })
 ```
 
 #### Example: List
 
 ```ts
-const songs = await client.song.list()
+const songs = await client.Song().list()
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `const tour = client.Tour()`
 
 #### Operations
 
@@ -535,19 +539,19 @@ Create an instance: `const tour = client.tour`
 #### Example: Load
 
 ```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+const tour = await client.Tour().load({ id: 'tour_id' })
 ```
 
 #### Example: List
 
 ```ts
-const tours = await client.tour.list()
+const tours = await client.Tour().list()
 ```
 
 
 ### Track
 
-Create an instance: `const track = client.track`
+Create an instance: `const track = client.Track()`
 
 #### Operations
 
@@ -565,13 +569,13 @@ Create an instance: `const track = client.track`
 #### Example: Load
 
 ```ts
-const track = await client.track.load({ id: 'track_id' })
+const track = await client.Track().load({ id: 'track_id' })
 ```
 
 
 ### Venue
 
-Create an instance: `const venue = client.venue`
+Create an instance: `const venue = client.Venue()`
 
 #### Operations
 
@@ -596,19 +600,19 @@ Create an instance: `const venue = client.venue`
 #### Example: Load
 
 ```ts
-const venue = await client.venue.load({ id: 'venue_id' })
+const venue = await client.Venue().load({ id: 'venue_id' })
 ```
 
 #### Example: List
 
 ```ts
-const venues = await client.venue.list()
+const venues = await client.Venue().list()
 ```
 
 
 ### Year
 
-Create an instance: `const year = client.year`
+Create an instance: `const year = client.Year()`
 
 
 ## Explanation
@@ -678,7 +682,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const era = client.era
+const era = client.Era()
 await era.load({ id: "example_id" })
 
 // era.data() now returns the loaded era data

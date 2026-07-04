@@ -113,7 +113,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## EraEntity
 
 ```php
-$era = $client->era();
+$era = $client->Era();
 ```
 
 ### Fields
@@ -132,7 +132,7 @@ $era = $client->era();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->era()->list([]);
+$results = $client->Era()->list([]);
 ```
 
 ### Common Methods
@@ -168,7 +168,7 @@ Return the entity name.
 ## SearchEntity
 
 ```php
-$search = $client->search();
+$search = $client->Search();
 ```
 
 ### Fields
@@ -185,7 +185,7 @@ $search = $client->search();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->search()->load(["id" => "search_id"]);
+$result = $client->Search()->load(["id" => "search_id"]);
 ```
 
 ### Common Methods
@@ -221,7 +221,7 @@ Return the entity name.
 ## ShowEntity
 
 ```php
-$show = $client->show();
+$show = $client->Show();
 ```
 
 ### Fields
@@ -251,7 +251,7 @@ $show = $client->show();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->show()->list([]);
+$results = $client->Show()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -259,7 +259,7 @@ $results = $client->show()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->show()->load(["id" => "show_id"]);
+$result = $client->Show()->load(["id" => "show_id"]);
 ```
 
 ### Common Methods
@@ -295,7 +295,7 @@ Return the entity name.
 ## SongEntity
 
 ```php
-$song = $client->song();
+$song = $client->Song();
 ```
 
 ### Fields
@@ -318,7 +318,7 @@ $song = $client->song();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->song()->list([]);
+$results = $client->Song()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -326,7 +326,7 @@ $results = $client->song()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->song()->load(["id" => "song_id"]);
+$result = $client->Song()->load(["id" => "song_id"]);
 ```
 
 ### Common Methods
@@ -362,7 +362,7 @@ Return the entity name.
 ## TourEntity
 
 ```php
-$tour = $client->tour();
+$tour = $client->Tour();
 ```
 
 ### Fields
@@ -384,7 +384,7 @@ $tour = $client->tour();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->tour()->list([]);
+$results = $client->Tour()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -392,7 +392,7 @@ $results = $client->tour()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->tour()->load(["id" => "tour_id"]);
+$result = $client->Tour()->load(["id" => "tour_id"]);
 ```
 
 ### Common Methods
@@ -428,7 +428,7 @@ Return the entity name.
 ## TrackEntity
 
 ```php
-$track = $client->track();
+$track = $client->Track();
 ```
 
 ### Fields
@@ -445,7 +445,7 @@ $track = $client->track();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->track()->load(["id" => "track_id"]);
+$result = $client->Track()->load(["id" => "track_id"]);
 ```
 
 ### Common Methods
@@ -481,7 +481,7 @@ Return the entity name.
 ## VenueEntity
 
 ```php
-$venue = $client->venue();
+$venue = $client->Venue();
 ```
 
 ### Fields
@@ -504,7 +504,7 @@ $venue = $client->venue();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->venue()->list([]);
+$results = $client->Venue()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -512,7 +512,7 @@ $results = $client->venue()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->venue()->load(["id" => "venue_id"]);
+$result = $client->Venue()->load(["id" => "venue_id"]);
 ```
 
 ### Common Methods
@@ -548,7 +548,7 @@ Return the entity name.
 ## YearEntity
 
 ```php
-$year = $client->year();
+$year = $client->Year();
 ```
 
 ### Common Methods

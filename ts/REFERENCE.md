@@ -193,7 +193,7 @@ Alias for `PhishInSDK.test()`.
 ## EraEntity
 
 ```ts
-const era = client.era
+const era = client.Era()
 ```
 
 ### Fields
@@ -212,7 +212,7 @@ const era = client.era
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.era.list()
+const results = await client.Era().list()
 ```
 
 ### Common Methods
@@ -246,7 +246,7 @@ Return a copy of the entity options.
 ## SearchEntity
 
 ```ts
-const search = client.search
+const search = client.Search()
 ```
 
 ### Fields
@@ -263,7 +263,7 @@ const search = client.search
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.search.load({ id: 'search_id' })
+const result = await client.Search().load({ id: 'search_id' })
 ```
 
 ### Common Methods
@@ -297,7 +297,7 @@ Return a copy of the entity options.
 ## ShowEntity
 
 ```ts
-const show = client.show
+const show = client.Show()
 ```
 
 ### Fields
@@ -327,7 +327,7 @@ const show = client.show
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.show.list()
+const results = await client.Show().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -335,7 +335,7 @@ const results = await client.show.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.show.load({ id: 'show_id' })
+const result = await client.Show().load({ id: 'show_id' })
 ```
 
 ### Common Methods
@@ -369,7 +369,7 @@ Return a copy of the entity options.
 ## SongEntity
 
 ```ts
-const song = client.song
+const song = client.Song()
 ```
 
 ### Fields
@@ -392,7 +392,7 @@ const song = client.song
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.song.list()
+const results = await client.Song().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -400,7 +400,7 @@ const results = await client.song.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.song.load({ id: 'song_id' })
+const result = await client.Song().load({ id: 'song_id' })
 ```
 
 ### Common Methods
@@ -434,7 +434,7 @@ Return a copy of the entity options.
 ## TourEntity
 
 ```ts
-const tour = client.tour
+const tour = client.Tour()
 ```
 
 ### Fields
@@ -456,7 +456,7 @@ const tour = client.tour
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.tour.list()
+const results = await client.Tour().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -464,7 +464,7 @@ const results = await client.tour.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.tour.load({ id: 'tour_id' })
+const result = await client.Tour().load({ id: 'tour_id' })
 ```
 
 ### Common Methods
@@ -498,7 +498,7 @@ Return a copy of the entity options.
 ## TrackEntity
 
 ```ts
-const track = client.track
+const track = client.Track()
 ```
 
 ### Fields
@@ -515,7 +515,7 @@ const track = client.track
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.track.load({ id: 'track_id' })
+const result = await client.Track().load({ id: 'track_id' })
 ```
 
 ### Common Methods
@@ -549,7 +549,7 @@ Return a copy of the entity options.
 ## VenueEntity
 
 ```ts
-const venue = client.venue
+const venue = client.Venue()
 ```
 
 ### Fields
@@ -572,7 +572,7 @@ const venue = client.venue
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.venue.list()
+const results = await client.Venue().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -580,7 +580,7 @@ const results = await client.venue.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.venue.load({ id: 'venue_id' })
+const result = await client.Venue().load({ id: 'venue_id' })
 ```
 
 ### Common Methods
@@ -614,7 +614,7 @@ Return a copy of the entity options.
 ## YearEntity
 
 ```ts
-const year = client.year
+const year = client.Year()
 ```
 
 ### Common Methods

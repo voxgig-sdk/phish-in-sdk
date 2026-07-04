@@ -31,14 +31,16 @@ from phishin_sdk import PhishInSDK
 client = PhishInSDK()
 ```
 
-### 2. List eras
+### 2. List era records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.era.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    eras = client.Era().list({})
+    for era in eras:
+        print(era)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PhishInSDK.test()
 
-result = client.era.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+era = client.Era().load({"id": "test01"})
+# era contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Era` | `(data) -> EraEntity` | Create a Era entity instance. |
+| `Era` | `(data) -> EraEntity` | Create an Era entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Show` | `(data) -> ShowEntity` | Create a Show entity instance. |
 | `Song` | `(data) -> SongEntity` | Create a Song entity instance. |
@@ -335,7 +338,7 @@ API path: ``
 
 ### Era
 
-Create an instance: `const era = client.era`
+Create an instance: `era = client.Era()`
 
 #### Operations
 
@@ -354,14 +357,14 @@ Create an instance: `const era = client.era`
 
 #### Example: List
 
-```ts
-const eras = await client.era.list()
+```python
+eras = client.Era().list({})
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search()`
 
 #### Operations
 
@@ -378,14 +381,14 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```python
+search = client.Search().load({"id": "search_id"})
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.show`
+Create an instance: `show = client.Show()`
 
 #### Operations
 
@@ -416,20 +419,20 @@ Create an instance: `const show = client.show`
 
 #### Example: Load
 
-```ts
-const show = await client.show.load({ id: 'show_id' })
+```python
+show = client.Show().load({"id": "show_id"})
 ```
 
 #### Example: List
 
-```ts
-const shows = await client.show.list()
+```python
+shows = client.Show().list({})
 ```
 
 
 ### Song
 
-Create an instance: `const song = client.song`
+Create an instance: `song = client.Song()`
 
 #### Operations
 
@@ -453,20 +456,20 @@ Create an instance: `const song = client.song`
 
 #### Example: Load
 
-```ts
-const song = await client.song.load({ id: 'song_id' })
+```python
+song = client.Song().load({"id": "song_id"})
 ```
 
 #### Example: List
 
-```ts
-const songs = await client.song.list()
+```python
+songs = client.Song().list({})
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `tour = client.Tour()`
 
 #### Operations
 
@@ -489,20 +492,20 @@ Create an instance: `const tour = client.tour`
 
 #### Example: Load
 
-```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+```python
+tour = client.Tour().load({"id": "tour_id"})
 ```
 
 #### Example: List
 
-```ts
-const tours = await client.tour.list()
+```python
+tours = client.Tour().list({})
 ```
 
 
 ### Track
 
-Create an instance: `const track = client.track`
+Create an instance: `track = client.Track()`
 
 #### Operations
 
@@ -519,14 +522,14 @@ Create an instance: `const track = client.track`
 
 #### Example: Load
 
-```ts
-const track = await client.track.load({ id: 'track_id' })
+```python
+track = client.Track().load({"id": "track_id"})
 ```
 
 
 ### Venue
 
-Create an instance: `const venue = client.venue`
+Create an instance: `venue = client.Venue()`
 
 #### Operations
 
@@ -550,20 +553,20 @@ Create an instance: `const venue = client.venue`
 
 #### Example: Load
 
-```ts
-const venue = await client.venue.load({ id: 'venue_id' })
+```python
+venue = client.Venue().load({"id": "venue_id"})
 ```
 
 #### Example: List
 
-```ts
-const venues = await client.venue.list()
+```python
+venues = client.Venue().list({})
 ```
 
 
 ### Year
 
-Create an instance: `const year = client.year`
+Create an instance: `year = client.Year()`
 
 
 ## Explanation
@@ -636,7 +639,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-era = client.era
+era = client.Era()
 era.load({"id": "example_id"})
 
 # era.data_get() now returns the loaded era data

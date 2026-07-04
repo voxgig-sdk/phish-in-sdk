@@ -208,104 +208,56 @@ class PhishInSDK
   end
 
 
-  # Idiomatic facade: client.era.list / client.era.load({ "id" => ... })
-  def era
-    require_relative 'entity/era_entity'
-    @era ||= EraEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.era instead.
+  # Canonical facade: client.Era.list / client.Era.load({ "id" => ... })
   def Era(data = nil)
     require_relative 'entity/era_entity'
     EraEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.search.list / client.search.load({ "id" => ... })
-  def search
-    require_relative 'entity/search_entity'
-    @search ||= SearchEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.search instead.
+  # Canonical facade: client.Search.list / client.Search.load({ "id" => ... })
   def Search(data = nil)
     require_relative 'entity/search_entity'
     SearchEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.show.list / client.show.load({ "id" => ... })
-  def show
-    require_relative 'entity/show_entity'
-    @show ||= ShowEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.show instead.
+  # Canonical facade: client.Show.list / client.Show.load({ "id" => ... })
   def Show(data = nil)
     require_relative 'entity/show_entity'
     ShowEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.song.list / client.song.load({ "id" => ... })
-  def song
-    require_relative 'entity/song_entity'
-    @song ||= SongEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.song instead.
+  # Canonical facade: client.Song.list / client.Song.load({ "id" => ... })
   def Song(data = nil)
     require_relative 'entity/song_entity'
     SongEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.tour.list / client.tour.load({ "id" => ... })
-  def tour
-    require_relative 'entity/tour_entity'
-    @tour ||= TourEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.tour instead.
+  # Canonical facade: client.Tour.list / client.Tour.load({ "id" => ... })
   def Tour(data = nil)
     require_relative 'entity/tour_entity'
     TourEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.track.list / client.track.load({ "id" => ... })
-  def track
-    require_relative 'entity/track_entity'
-    @track ||= TrackEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.track instead.
+  # Canonical facade: client.Track.list / client.Track.load({ "id" => ... })
   def Track(data = nil)
     require_relative 'entity/track_entity'
     TrackEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.venue.list / client.venue.load({ "id" => ... })
-  def venue
-    require_relative 'entity/venue_entity'
-    @venue ||= VenueEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.venue instead.
+  # Canonical facade: client.Venue.list / client.Venue.load({ "id" => ... })
   def Venue(data = nil)
     require_relative 'entity/venue_entity'
     VenueEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.year.list / client.year.load({ "id" => ... })
-  def year
-    require_relative 'entity/year_entity'
-    @year ||= YearEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.year instead.
+  # Canonical facade: client.Year.list / client.Year.load({ "id" => ... })
   def Year(data = nil)
     require_relative 'entity/year_entity'
     YearEntity.new(self, data)

@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:era():list() / client:era():load({ id = ... })
-function PhishInSDK:era(data)
+-- Idiomatic facade: client:Era():list() / client:Era():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PhishInSDK:Era(data)
   local EntityMod = require("entity.era_entity")
   if data == nil then
     if self._era == nil then
@@ -256,15 +257,10 @@ function PhishInSDK:era(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:era() instead.
-function PhishInSDK:Era(data)
-  local EntityMod = require("entity.era_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:search():list() / client:search():load({ id = ... })
-function PhishInSDK:search(data)
+-- Idiomatic facade: client:Search():list() / client:Search():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PhishInSDK:Search(data)
   local EntityMod = require("entity.search_entity")
   if data == nil then
     if self._search == nil then
@@ -275,15 +271,10 @@ function PhishInSDK:search(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:search() instead.
-function PhishInSDK:Search(data)
-  local EntityMod = require("entity.search_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:show():list() / client:show():load({ id = ... })
-function PhishInSDK:show(data)
+-- Idiomatic facade: client:Show():list() / client:Show():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PhishInSDK:Show(data)
   local EntityMod = require("entity.show_entity")
   if data == nil then
     if self._show == nil then
@@ -294,15 +285,10 @@ function PhishInSDK:show(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:show() instead.
-function PhishInSDK:Show(data)
-  local EntityMod = require("entity.show_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:song():list() / client:song():load({ id = ... })
-function PhishInSDK:song(data)
+-- Idiomatic facade: client:Song():list() / client:Song():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PhishInSDK:Song(data)
   local EntityMod = require("entity.song_entity")
   if data == nil then
     if self._song == nil then
@@ -313,15 +299,10 @@ function PhishInSDK:song(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:song() instead.
-function PhishInSDK:Song(data)
-  local EntityMod = require("entity.song_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:tour():list() / client:tour():load({ id = ... })
-function PhishInSDK:tour(data)
+-- Idiomatic facade: client:Tour():list() / client:Tour():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PhishInSDK:Tour(data)
   local EntityMod = require("entity.tour_entity")
   if data == nil then
     if self._tour == nil then
@@ -332,15 +313,10 @@ function PhishInSDK:tour(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:tour() instead.
-function PhishInSDK:Tour(data)
-  local EntityMod = require("entity.tour_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:track():list() / client:track():load({ id = ... })
-function PhishInSDK:track(data)
+-- Idiomatic facade: client:Track():list() / client:Track():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PhishInSDK:Track(data)
   local EntityMod = require("entity.track_entity")
   if data == nil then
     if self._track == nil then
@@ -351,15 +327,10 @@ function PhishInSDK:track(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:track() instead.
-function PhishInSDK:Track(data)
-  local EntityMod = require("entity.track_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:venue():list() / client:venue():load({ id = ... })
-function PhishInSDK:venue(data)
+-- Idiomatic facade: client:Venue():list() / client:Venue():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PhishInSDK:Venue(data)
   local EntityMod = require("entity.venue_entity")
   if data == nil then
     if self._venue == nil then
@@ -370,15 +341,10 @@ function PhishInSDK:venue(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:venue() instead.
-function PhishInSDK:Venue(data)
-  local EntityMod = require("entity.venue_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:year():list() / client:year():load({ id = ... })
-function PhishInSDK:year(data)
+-- Idiomatic facade: client:Year():list() / client:Year():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function PhishInSDK:Year(data)
   local EntityMod = require("entity.year_entity")
   if data == nil then
     if self._year == nil then
@@ -386,12 +352,6 @@ function PhishInSDK:year(data)
     end
     return self._year
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:year() instead.
-function PhishInSDK:Year(data)
-  local EntityMod = require("entity.year_entity")
   return EntityMod.new(self, data)
 end
 

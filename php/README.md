@@ -29,18 +29,16 @@ require_once 'phishin_sdk.php';
 $client = new PhishInSDK();
 ```
 
-### 2. List eras
+### 2. List era records
 
 ```php
 try {
-    $result = $client->era()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Era records — iterate directly.
+    $eras = $client->Era()->list();
+    foreach ($eras as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = PhishInSDK::test();
+$client = PhishInSDK::test([
+    "entity" => ["era" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->era()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$era = $client->Era()->load(["id" => "test01"]);
+print_r($era);
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Era` | `($data): EraEntity` | Create a Era entity instance. |
+| `Era` | `($data): EraEntity` | Create an Era entity instance. |
 | `Search` | `($data): SearchEntity` | Create a Search entity instance. |
 | `Show` | `($data): ShowEntity` | Create a Show entity instance. |
 | `Song` | `($data): SongEntity` | Create a Song entity instance. |
@@ -343,7 +345,7 @@ API path: ``
 
 ### Era
 
-Create an instance: `const era = client.era`
+Create an instance: `$era = $client->Era();`
 
 #### Operations
 
@@ -362,14 +364,15 @@ Create an instance: `const era = client.era`
 
 #### Example: List
 
-```ts
-const eras = await client.era.list()
+```php
+// list() returns an array of Era records (throws on error).
+$eras = $client->Era()->list();
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `$search = $client->Search();`
 
 #### Operations
 
@@ -386,14 +389,15 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```php
+// load() returns the bare Search record (throws on error).
+$search = $client->Search()->load(["id" => "search_id"]);
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.show`
+Create an instance: `$show = $client->Show();`
 
 #### Operations
 
@@ -424,20 +428,22 @@ Create an instance: `const show = client.show`
 
 #### Example: Load
 
-```ts
-const show = await client.show.load({ id: 'show_id' })
+```php
+// load() returns the bare Show record (throws on error).
+$show = $client->Show()->load(["id" => "show_id"]);
 ```
 
 #### Example: List
 
-```ts
-const shows = await client.show.list()
+```php
+// list() returns an array of Show records (throws on error).
+$shows = $client->Show()->list();
 ```
 
 
 ### Song
 
-Create an instance: `const song = client.song`
+Create an instance: `$song = $client->Song();`
 
 #### Operations
 
@@ -461,20 +467,22 @@ Create an instance: `const song = client.song`
 
 #### Example: Load
 
-```ts
-const song = await client.song.load({ id: 'song_id' })
+```php
+// load() returns the bare Song record (throws on error).
+$song = $client->Song()->load(["id" => "song_id"]);
 ```
 
 #### Example: List
 
-```ts
-const songs = await client.song.list()
+```php
+// list() returns an array of Song records (throws on error).
+$songs = $client->Song()->list();
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `$tour = $client->Tour();`
 
 #### Operations
 
@@ -497,20 +505,22 @@ Create an instance: `const tour = client.tour`
 
 #### Example: Load
 
-```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+```php
+// load() returns the bare Tour record (throws on error).
+$tour = $client->Tour()->load(["id" => "tour_id"]);
 ```
 
 #### Example: List
 
-```ts
-const tours = await client.tour.list()
+```php
+// list() returns an array of Tour records (throws on error).
+$tours = $client->Tour()->list();
 ```
 
 
 ### Track
 
-Create an instance: `const track = client.track`
+Create an instance: `$track = $client->Track();`
 
 #### Operations
 
@@ -527,14 +537,15 @@ Create an instance: `const track = client.track`
 
 #### Example: Load
 
-```ts
-const track = await client.track.load({ id: 'track_id' })
+```php
+// load() returns the bare Track record (throws on error).
+$track = $client->Track()->load(["id" => "track_id"]);
 ```
 
 
 ### Venue
 
-Create an instance: `const venue = client.venue`
+Create an instance: `$venue = $client->Venue();`
 
 #### Operations
 
@@ -558,20 +569,22 @@ Create an instance: `const venue = client.venue`
 
 #### Example: Load
 
-```ts
-const venue = await client.venue.load({ id: 'venue_id' })
+```php
+// load() returns the bare Venue record (throws on error).
+$venue = $client->Venue()->load(["id" => "venue_id"]);
 ```
 
 #### Example: List
 
-```ts
-const venues = await client.venue.list()
+```php
+// list() returns an array of Venue records (throws on error).
+$venues = $client->Venue()->list();
 ```
 
 
 ### Year
 
-Create an instance: `const year = client.year`
+Create an instance: `$year = $client->Year();`
 
 
 ## Explanation
@@ -645,7 +658,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$era = $client->era();
+$era = $client->Era();
 $era->load(["id" => "example_id"]);
 
 // $era->dataGet() now returns the loaded era data

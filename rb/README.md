@@ -28,16 +28,14 @@ require_relative "PhishIn_sdk"
 client = PhishInSDK.new
 ```
 
-### 2. List eras
+### 2. List era records
 
 ```ruby
 begin
-  result = client.era.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Era records — iterate directly.
+  eras = client.Era.list
+  eras.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = PhishInSDK.test
+client = PhishInSDK.test({
+  "entity" => { "era" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.era.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+era = client.Era.load({ "id" => "test01" })
+puts era
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Era` | `(data) -> EraEntity` | Create a Era entity instance. |
+| `Era` | `(data) -> EraEntity` | Create an Era entity instance. |
 | `Search` | `(data) -> SearchEntity` | Create a Search entity instance. |
 | `Show` | `(data) -> ShowEntity` | Create a Show entity instance. |
 | `Song` | `(data) -> SongEntity` | Create a Song entity instance. |
@@ -338,7 +340,7 @@ API path: ``
 
 ### Era
 
-Create an instance: `const era = client.era`
+Create an instance: `era = client.Era`
 
 #### Operations
 
@@ -357,14 +359,15 @@ Create an instance: `const era = client.era`
 
 #### Example: List
 
-```ts
-const eras = await client.era.list()
+```ruby
+# list returns an Array of Era records (raises on error).
+eras = client.Era.list
 ```
 
 
 ### Search
 
-Create an instance: `const search = client.search`
+Create an instance: `search = client.Search`
 
 #### Operations
 
@@ -381,14 +384,15 @@ Create an instance: `const search = client.search`
 
 #### Example: Load
 
-```ts
-const search = await client.search.load({ id: 'search_id' })
+```ruby
+# load returns the bare Search record (raises on error).
+search = client.Search.load({ "id" => "search_id" })
 ```
 
 
 ### Show
 
-Create an instance: `const show = client.show`
+Create an instance: `show = client.Show`
 
 #### Operations
 
@@ -419,20 +423,22 @@ Create an instance: `const show = client.show`
 
 #### Example: Load
 
-```ts
-const show = await client.show.load({ id: 'show_id' })
+```ruby
+# load returns the bare Show record (raises on error).
+show = client.Show.load({ "id" => "show_id" })
 ```
 
 #### Example: List
 
-```ts
-const shows = await client.show.list()
+```ruby
+# list returns an Array of Show records (raises on error).
+shows = client.Show.list
 ```
 
 
 ### Song
 
-Create an instance: `const song = client.song`
+Create an instance: `song = client.Song`
 
 #### Operations
 
@@ -456,20 +462,22 @@ Create an instance: `const song = client.song`
 
 #### Example: Load
 
-```ts
-const song = await client.song.load({ id: 'song_id' })
+```ruby
+# load returns the bare Song record (raises on error).
+song = client.Song.load({ "id" => "song_id" })
 ```
 
 #### Example: List
 
-```ts
-const songs = await client.song.list()
+```ruby
+# list returns an Array of Song records (raises on error).
+songs = client.Song.list
 ```
 
 
 ### Tour
 
-Create an instance: `const tour = client.tour`
+Create an instance: `tour = client.Tour`
 
 #### Operations
 
@@ -492,20 +500,22 @@ Create an instance: `const tour = client.tour`
 
 #### Example: Load
 
-```ts
-const tour = await client.tour.load({ id: 'tour_id' })
+```ruby
+# load returns the bare Tour record (raises on error).
+tour = client.Tour.load({ "id" => "tour_id" })
 ```
 
 #### Example: List
 
-```ts
-const tours = await client.tour.list()
+```ruby
+# list returns an Array of Tour records (raises on error).
+tours = client.Tour.list
 ```
 
 
 ### Track
 
-Create an instance: `const track = client.track`
+Create an instance: `track = client.Track`
 
 #### Operations
 
@@ -522,14 +532,15 @@ Create an instance: `const track = client.track`
 
 #### Example: Load
 
-```ts
-const track = await client.track.load({ id: 'track_id' })
+```ruby
+# load returns the bare Track record (raises on error).
+track = client.Track.load({ "id" => "track_id" })
 ```
 
 
 ### Venue
 
-Create an instance: `const venue = client.venue`
+Create an instance: `venue = client.Venue`
 
 #### Operations
 
@@ -553,20 +564,22 @@ Create an instance: `const venue = client.venue`
 
 #### Example: Load
 
-```ts
-const venue = await client.venue.load({ id: 'venue_id' })
+```ruby
+# load returns the bare Venue record (raises on error).
+venue = client.Venue.load({ "id" => "venue_id" })
 ```
 
 #### Example: List
 
-```ts
-const venues = await client.venue.list()
+```ruby
+# list returns an Array of Venue records (raises on error).
+venues = client.Venue.list
 ```
 
 
 ### Year
 
-Create an instance: `const year = client.year`
+Create an instance: `year = client.Year`
 
 
 ## Explanation
@@ -640,7 +653,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-era = client.era
+era = client.Era
 era.load({ "id" => "example_id" })
 
 # era.data_get now returns the loaded era data

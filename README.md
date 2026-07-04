@@ -26,9 +26,11 @@ import { PhishInSDK } from '@voxgig-sdk/phish-in'
 
 const client = new PhishInSDK()
 
-// List all eras
-const eras = await client.era.list()
-console.log(eras.data)
+// List all eras (returns Era[])
+const eras = await client.Era().list()
+for (const era of eras) {
+  console.log(era)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -90,9 +92,10 @@ from phishin_sdk import PhishInSDK
 
 client = PhishInSDK()
 
-# List all eras
-eras = client.era.list()
-print(eras)
+# List all eras (returns a list, raises on error)
+eras = client.Era().list({})
+for era in eras:
+    print(era)
 ```
 
 ### PHP
@@ -103,8 +106,8 @@ require_once 'phishin_sdk.php';
 
 $client = new PhishInSDK();
 
-// List all eras (throws on error)
-$eras = $client->era()->list();
+// List all eras (returns an array; throws on error)
+$eras = $client->Era()->list();
 print_r($eras);
 ```
 
@@ -127,8 +130,8 @@ require_relative "PhishIn_sdk"
 
 client = PhishInSDK.new
 
-# List all eras
-eras = client.era.list
+# List all eras (returns an Array; raises on error)
+eras = client.Era.list
 puts eras
 ```
 
@@ -140,7 +143,7 @@ local sdk = require("phish-in_sdk")
 local client = sdk.new()
 
 -- List all eras
-local eras, err = client:era():list()
+local eras, err = client:Era():list()
 print(eras)
 ```
 
@@ -153,22 +156,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = PhishInSDK.test()
-const result = await client.era.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const era = await client.Era().load({ id: 1 })
+// era is a bare Era populated with mock data
+console.log(era)
 ```
 
 ### Python
 
 ```python
 client = PhishInSDK.test()
-result = client.era.load({"id": "test01"})
+era = client.Era().load({"id": "test01"})
+print(era)
 ```
 
 ### PHP
 
 ```php
-$client = PhishInSDK::test();
-$result = $client->era()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = PhishInSDK::test([
+    "entity" => ["era" => ["test01" => ["id" => "test01"]]],
+]);
+$era = $client->Era()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -183,15 +191,18 @@ result, err := client.Era(nil).Load(
 ### Ruby
 
 ```ruby
-client = PhishInSDK.test
-result = client.era.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = PhishInSDK.test({
+  "entity" => { "era" => { "test01" => { "id" => "test01" } } },
+})
+era = client.Era.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:era():load({ id = "test01" })
+local result, err = client:Era():load({ id = "test01" })
 ```
 
 ## How it works
@@ -239,6 +250,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
