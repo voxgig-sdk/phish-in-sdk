@@ -16,8 +16,7 @@ type Era struct {
 	StartDate *string `json:"start_date,omitempty"`
 }
 
-// EraListMatch mirrors the era fields as an all-optional match
-// filter (Go analog of Partial<Era>).
+// EraListMatch is the typed request payload for Era.ListTyped.
 type EraListMatch struct {
 	EndDate *string `json:"end_date,omitempty"`
 	Id *int `json:"id,omitempty"`
@@ -31,8 +30,7 @@ type Search struct {
 	Success *bool `json:"success,omitempty"`
 }
 
-// SearchLoadMatch mirrors the search fields as an all-optional match
-// filter (Go analog of Partial<Search>).
+// SearchLoadMatch is the typed request payload for Search.LoadTyped.
 type SearchLoadMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Success *bool `json:"success,omitempty"`
@@ -64,8 +62,7 @@ type ShowLoadMatch struct {
 	Year int `json:"year"`
 }
 
-// ShowListMatch mirrors the show fields as an all-optional match
-// filter (Go analog of Partial<Show>).
+// ShowListMatch is the typed request payload for Show.ListTyped.
 type ShowListMatch struct {
 	Data *[]any `json:"data,omitempty"`
 	Date *string `json:"date,omitempty"`
@@ -101,8 +98,7 @@ type SongLoadMatch struct {
 	Id int `json:"id"`
 }
 
-// SongListMatch mirrors the song fields as an all-optional match
-// filter (Go analog of Partial<Song>).
+// SongListMatch is the typed request payload for Song.ListTyped.
 type SongListMatch struct {
 	Alia *string `json:"alia,omitempty"`
 	Data *map[string]any `json:"data,omitempty"`
@@ -130,8 +126,7 @@ type TourLoadMatch struct {
 	Id int `json:"id"`
 }
 
-// TourListMatch mirrors the tour fields as an all-optional match
-// filter (Go analog of Partial<Tour>).
+// TourListMatch is the typed request payload for Tour.ListTyped.
 type TourListMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	EndDate *string `json:"end_date,omitempty"`
@@ -170,8 +165,7 @@ type VenueLoadMatch struct {
 	Id int `json:"id"`
 }
 
-// VenueListMatch mirrors the venue fields as an all-optional match
-// filter (Go analog of Partial<Venue>).
+// VenueListMatch is the typed request payload for Venue.ListTyped.
 type VenueListMatch struct {
 	Data *map[string]any `json:"data,omitempty"`
 	Id *int `json:"id,omitempty"`

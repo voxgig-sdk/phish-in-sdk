@@ -8,7 +8,7 @@ Complete API reference for the PhishIn Python SDK.
 ### Constructor
 
 ```python
-from phish-in_sdk import PhishInSDK
+from phishin_sdk import PhishInSDK
 
 client = PhishInSDK(options)
 ```
@@ -115,19 +115,19 @@ era = client.Era()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
+| `end_date` | `str` | No |  |
+| `id` | `int` | No |  |
+| `name` | `str` | No |  |
+| `start_date` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Era().list({})
+results = client.Era().list()
 for era in results:
     print(era)
 ```
@@ -171,8 +171,8 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -181,7 +181,7 @@ search = client.Search()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Search().load({"id": "search_id"})
+result = client.Search().load()
 ```
 
 ### Common Methods
@@ -223,30 +223,30 @@ show = client.Show()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `show_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_entry` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `tour_id` | ``$INTEGER`` | No |  |
-| `tour_name` | ``$STRING`` | No |  |
-| `track` | ``$ARRAY`` | No |  |
-| `venue_id` | ``$INTEGER`` | No |  |
-| `venue_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `data` | `list` | No |  |
+| `date` | `str` | No |  |
+| `id` | `int` | No |  |
+| `location` | `str` | No |  |
+| `page` | `int` | No |  |
+| `show_count` | `int` | No |  |
+| `success` | `bool` | No |  |
+| `total_entry` | `int` | No |  |
+| `total_page` | `int` | No |  |
+| `tour_id` | `int` | No |  |
+| `tour_name` | `str` | No |  |
+| `track` | `list` | No |  |
+| `venue_id` | `int` | No |  |
+| `venue_name` | `str` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Show().list({})
+results = client.Show().list()
 for show in results:
     print(show)
 ```
@@ -298,23 +298,23 @@ song = client.Song()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `debut` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `last_played` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `times_played` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `alia` | `str` | No |  |
+| `data` | `dict` | No |  |
+| `debut` | `str` | No |  |
+| `id` | `int` | No |  |
+| `last_played` | `str` | No |  |
+| `success` | `bool` | No |  |
+| `times_played` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Song().list({})
+results = client.Song().list()
 for song in results:
     print(song)
 ```
@@ -366,22 +366,22 @@ tour = client.Tour()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `dict` | No |  |
+| `end_date` | `str` | No |  |
+| `id` | `int` | No |  |
+| `name` | `str` | No |  |
+| `shows_count` | `int` | No |  |
+| `start_date` | `str` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Tour().list({})
+results = client.Tour().list()
 for tour in results:
     print(tour)
 ```
@@ -433,8 +433,8 @@ track = client.Track()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `dict` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -485,23 +485,23 @@ venue = client.Venue()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `dict` | No |  |
+| `id` | `int` | No |  |
+| `latitude` | `float` | No |  |
+| `location` | `str` | No |  |
+| `longitude` | `float` | No |  |
+| `name` | `str` | No |  |
+| `shows_count` | `int` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Venue().list({})
+results = client.Venue().list()
 for venue in results:
     print(venue)
 ```

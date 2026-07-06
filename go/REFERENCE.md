@@ -125,10 +125,10 @@ era := client.Era(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
+| `end_date` | `string` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `start_date` | `string` | No |  |
 
 ### Operations
 
@@ -174,8 +174,8 @@ search := client.Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -184,7 +184,7 @@ search := client.Search(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Search(nil).Load(map[string]any{"id": "search_id"}, nil)
+result, err := client.Search(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -221,21 +221,21 @@ show := client.Show(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `show_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_entry` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `tour_id` | ``$INTEGER`` | No |  |
-| `tour_name` | ``$STRING`` | No |  |
-| `track` | ``$ARRAY`` | No |  |
-| `venue_id` | ``$INTEGER`` | No |  |
-| `venue_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `data` | `[]any` | No |  |
+| `date` | `string` | No |  |
+| `id` | `int` | No |  |
+| `location` | `string` | No |  |
+| `page` | `int` | No |  |
+| `show_count` | `int` | No |  |
+| `success` | `bool` | No |  |
+| `total_entry` | `int` | No |  |
+| `total_page` | `int` | No |  |
+| `tour_id` | `int` | No |  |
+| `tour_name` | `string` | No |  |
+| `track` | `[]any` | No |  |
+| `venue_id` | `int` | No |  |
+| `venue_name` | `string` | No |  |
+| `year` | `int` | No |  |
 
 ### Operations
 
@@ -289,14 +289,14 @@ song := client.Song(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `debut` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `last_played` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `times_played` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `alia` | `string` | No |  |
+| `data` | `map[string]any` | No |  |
+| `debut` | `string` | No |  |
+| `id` | `int` | No |  |
+| `last_played` | `string` | No |  |
+| `success` | `bool` | No |  |
+| `times_played` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -350,13 +350,13 @@ tour := client.Tour(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `end_date` | `string` | No |  |
+| `id` | `int` | No |  |
+| `name` | `string` | No |  |
+| `shows_count` | `int` | No |  |
+| `start_date` | `string` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -410,8 +410,8 @@ track := client.Track(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -457,14 +457,14 @@ venue := client.Venue(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `map[string]any` | No |  |
+| `id` | `int` | No |  |
+| `latitude` | `float64` | No |  |
+| `location` | `string` | No |  |
+| `longitude` | `float64` | No |  |
+| `name` | `string` | No |  |
+| `shows_count` | `int` | No |  |
+| `success` | `bool` | No |  |
 
 ### Operations
 

@@ -221,49 +221,49 @@ class PhishInSDK:
 
 
     def Era(self, data=None) -> "EraEntity":
-        """Entity factory: client.Era().list({}) / client.Era().load({"id": ...})."""
+        """Entity factory: client.Era().list() / client.Era().load({"id": ...})."""
         from entity.era_entity import EraEntity
         return EraEntity(self, data)
 
 
     def Search(self, data=None) -> "SearchEntity":
-        """Entity factory: client.Search().list({}) / client.Search().load({"id": ...})."""
+        """Entity factory: client.Search().list() / client.Search().load({"id": ...})."""
         from entity.search_entity import SearchEntity
         return SearchEntity(self, data)
 
 
     def Show(self, data=None) -> "ShowEntity":
-        """Entity factory: client.Show().list({}) / client.Show().load({"id": ...})."""
+        """Entity factory: client.Show().list() / client.Show().load({"id": ...})."""
         from entity.show_entity import ShowEntity
         return ShowEntity(self, data)
 
 
     def Song(self, data=None) -> "SongEntity":
-        """Entity factory: client.Song().list({}) / client.Song().load({"id": ...})."""
+        """Entity factory: client.Song().list() / client.Song().load({"id": ...})."""
         from entity.song_entity import SongEntity
         return SongEntity(self, data)
 
 
     def Tour(self, data=None) -> "TourEntity":
-        """Entity factory: client.Tour().list({}) / client.Tour().load({"id": ...})."""
+        """Entity factory: client.Tour().list() / client.Tour().load({"id": ...})."""
         from entity.tour_entity import TourEntity
         return TourEntity(self, data)
 
 
     def Track(self, data=None) -> "TrackEntity":
-        """Entity factory: client.Track().list({}) / client.Track().load({"id": ...})."""
+        """Entity factory: client.Track().list() / client.Track().load({"id": ...})."""
         from entity.track_entity import TrackEntity
         return TrackEntity(self, data)
 
 
     def Venue(self, data=None) -> "VenueEntity":
-        """Entity factory: client.Venue().list({}) / client.Venue().load({"id": ...})."""
+        """Entity factory: client.Venue().list() / client.Venue().load({"id": ...})."""
         from entity.venue_entity import VenueEntity
         return VenueEntity(self, data)
 
 
     def Year(self, data=None) -> "YearEntity":
-        """Entity factory: client.Year().list({}) / client.Year().load({"id": ...})."""
+        """Entity factory: client.Year().list() / client.Year().load({"id": ...})."""
         from entity.year_entity import YearEntity
         return YearEntity(self, data)
 

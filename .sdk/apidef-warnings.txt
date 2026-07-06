@@ -1,6 +1,6 @@
 {
   point: "warning"
-  when: 1783206324852
+  when: 1783297381862
   note: "No paths defined for entity=year"
   entm: {
     name: "year"

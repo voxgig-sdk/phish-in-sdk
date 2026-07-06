@@ -8,7 +8,7 @@ Complete API reference for the PhishIn Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'phish-in_sdk'
+require_relative 'PhishIn_sdk'
 
 client = PhishInSDK.new(options)
 ```
@@ -121,19 +121,19 @@ era = client.Era
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
+| `end_date` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `start_date` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Era.list(nil)
+results = client.Era.list
 ```
 
 ### Common Methods
@@ -176,8 +176,8 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -186,7 +186,7 @@ search = client.Search
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Search.load({ "id" => "search_id" })
+result = client.Search.load()
 ```
 
 ### Common Methods
@@ -229,30 +229,30 @@ show = client.Show
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `show_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_entry` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `tour_id` | ``$INTEGER`` | No |  |
-| `tour_name` | ``$STRING`` | No |  |
-| `track` | ``$ARRAY`` | No |  |
-| `venue_id` | ``$INTEGER`` | No |  |
-| `venue_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `data` | `Array` | No |  |
+| `date` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `location` | `String` | No |  |
+| `page` | `Integer` | No |  |
+| `show_count` | `Integer` | No |  |
+| `success` | `Boolean` | No |  |
+| `total_entry` | `Integer` | No |  |
+| `total_page` | `Integer` | No |  |
+| `tour_id` | `Integer` | No |  |
+| `tour_name` | `String` | No |  |
+| `track` | `Array` | No |  |
+| `venue_id` | `Integer` | No |  |
+| `venue_name` | `String` | No |  |
+| `year` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Show.list(nil)
+results = client.Show.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -303,23 +303,23 @@ song = client.Song
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `debut` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `last_played` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `times_played` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `alia` | `String` | No |  |
+| `data` | `Hash` | No |  |
+| `debut` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `last_played` | `String` | No |  |
+| `success` | `Boolean` | No |  |
+| `times_played` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Song.list(nil)
+results = client.Song.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -370,22 +370,22 @@ tour = client.Tour
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Hash` | No |  |
+| `end_date` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `name` | `String` | No |  |
+| `shows_count` | `Integer` | No |  |
+| `start_date` | `String` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Tour.list(nil)
+results = client.Tour.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -436,8 +436,8 @@ track = client.Track
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Hash` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -489,23 +489,23 @@ venue = client.Venue
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Hash` | No |  |
+| `id` | `Integer` | No |  |
+| `latitude` | `Float` | No |  |
+| `location` | `String` | No |  |
+| `longitude` | `Float` | No |  |
+| `name` | `String` | No |  |
+| `shows_count` | `Integer` | No |  |
+| `success` | `Boolean` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Venue.list(nil)
+results = client.Venue.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`

@@ -29,7 +29,7 @@ Era = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Era#list (any subset of Era fields).
+# Request payload for Era#list.
 #
 # @!attribute [rw] end_date
 #   @return [String, nil]
@@ -63,7 +63,7 @@ Search = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Search#load (any subset of Search fields).
+# Request payload for Search#load.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -158,7 +158,7 @@ ShowLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Show#list (any subset of Show fields).
+# Request payload for Show#list.
 #
 # @!attribute [rw] data
 #   @return [Array, nil]
@@ -269,7 +269,7 @@ SongLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Song#list (any subset of Song fields).
+# Request payload for Song#list.
 #
 # @!attribute [rw] alia
 #   @return [String, nil]
@@ -348,7 +348,7 @@ TourLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Tour#list (any subset of Tour fields).
+# Request payload for Tour#list.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]
@@ -449,7 +449,7 @@ VenueLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Venue#list (any subset of Venue fields).
+# Request payload for Venue#list.
 #
 # @!attribute [rw] data
 #   @return [Hash, nil]

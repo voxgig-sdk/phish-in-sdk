@@ -200,10 +200,10 @@ const era = client.Era()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
+| `end_date` | `string` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `start_date` | `string` | No |  |
 
 ### Operations
 
@@ -253,8 +253,8 @@ const search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -263,7 +263,7 @@ const search = client.Search()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Search().load({ id: 'search_id' })
+const result = await client.Search().load()
 ```
 
 ### Common Methods
@@ -304,21 +304,21 @@ const show = client.Show()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `show_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_entry` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `tour_id` | ``$INTEGER`` | No |  |
-| `tour_name` | ``$STRING`` | No |  |
-| `track` | ``$ARRAY`` | No |  |
-| `venue_id` | ``$INTEGER`` | No |  |
-| `venue_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `data` | `any[]` | No |  |
+| `date` | `string` | No |  |
+| `id` | `number` | No |  |
+| `location` | `string` | No |  |
+| `page` | `number` | No |  |
+| `show_count` | `number` | No |  |
+| `success` | `boolean` | No |  |
+| `total_entry` | `number` | No |  |
+| `total_page` | `number` | No |  |
+| `tour_id` | `number` | No |  |
+| `tour_name` | `string` | No |  |
+| `track` | `any[]` | No |  |
+| `venue_id` | `number` | No |  |
+| `venue_name` | `string` | No |  |
+| `year` | `number` | No |  |
 
 ### Operations
 
@@ -335,7 +335,7 @@ const results = await client.Show().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Show().load({ id: 'show_id' })
+const result = await client.Show().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -376,14 +376,14 @@ const song = client.Song()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `debut` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `last_played` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `times_played` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `alia` | `string` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `debut` | `string` | No |  |
+| `id` | `number` | No |  |
+| `last_played` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `times_played` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -400,7 +400,7 @@ const results = await client.Song().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Song().load({ id: 'song_id' })
+const result = await client.Song().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -441,13 +441,13 @@ const tour = client.Tour()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `end_date` | `string` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `shows_count` | `number` | No |  |
+| `start_date` | `string` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -464,7 +464,7 @@ const results = await client.Tour().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Tour().load({ id: 'tour_id' })
+const result = await client.Tour().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -505,8 +505,8 @@ const track = client.Track()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -515,7 +515,7 @@ const track = client.Track()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Track().load({ id: 'track_id' })
+const result = await client.Track().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -556,14 +556,14 @@ const venue = client.Venue()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `Record<string, any>` | No |  |
+| `id` | `number` | No |  |
+| `latitude` | `number` | No |  |
+| `location` | `string` | No |  |
+| `longitude` | `number` | No |  |
+| `name` | `string` | No |  |
+| `shows_count` | `number` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -580,7 +580,7 @@ const results = await client.Venue().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Venue().load({ id: 'venue_id' })
+const result = await client.Venue().load({ id: 1 })
 ```
 
 ### Common Methods

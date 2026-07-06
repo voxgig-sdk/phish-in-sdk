@@ -21,7 +21,7 @@ class Era
     public ?string $start_date = null;
 }
 
-/** Match filter for Era#list (any subset of Era fields). */
+/** Request payload for Era#list. */
 class EraListMatch
 {
     public ?string $end_date = null;
@@ -37,7 +37,7 @@ class Search
     public ?bool $success = null;
 }
 
-/** Match filter for Search#load (any subset of Search fields). */
+/** Request payload for Search#load. */
 class SearchLoadMatch
 {
     public ?array $data = null;
@@ -72,7 +72,7 @@ class ShowLoadMatch
     public int $year;
 }
 
-/** Match filter for Show#list (any subset of Show fields). */
+/** Request payload for Show#list. */
 class ShowListMatch
 {
     public ?array $data = null;
@@ -111,7 +111,7 @@ class SongLoadMatch
     public int $id;
 }
 
-/** Match filter for Song#list (any subset of Song fields). */
+/** Request payload for Song#list. */
 class SongListMatch
 {
     public ?string $alia = null;
@@ -142,7 +142,7 @@ class TourLoadMatch
     public int $id;
 }
 
-/** Match filter for Tour#list (any subset of Tour fields). */
+/** Request payload for Tour#list. */
 class TourListMatch
 {
     public ?array $data = null;
@@ -186,7 +186,7 @@ class VenueLoadMatch
     public int $id;
 }
 
-/** Match filter for Venue#list (any subset of Venue fields). */
+/** Request payload for Venue#list. */
 class VenueListMatch
 {
     public ?array $data = null;

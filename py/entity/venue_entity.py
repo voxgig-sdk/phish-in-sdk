@@ -65,8 +65,13 @@ class VenueEntity:
         return vs.clone(self._match)
 
     
-    def load(self, reqmatch: VenueLoadMatch, ctrl=None) -> Venue:
+    def load(self, reqmatch=None, ctrl=None) -> Venue:
         utility = self._utility
+        # reqmatch is optional: an entity with no id-like key loads with no
+        # match. Treat None as an empty match so client.Venue().load()
+        # works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "load",
             "ctrl": ctrl,
@@ -87,8 +92,12 @@ class VenueEntity:
 
 
     
-    def list(self, reqmatch: VenueListMatch, ctrl=None) -> list[Venue]:
+    def list(self, reqmatch=None, ctrl=None) -> list[Venue]:
         utility = self._utility
+        # reqmatch is optional: an omitted match lists all records. Treat None
+        # as an empty match so client.Venue().list() works with no args.
+        if reqmatch is None:
+            reqmatch = {}
         ctx = utility.make_context({
             "opname": "list",
             "ctrl": ctrl,

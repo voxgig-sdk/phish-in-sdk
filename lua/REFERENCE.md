@@ -118,10 +118,10 @@ local era = client:Era(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
+| `end_date` | `string` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `start_date` | `string` | No |  |
 
 ### Operations
 
@@ -173,8 +173,8 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -183,7 +183,7 @@ local search = client:Search(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Search():load({ id = "search_id" })
+local result, err = client:Search():load()
 ```
 
 ### Common Methods
@@ -226,21 +226,21 @@ local show = client:Show(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$ARRAY`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `page` | ``$INTEGER`` | No |  |
-| `show_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `total_entry` | ``$INTEGER`` | No |  |
-| `total_page` | ``$INTEGER`` | No |  |
-| `tour_id` | ``$INTEGER`` | No |  |
-| `tour_name` | ``$STRING`` | No |  |
-| `track` | ``$ARRAY`` | No |  |
-| `venue_id` | ``$INTEGER`` | No |  |
-| `venue_name` | ``$STRING`` | No |  |
-| `year` | ``$INTEGER`` | No |  |
+| `data` | `table` | No |  |
+| `date` | `string` | No |  |
+| `id` | `number` | No |  |
+| `location` | `string` | No |  |
+| `page` | `number` | No |  |
+| `show_count` | `number` | No |  |
+| `success` | `boolean` | No |  |
+| `total_entry` | `number` | No |  |
+| `total_page` | `number` | No |  |
+| `tour_id` | `number` | No |  |
+| `tour_name` | `string` | No |  |
+| `track` | `table` | No |  |
+| `venue_id` | `number` | No |  |
+| `venue_name` | `string` | No |  |
+| `year` | `number` | No |  |
 
 ### Operations
 
@@ -300,14 +300,14 @@ local song = client:Song(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | ``$STRING`` | No |  |
-| `data` | ``$OBJECT`` | No |  |
-| `debut` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `last_played` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
-| `times_played` | ``$INTEGER`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `alia` | `string` | No |  |
+| `data` | `table` | No |  |
+| `debut` | `string` | No |  |
+| `id` | `number` | No |  |
+| `last_played` | `string` | No |  |
+| `success` | `boolean` | No |  |
+| `times_played` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -367,13 +367,13 @@ local tour = client:Tour(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `end_date` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `start_date` | ``$STRING`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `table` | No |  |
+| `end_date` | `string` | No |  |
+| `id` | `number` | No |  |
+| `name` | `string` | No |  |
+| `shows_count` | `number` | No |  |
+| `start_date` | `string` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -433,8 +433,8 @@ local track = client:Track(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `table` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -486,14 +486,14 @@ local venue = client:Venue(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | ``$OBJECT`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `latitude` | ``$NUMBER`` | No |  |
-| `location` | ``$STRING`` | No |  |
-| `longitude` | ``$NUMBER`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `shows_count` | ``$INTEGER`` | No |  |
-| `success` | ``$BOOLEAN`` | No |  |
+| `data` | `table` | No |  |
+| `id` | `number` | No |  |
+| `latitude` | `number` | No |  |
+| `location` | `string` | No |  |
+| `longitude` | `number` | No |  |
+| `name` | `string` | No |  |
+| `shows_count` | `number` | No |  |
+| `success` | `boolean` | No |  |
 
 ### Operations
 
