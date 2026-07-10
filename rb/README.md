@@ -450,7 +450,7 @@ Create an instance: `show = client.Show`
 
 ```ruby
 # load returns the bare Show record (raises on error).
-show = client.Show.load({ "id" => "show_id" })
+show = client.Show.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -489,7 +489,7 @@ Create an instance: `song = client.Song`
 
 ```ruby
 # load returns the bare Song record (raises on error).
-song = client.Song.load({ "id" => "song_id" })
+song = client.Song.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -527,7 +527,7 @@ Create an instance: `tour = client.Tour`
 
 ```ruby
 # load returns the bare Tour record (raises on error).
-tour = client.Tour.load({ "id" => "tour_id" })
+tour = client.Tour.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -559,7 +559,7 @@ Create an instance: `track = client.Track`
 
 ```ruby
 # load returns the bare Track record (raises on error).
-track = client.Track.load({ "id" => "track_id" })
+track = client.Track.load({ "id" => 1 })
 ```
 
 
@@ -591,7 +591,7 @@ Create an instance: `venue = client.Venue`
 
 ```ruby
 # load returns the bare Venue record (raises on error).
-venue = client.Venue.load({ "id" => "venue_id" })
+venue = client.Venue.load({ "id" => 1 })
 ```
 
 #### Example: List

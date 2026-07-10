@@ -453,7 +453,7 @@ Create an instance: `show = client.Show()`
 #### Example: Load
 
 ```python
-show = client.Show().load({"id": "show_id"})
+show = client.Show().load({"id": 1})
 ```
 
 #### Example: List
@@ -490,7 +490,7 @@ Create an instance: `song = client.Song()`
 #### Example: Load
 
 ```python
-song = client.Song().load({"id": "song_id"})
+song = client.Song().load({"id": 1})
 ```
 
 #### Example: List
@@ -526,7 +526,7 @@ Create an instance: `tour = client.Tour()`
 #### Example: Load
 
 ```python
-tour = client.Tour().load({"id": "tour_id"})
+tour = client.Tour().load({"id": 1})
 ```
 
 #### Example: List
@@ -556,7 +556,7 @@ Create an instance: `track = client.Track()`
 #### Example: Load
 
 ```python
-track = client.Track().load({"id": "track_id"})
+track = client.Track().load({"id": 1})
 ```
 
 
@@ -587,7 +587,7 @@ Create an instance: `venue = client.Venue()`
 #### Example: Load
 
 ```python
-venue = client.Venue().load({"id": "venue_id"})
+venue = client.Venue().load({"id": 1})
 ```
 
 #### Example: List

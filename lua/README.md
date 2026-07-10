@@ -443,7 +443,7 @@ Create an instance: `local show = client:Show(nil)`
 #### Example: Load
 
 ```lua
-local show, err = client:Show():load({ id = "show_id" })
+local show, err = client:Show():load({ id = 1 })
 ```
 
 #### Example: List
@@ -480,7 +480,7 @@ Create an instance: `local song = client:Song(nil)`
 #### Example: Load
 
 ```lua
-local song, err = client:Song():load({ id = "song_id" })
+local song, err = client:Song():load({ id = 1 })
 ```
 
 #### Example: List
@@ -516,7 +516,7 @@ Create an instance: `local tour = client:Tour(nil)`
 #### Example: Load
 
 ```lua
-local tour, err = client:Tour():load({ id = "tour_id" })
+local tour, err = client:Tour():load({ id = 1 })
 ```
 
 #### Example: List
@@ -546,7 +546,7 @@ Create an instance: `local track = client:Track(nil)`
 #### Example: Load
 
 ```lua
-local track, err = client:Track():load({ id = "track_id" })
+local track, err = client:Track():load({ id = 1 })
 ```
 
 
@@ -577,7 +577,7 @@ Create an instance: `local venue = client:Venue(nil)`
 #### Example: Load
 
 ```lua
-local venue, err = client:Venue():load({ id = "venue_id" })
+local venue, err = client:Venue():load({ id = 1 })
 ```
 
 #### Example: List

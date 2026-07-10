@@ -257,7 +257,7 @@ local results, err = client:Show():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Show():load({ id = "show_id" })
+local result, err = client:Show():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -324,7 +324,7 @@ local results, err = client:Song():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Song():load({ id = "song_id" })
+local result, err = client:Song():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -390,7 +390,7 @@ local results, err = client:Tour():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tour():load({ id = "tour_id" })
+local result, err = client:Tour():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -443,7 +443,7 @@ local track = client:Track(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Track():load({ id = "track_id" })
+local result, err = client:Track():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -510,7 +510,7 @@ local results, err = client:Venue():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Venue():load({ id = "venue_id" })
+local result, err = client:Venue():load({ id = 1 })
 ```
 
 ### Common Methods

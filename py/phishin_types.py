@@ -58,7 +58,7 @@ class Show(TypedDict, total=False):
     year: int
 
 
-class ShowLoadMatch(TypedDict):
+class ShowLoadMatch(TypedDict, total=False):
     date: str
     id: int
     year: int

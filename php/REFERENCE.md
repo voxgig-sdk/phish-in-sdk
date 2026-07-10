@@ -259,7 +259,7 @@ $results = $client->Show()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Show()->load(["id" => "show_id"]);
+$result = $client->Show()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -326,7 +326,7 @@ $results = $client->Song()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Song()->load(["id" => "song_id"]);
+$result = $client->Song()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -392,7 +392,7 @@ $results = $client->Tour()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Tour()->load(["id" => "tour_id"]);
+$result = $client->Tour()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -445,7 +445,7 @@ $track = $client->Track();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Track()->load(["id" => "track_id"]);
+$result = $client->Track()->load(["id" => 1]);
 ```
 
 ### Common Methods
@@ -512,7 +512,7 @@ $results = $client->Venue()->list();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Venue()->load(["id" => "venue_id"]);
+$result = $client->Venue()->load(["id" => 1]);
 ```
 
 ### Common Methods

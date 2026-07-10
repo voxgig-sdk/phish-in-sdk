@@ -48,9 +48,9 @@ export interface Show {
 }
 
 export interface ShowLoadMatch {
-  date: string
-  id: number
-  year: number
+  date?: string
+  id?: number
+  year?: number
 }
 
 export interface ShowListMatch {

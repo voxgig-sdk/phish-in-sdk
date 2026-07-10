@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1363,14 +1360,17 @@
           "url": "https://phish.in/api-docs"
         },
         "description": "Phish.in provides a JSON API for accessing an extensive archive of live Phish audience recordings. It supports various functionalities including retrieving data on shows, songs, venues, and playlists, with options for sorting and pagination.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://phish.in/api/v1"
           }
         ],
+        "summary": "Phish.in provides a JSON API for accessing an extensive archive of live Phish audience recordings.",
         "title": "Phish.in API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://phish.in"
       },
       "option": {},
       "target": {
@@ -1423,6 +1423,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1473,6 +1476,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

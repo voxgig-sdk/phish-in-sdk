@@ -15,9 +15,9 @@ main: {
           url: "https://phish.in/api/v1"
         }
       ]
+      summary: "Phish.in provides a JSON API for accessing an extensive archive of live Phish audience recordings."
       title: "Phish.in API"
       version: "1.0.0"
+      website: "https://phish.in"
     }
   }
-}
-

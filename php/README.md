@@ -460,7 +460,7 @@ Create an instance: `$show = $client->Show();`
 
 ```php
 // load() returns the bare Show record (throws on error).
-$show = $client->Show()->load(["id" => "show_id"]);
+$show = $client->Show()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -499,7 +499,7 @@ Create an instance: `$song = $client->Song();`
 
 ```php
 // load() returns the bare Song record (throws on error).
-$song = $client->Song()->load(["id" => "song_id"]);
+$song = $client->Song()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -537,7 +537,7 @@ Create an instance: `$tour = $client->Tour();`
 
 ```php
 // load() returns the bare Tour record (throws on error).
-$tour = $client->Tour()->load(["id" => "tour_id"]);
+$tour = $client->Tour()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -569,7 +569,7 @@ Create an instance: `$track = $client->Track();`
 
 ```php
 // load() returns the bare Track record (throws on error).
-$track = $client->Track()->load(["id" => "track_id"]);
+$track = $client->Track()->load(["id" => 1]);
 ```
 
 
@@ -601,7 +601,7 @@ Create an instance: `$venue = $client->Venue();`
 
 ```php
 // load() returns the bare Venue record (throws on error).
-$venue = $client->Venue()->load(["id" => "venue_id"]);
+$venue = $client->Venue()->load(["id" => 1]);
 ```
 
 #### Example: List

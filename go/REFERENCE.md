@@ -119,6 +119,7 @@ same parameters as `Direct()`.
 
 ```go
 era := client.Era(nil)
+fmt.Println(era.GetName()) // "era"
 ```
 
 ### Fields
@@ -138,6 +139,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Era(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -168,6 +173,7 @@ Return the entity name.
 
 ```go
 search := client.Search(nil)
+fmt.Println(search.GetName()) // "search"
 ```
 
 ### Fields
@@ -185,6 +191,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Search(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -215,6 +225,7 @@ Return the entity name.
 
 ```go
 show := client.Show(nil)
+fmt.Println(show.GetName()) // "show"
 ```
 
 ### Fields
@@ -245,6 +256,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Show(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -252,7 +267,11 @@ results, err := client.Show(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Show(nil).Load(map[string]any{"id": "show_id"}, nil)
+result, err := client.Show(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -283,6 +302,7 @@ Return the entity name.
 
 ```go
 song := client.Song(nil)
+fmt.Println(song.GetName()) // "song"
 ```
 
 ### Fields
@@ -306,6 +326,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Song(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -313,7 +337,11 @@ results, err := client.Song(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Song(nil).Load(map[string]any{"id": "song_id"}, nil)
+result, err := client.Song(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -344,6 +372,7 @@ Return the entity name.
 
 ```go
 tour := client.Tour(nil)
+fmt.Println(tour.GetName()) // "tour"
 ```
 
 ### Fields
@@ -366,6 +395,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Tour(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -373,7 +406,11 @@ results, err := client.Tour(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Tour(nil).Load(map[string]any{"id": "tour_id"}, nil)
+result, err := client.Tour(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -404,6 +441,7 @@ Return the entity name.
 
 ```go
 track := client.Track(nil)
+fmt.Println(track.GetName()) // "track"
 ```
 
 ### Fields
@@ -420,7 +458,11 @@ track := client.Track(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Track(nil).Load(map[string]any{"id": "track_id"}, nil)
+result, err := client.Track(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -451,6 +493,7 @@ Return the entity name.
 
 ```go
 venue := client.Venue(nil)
+fmt.Println(venue.GetName()) // "venue"
 ```
 
 ### Fields
@@ -474,6 +517,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Venue(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -481,7 +528,11 @@ results, err := client.Venue(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Venue(nil).Load(map[string]any{"id": "venue_id"}, nil)
+result, err := client.Venue(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -512,6 +563,7 @@ Return the entity name.
 
 ```go
 year := client.Year(nil)
+fmt.Println(year.GetName()) // "year"
 ```
 
 ### Common Methods

@@ -480,7 +480,7 @@ Create an instance: `show := client.Show(nil)`
 #### Example: Load
 
 ```go
-show, err := client.Show(nil).Load(map[string]any{"id": "show_id"}, nil)
+show, err := client.Show(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -525,7 +525,7 @@ Create an instance: `song := client.Song(nil)`
 #### Example: Load
 
 ```go
-song, err := client.Song(nil).Load(map[string]any{"id": "song_id"}, nil)
+song, err := client.Song(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -569,7 +569,7 @@ Create an instance: `tour := client.Tour(nil)`
 #### Example: Load
 
 ```go
-tour, err := client.Tour(nil).Load(map[string]any{"id": "tour_id"}, nil)
+tour, err := client.Tour(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -607,7 +607,7 @@ Create an instance: `track := client.Track(nil)`
 #### Example: Load
 
 ```go
-track, err := client.Track(nil).Load(map[string]any{"id": "track_id"}, nil)
+track, err := client.Track(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -642,7 +642,7 @@ Create an instance: `venue := client.Venue(nil)`
 #### Example: Load
 
 ```go
-venue, err := client.Venue(nil).Load(map[string]any{"id": "venue_id"}, nil)
+venue, err := client.Venue(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
