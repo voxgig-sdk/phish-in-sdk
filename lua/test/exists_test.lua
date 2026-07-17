@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- PhishIn SDK exists test
 
 local sdk = require("phish-in_sdk")
 
