@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ PhishInUtility.registrar = ->(u) {
   u.prepare_params = PhishInUtilities::PrepareParams
   u.prepare_path = PhishInUtilities::PreparePath
   u.prepare_query = PhishInUtilities::PrepareQuery
+  u.graphql_body = PhishInUtilities::GraphqlBody
+  u.graphql_errors = PhishInUtilities::GraphqlErrors
   u.result_basic = PhishInUtilities::ResultBasic
   u.result_body = PhishInUtilities::ResultBody
   u.result_headers = PhishInUtilities::ResultHeaders

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from phishin_sdk.utility.voxgig_struct import voxgig_struct as vs
 from phishin_sdk import PhishInSDK
-from core import helpers
+from phishin_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _era_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "PHISHIN_TEST_ERA_ENTID": {},
-        "PHISHIN_TEST_LIVE": "FALSE",
+        "PHISH_IN_TEST_ERA_ENTID": {},
+        "PHISH_IN_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("PHISHIN_TEST_LIVE") == "TRUE"
+    live = env.get("PHISH_IN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

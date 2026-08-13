@@ -6,11 +6,6 @@ main: kit: entity: venue: {
 
   fields: [
     {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "id"
       req: false
       type: "`$INTEGER`"
@@ -39,11 +34,6 @@ main: kit: entity: venue: {
       name: "shows_count"
       req: false
       type: "`$INTEGER`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
     }
   ]
 
@@ -108,7 +98,7 @@ main: kit: entity: venue: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -141,7 +131,7 @@ main: kit: entity: venue: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

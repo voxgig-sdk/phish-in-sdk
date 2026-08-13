@@ -60,11 +60,11 @@ function search_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["PHISHIN_TEST_SEARCH_ENTID"] = {},
-    ["PHISHIN_TEST_LIVE"] = "FALSE",
+    ["PHISH_IN_TEST_SEARCH_ENTID"] = {},
+    ["PHISH_IN_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["PHISHIN_TEST_LIVE"] == "TRUE"
+  local live = env["PHISH_IN_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

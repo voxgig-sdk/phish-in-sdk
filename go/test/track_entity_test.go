@@ -44,7 +44,7 @@ func TestTrackEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set PHISHIN_TEST_TRACK_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set PHISH_IN_TEST_TRACK_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -61,13 +61,19 @@ func TestTrackEntity(t *testing.T) {
 
 		// LOAD
 		trackRef01Ent := client.Track(nil)
-		trackRef01MatchDt0 := map[string]any{}
+		trackRef01MatchDt0 := map[string]any{
+			"id": trackRef01Data["id"],
+		}
 		trackRef01DataDt0Loaded, err := trackRef01Ent.Load(trackRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if trackRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		trackRef01DataDt0LoadResult := core.ToMapAny(entityData(trackRef01DataDt0Loaded))
+		if trackRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if trackRef01DataDt0LoadResult["id"] != trackRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})
@@ -110,21 +116,21 @@ func trackBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("PHISHIN_TEST_TRACK_ENTID")
+	entidEnvRaw := os.Getenv("PHISH_IN_TEST_TRACK_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"PHISHIN_TEST_TRACK_ENTID": idmap,
-		"PHISHIN_TEST_LIVE":      "FALSE",
-		"PHISHIN_TEST_EXPLAIN":   "FALSE",
+		"PHISH_IN_TEST_TRACK_ENTID": idmap,
+		"PHISH_IN_TEST_LIVE":      "FALSE",
+		"PHISH_IN_TEST_EXPLAIN":   "FALSE",
 	})
 
-	idmapResolved := core.ToMapAny(env["PHISHIN_TEST_TRACK_ENTID"])
+	idmapResolved := core.ToMapAny(env["PHISH_IN_TEST_TRACK_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["PHISHIN_TEST_LIVE"] == "TRUE" {
+	if env["PHISH_IN_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
 			},
@@ -133,13 +139,13 @@ func trackBasicSetup(extra map[string]any) *entityTestSetup {
 		client = sdk.NewPhishInSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["PHISHIN_TEST_LIVE"] == "TRUE"
+	live := env["PHISH_IN_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["PHISHIN_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["PHISH_IN_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  eras = client.Era.list()
+  songs = client.Song.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -114,14 +114,18 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = PhishInSDK.test
+client = PhishInSDK.test({
+  "entity" => { "song" => { "test01" => { "id" => "test01" } } },
+})
 
-# Entity ops return the bare mock record (raises on error).
-era = client.Era.list()
-puts era
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+song = client.Song.list()
+puts song
 ```
 
 ### Use a custom fetch function
@@ -257,8 +261,9 @@ API path: `/eras`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `shows` |  |
+| `songs` |  |
+| `venues` |  |
 
 Operations: Load.
 
@@ -275,11 +280,11 @@ API path: `/search`
 | `page` |  |
 | `show_count` |  |
 | `success` |  |
-| `total_entry` |  |
-| `total_page` |  |
+| `total_entries` |  |
+| `total_pages` |  |
 | `tour_id` |  |
 | `tour_name` |  |
-| `track` |  |
+| `tracks` |  |
 | `venue_id` |  |
 | `venue_name` |  |
 | `year` |  |
@@ -292,12 +297,10 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `alia` |  |
-| `data` |  |
+| `alias` |  |
 | `debut` |  |
 | `id` |  |
 | `last_played` |  |
-| `success` |  |
 | `times_played` |  |
 | `title` |  |
 
@@ -309,13 +312,11 @@ API path: `/songs`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `end_date` |  |
 | `id` |  |
 | `name` |  |
 | `shows_count` |  |
 | `start_date` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -325,8 +326,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `duration` |  |
+| `id` |  |
+| `mp3` |  |
+| `position` |  |
+| `set` |  |
+| `show_id` |  |
+| `song_id` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -336,14 +343,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `id` |  |
 | `latitude` |  |
 | `location` |  |
 | `longitude` |  |
 | `name` |  |
 | `shows_count` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -404,13 +409,14 @@ Create an instance: `search = client.Search`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `success` | `Boolean` |  |
+| `shows` | `Array` |  |
+| `songs` | `Array` |  |
+| `venues` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Search record (raises on error).
+# load returns the ENTITY — call data_get for the Search record (raises on error).
 search = client.Search.load()
 ```
 
@@ -437,11 +443,11 @@ Create an instance: `show = client.Show`
 | `page` | `Integer` |  |
 | `show_count` | `Integer` |  |
 | `success` | `Boolean` |  |
-| `total_entry` | `Integer` |  |
-| `total_page` | `Integer` |  |
+| `total_entries` | `Integer` |  |
+| `total_pages` | `Integer` |  |
 | `tour_id` | `Integer` |  |
 | `tour_name` | `String` |  |
-| `track` | `Array` |  |
+| `tracks` | `Array` |  |
 | `venue_id` | `Integer` |  |
 | `venue_name` | `String` |  |
 | `year` | `Integer` |  |
@@ -449,7 +455,7 @@ Create an instance: `show = client.Show`
 #### Example: Load
 
 ```ruby
-# load returns the bare Show record (raises on error).
+# load returns the ENTITY — call data_get for the Show record (raises on error).
 show = client.Show.load({ "id" => 1 })
 ```
 
@@ -476,19 +482,17 @@ Create an instance: `song = client.Song`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alia` | `String` |  |
-| `data` | `Hash` |  |
+| `alias` | `String` |  |
 | `debut` | `String` |  |
 | `id` | `Integer` |  |
 | `last_played` | `String` |  |
-| `success` | `Boolean` |  |
 | `times_played` | `Integer` |  |
 | `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Song record (raises on error).
+# load returns the ENTITY — call data_get for the Song record (raises on error).
 song = client.Song.load({ "id" => 1 })
 ```
 
@@ -515,18 +519,16 @@ Create an instance: `tour = client.Tour`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
 | `end_date` | `String` |  |
 | `id` | `Integer` |  |
 | `name` | `String` |  |
 | `shows_count` | `Integer` |  |
 | `start_date` | `String` |  |
-| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Tour record (raises on error).
+# load returns the ENTITY — call data_get for the Tour record (raises on error).
 tour = client.Tour.load({ "id" => 1 })
 ```
 
@@ -552,13 +554,19 @@ Create an instance: `track = client.Track`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
-| `success` | `Boolean` |  |
+| `duration` | `Integer` |  |
+| `id` | `Integer` |  |
+| `mp3` | `String` |  |
+| `position` | `Integer` |  |
+| `set` | `String` |  |
+| `show_id` | `Integer` |  |
+| `song_id` | `Integer` |  |
+| `title` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Track record (raises on error).
+# load returns the ENTITY — call data_get for the Track record (raises on error).
 track = client.Track.load({ "id" => 1 })
 ```
 
@@ -578,19 +586,17 @@ Create an instance: `venue = client.Venue`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Hash` |  |
 | `id` | `Integer` |  |
 | `latitude` | `Float` |  |
 | `location` | `String` |  |
 | `longitude` | `Float` |  |
 | `name` | `String` |  |
 | `shows_count` | `Integer` |  |
-| `success` | `Boolean` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Venue record (raises on error).
+# load returns the ENTITY — call data_get for the Venue record (raises on error).
 venue = client.Venue.load({ "id" => 1 })
 ```
 
@@ -683,11 +689,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-era = client.Era
-era.list()
+song = client.Song
+song.list()
 
-# era.data_get now returns the era data from the last list
-# era.match_get returns the last match criteria
+# song.data_get now returns the song data from the last list
+# song.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

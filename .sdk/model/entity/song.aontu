@@ -6,14 +6,9 @@ main: kit: entity: song: {
 
   fields: [
     {
-      name: "alia"
+      name: "alias"
       req: false
       type: "`$STRING`"
-    }
-    {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
     }
     {
       name: "debut"
@@ -29,11 +24,6 @@ main: kit: entity: song: {
       name: "last_played"
       req: false
       type: "`$STRING`"
-    }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
     }
     {
       name: "times_played"
@@ -108,7 +98,7 @@ main: kit: entity: song: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -141,7 +131,7 @@ main: kit: entity: song: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

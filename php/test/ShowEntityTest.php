@@ -72,7 +72,7 @@ class ShowEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set PHISHIN_TEST_SHOW_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set PHISH_IN_TEST_SHOW_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -97,7 +97,7 @@ class ShowEntityTest extends TestCase
             "id" => $show_ref01_data["id"],
         ];
         $show_ref01_data_dt0_loaded = $show_ref01_ent->load($show_ref01_match_dt0, null);
-        $show_ref01_data_dt0_load_result = Helpers::to_map($show_ref01_data_dt0_loaded);
+        $show_ref01_data_dt0_load_result = Helpers::to_map(is_object($show_ref01_data_dt0_loaded) && method_exists($show_ref01_data_dt0_loaded, 'data_get') ? $show_ref01_data_dt0_loaded->data_get() : $show_ref01_data_dt0_loaded);
         $this->assertNotNull($show_ref01_data_dt0_load_result);
         $this->assertEquals($show_ref01_data_dt0_load_result["id"], $show_ref01_data["id"]);
 
@@ -126,22 +126,22 @@ function show_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("PHISHIN_TEST_SHOW_ENTID");
+    $entid_env_raw = getenv("PHISH_IN_TEST_SHOW_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "PHISHIN_TEST_SHOW_ENTID" => $idmap,
-        "PHISHIN_TEST_LIVE" => "FALSE",
-        "PHISHIN_TEST_EXPLAIN" => "FALSE",
+        "PHISH_IN_TEST_SHOW_ENTID" => $idmap,
+        "PHISH_IN_TEST_LIVE" => "FALSE",
+        "PHISH_IN_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["PHISHIN_TEST_SHOW_ENTID"]);
+        $env["PHISH_IN_TEST_SHOW_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["PHISHIN_TEST_LIVE"] === "TRUE") {
+    if ($env["PHISH_IN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -150,13 +150,13 @@ function show_basic_setup($extra)
         $client = new PhishInSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["PHISHIN_TEST_LIVE"] === "TRUE";
+    $live = $env["PHISH_IN_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["PHISHIN_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["PHISH_IN_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

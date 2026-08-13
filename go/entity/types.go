@@ -6,7 +6,11 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/voxgig-sdk/phish-in-sdk/go/core"
+)
 
 // Era is the typed data model for the era entity.
 type Era struct {
@@ -26,14 +30,16 @@ type EraListMatch struct {
 
 // Search is the typed data model for the search entity.
 type Search struct {
-	Data *map[string]any `json:"data,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	Shows *[]any `json:"shows,omitempty"`
+	Songs *[]any `json:"songs,omitempty"`
+	Venues *[]any `json:"venues,omitempty"`
 }
 
 // SearchLoadMatch is the typed request payload for Search.LoadTyped.
 type SearchLoadMatch struct {
-	Data *map[string]any `json:"data,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	Shows *[]any `json:"shows,omitempty"`
+	Songs *[]any `json:"songs,omitempty"`
+	Venues *[]any `json:"venues,omitempty"`
 }
 
 // Show is the typed data model for the show entity.
@@ -45,11 +51,11 @@ type Show struct {
 	Page *int `json:"page,omitempty"`
 	ShowCount *int `json:"show_count,omitempty"`
 	Success *bool `json:"success,omitempty"`
-	TotalEntry *int `json:"total_entry,omitempty"`
-	TotalPage *int `json:"total_page,omitempty"`
+	TotalEntries *int `json:"total_entries,omitempty"`
+	TotalPages *int `json:"total_pages,omitempty"`
 	TourId *int `json:"tour_id,omitempty"`
 	TourName *string `json:"tour_name,omitempty"`
-	Track *[]any `json:"track,omitempty"`
+	Tracks *[]any `json:"tracks,omitempty"`
 	VenueId *int `json:"venue_id,omitempty"`
 	VenueName *string `json:"venue_name,omitempty"`
 	Year *int `json:"year,omitempty"`
@@ -71,11 +77,11 @@ type ShowListMatch struct {
 	Page *int `json:"page,omitempty"`
 	ShowCount *int `json:"show_count,omitempty"`
 	Success *bool `json:"success,omitempty"`
-	TotalEntry *int `json:"total_entry,omitempty"`
-	TotalPage *int `json:"total_page,omitempty"`
+	TotalEntries *int `json:"total_entries,omitempty"`
+	TotalPages *int `json:"total_pages,omitempty"`
 	TourId *int `json:"tour_id,omitempty"`
 	TourName *string `json:"tour_name,omitempty"`
-	Track *[]any `json:"track,omitempty"`
+	Tracks *[]any `json:"tracks,omitempty"`
 	VenueId *int `json:"venue_id,omitempty"`
 	VenueName *string `json:"venue_name,omitempty"`
 	Year *int `json:"year,omitempty"`
@@ -83,12 +89,10 @@ type ShowListMatch struct {
 
 // Song is the typed data model for the song entity.
 type Song struct {
-	Alia *string `json:"alia,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	Debut *string `json:"debut,omitempty"`
 	Id *int `json:"id,omitempty"`
 	LastPlayed *string `json:"last_played,omitempty"`
-	Success *bool `json:"success,omitempty"`
 	TimesPlayed *int `json:"times_played,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
@@ -100,25 +104,21 @@ type SongLoadMatch struct {
 
 // SongListMatch is the typed request payload for Song.ListTyped.
 type SongListMatch struct {
-	Alia *string `json:"alia,omitempty"`
-	Data *map[string]any `json:"data,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	Debut *string `json:"debut,omitempty"`
 	Id *int `json:"id,omitempty"`
 	LastPlayed *string `json:"last_played,omitempty"`
-	Success *bool `json:"success,omitempty"`
 	TimesPlayed *int `json:"times_played,omitempty"`
 	Title *string `json:"title,omitempty"`
 }
 
 // Tour is the typed data model for the tour entity.
 type Tour struct {
-	Data *map[string]any `json:"data,omitempty"`
 	EndDate *string `json:"end_date,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	ShowsCount *int `json:"shows_count,omitempty"`
 	StartDate *string `json:"start_date,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // TourLoadMatch is the typed request payload for Tour.LoadTyped.
@@ -128,19 +128,23 @@ type TourLoadMatch struct {
 
 // TourListMatch is the typed request payload for Tour.ListTyped.
 type TourListMatch struct {
-	Data *map[string]any `json:"data,omitempty"`
 	EndDate *string `json:"end_date,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Name *string `json:"name,omitempty"`
 	ShowsCount *int `json:"shows_count,omitempty"`
 	StartDate *string `json:"start_date,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // Track is the typed data model for the track entity.
 type Track struct {
-	Data *map[string]any `json:"data,omitempty"`
-	Success *bool `json:"success,omitempty"`
+	Duration *int `json:"duration,omitempty"`
+	Id *int `json:"id,omitempty"`
+	Mp3 *string `json:"mp3,omitempty"`
+	Position *int `json:"position,omitempty"`
+	Set *string `json:"set,omitempty"`
+	ShowId *int `json:"show_id,omitempty"`
+	SongId *int `json:"song_id,omitempty"`
+	Title *string `json:"title,omitempty"`
 }
 
 // TrackLoadMatch is the typed request payload for Track.LoadTyped.
@@ -150,14 +154,12 @@ type TrackLoadMatch struct {
 
 // Venue is the typed data model for the venue entity.
 type Venue struct {
-	Data *map[string]any `json:"data,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Location *string `json:"location,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
 	ShowsCount *int `json:"shows_count,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // VenueLoadMatch is the typed request payload for Venue.LoadTyped.
@@ -167,14 +169,12 @@ type VenueLoadMatch struct {
 
 // VenueListMatch is the typed request payload for Venue.ListTyped.
 type VenueListMatch struct {
-	Data *map[string]any `json:"data,omitempty"`
 	Id *int `json:"id,omitempty"`
 	Latitude *float64 `json:"latitude,omitempty"`
 	Location *string `json:"location,omitempty"`
 	Longitude *float64 `json:"longitude,omitempty"`
 	Name *string `json:"name,omitempty"`
 	ShowsCount *int `json:"shows_count,omitempty"`
-	Success *bool `json:"success,omitempty"`
 }
 
 // Year is the typed data model for the year entity.
@@ -193,12 +193,26 @@ func asMap(v any) map[string]any {
 	return out
 }
 
-// typedFrom decodes a runtime value (a map[string]any produced by the op
-// pipeline) into a typed model T via a JSON round-trip. On any error it
-// returns the zero value of T; the op's own (value, error) tuple carries the
-// real error.
+// entityData unwraps an entity to its data map.
+//
+// Operations resolve to the ENTITY, not the raw data (see AGENTS.md), and an
+// entity's fields are UNEXPORTED — marshalling one directly yields `{}`, so
+// every typed accessor would silently hand back a zero-valued struct. The
+// typed boundary therefore takes the data hop first.
+func entityData(v any) any {
+	if ent, ok := v.(core.Entity); ok {
+		return ent.Data()
+	}
+	return v
+}
+
+// typedFrom decodes a runtime value (an entity, or the map[string]any the op
+// pipeline produced) into a typed model T via a JSON round-trip. On any error
+// it returns the zero value of T; the op's own (value, error) tuple carries
+// the real error.
 func typedFrom[T any](v any) T {
 	var out T
+	v = entityData(v)
 	if v == nil {
 		return out
 	}
@@ -210,12 +224,20 @@ func typedFrom[T any](v any) T {
 	return out
 }
 
-// typedSliceFrom decodes a runtime list value ([]any of maps) into a typed
-// slice []T via a JSON round-trip, for list ops.
+// typedSliceFrom decodes a runtime list value into a typed slice []T via a
+// JSON round-trip, for list ops. `list` resolves to a slice of ENTITY
+// instances, so each element takes the data hop.
 func typedSliceFrom[T any](v any) []T {
 	var out []T
 	if v == nil {
 		return out
+	}
+	if list, ok := v.([]any); ok {
+		unwrapped := make([]any, 0, len(list))
+		for _, item := range list {
+			unwrapped = append(unwrapped, entityData(item))
+		}
+		v = unwrapped
 	}
 	b, err := json.Marshal(v)
 	if err != nil {

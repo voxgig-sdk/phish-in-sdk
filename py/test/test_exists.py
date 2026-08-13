@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# PhishIn SDK exists test
 
 import pytest
 from phishin_sdk import PhishInSDK

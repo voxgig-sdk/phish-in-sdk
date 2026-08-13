@@ -173,8 +173,9 @@ local search = client:Search(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
-| `success` | `boolean` | No |  |
+| `shows` | `table` | No |  |
+| `songs` | `table` | No |  |
+| `venues` | `table` | No |  |
 
 ### Operations
 
@@ -233,11 +234,11 @@ local show = client:Show(nil)
 | `page` | `number` | No |  |
 | `show_count` | `number` | No |  |
 | `success` | `boolean` | No |  |
-| `total_entry` | `number` | No |  |
-| `total_page` | `number` | No |  |
+| `total_entries` | `number` | No |  |
+| `total_pages` | `number` | No |  |
 | `tour_id` | `number` | No |  |
 | `tour_name` | `string` | No |  |
-| `track` | `table` | No |  |
+| `tracks` | `table` | No |  |
 | `venue_id` | `number` | No |  |
 | `venue_name` | `string` | No |  |
 | `year` | `number` | No |  |
@@ -300,12 +301,10 @@ local song = client:Song(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | `string` | No |  |
-| `data` | `table` | No |  |
+| `alias` | `string` | No |  |
 | `debut` | `string` | No |  |
 | `id` | `number` | No |  |
 | `last_played` | `string` | No |  |
-| `success` | `boolean` | No |  |
 | `times_played` | `number` | No |  |
 | `title` | `string` | No |  |
 
@@ -367,13 +366,11 @@ local tour = client:Tour(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
 | `end_date` | `string` | No |  |
 | `id` | `number` | No |  |
 | `name` | `string` | No |  |
 | `shows_count` | `number` | No |  |
 | `start_date` | `string` | No |  |
-| `success` | `boolean` | No |  |
 
 ### Operations
 
@@ -433,8 +430,14 @@ local track = client:Track(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
-| `success` | `boolean` | No |  |
+| `duration` | `number` | No |  |
+| `id` | `number` | No |  |
+| `mp3` | `string` | No |  |
+| `position` | `number` | No |  |
+| `set` | `string` | No |  |
+| `show_id` | `number` | No |  |
+| `song_id` | `number` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -486,14 +489,12 @@ local venue = client:Venue(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `table` | No |  |
 | `id` | `number` | No |  |
 | `latitude` | `number` | No |  |
 | `location` | `string` | No |  |
 | `longitude` | `number` | No |  |
 | `name` | `string` | No |  |
 | `shows_count` | `number` | No |  |
-| `success` | `boolean` | No |  |
 
 ### Operations
 

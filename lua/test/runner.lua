@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("PHISHIN_TEST_LIVE")
-  local override = runner.getenv("PHISHIN_TEST_OVERRIDE")
+  local live = runner.getenv("PHISH_IN_TEST_LIVE")
+  local override = runner.getenv("PHISH_IN_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("PHISHIN_TEST_EXPLAIN")
+  local explain = runner.getenv("PHISH_IN_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["PHISHIN_TEST_EXPLAIN"] = explain
+    m["PHISH_IN_TEST_EXPLAIN"] = explain
   end
 
   return m

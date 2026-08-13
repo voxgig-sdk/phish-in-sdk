@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'PhishIn',
   }
 
 
@@ -113,6 +113,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/eras",
               "parts": [
@@ -121,7 +122,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -137,17 +138,24 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
+          "name": "shows",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$ARRAY`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "success",
+          "name": "songs",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$ARRAY`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "venues",
+          "req": false,
+          "type": "`$ARRAY`",
+          "index$": 2
         }
       ],
       "name": "search",
@@ -170,6 +178,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/search",
               "parts": [
@@ -182,7 +191,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -247,14 +256,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "total_entry",
+          "name": "total_entries",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 7
         },
         {
           "active": true,
-          "name": "total_page",
+          "name": "total_pages",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 8
@@ -275,7 +284,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "track",
+          "name": "tracks",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 11
@@ -349,6 +358,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows",
               "parts": [
@@ -364,13 +374,14 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             },
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/years",
               "parts": [
@@ -379,7 +390,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 1
             }
@@ -405,6 +416,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/on-date/{date}",
               "parts": [
@@ -438,6 +450,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}",
               "parts": [
@@ -451,7 +464,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 1
             },
@@ -470,6 +483,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/years/{year}",
               "parts": [
@@ -490,6 +504,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/random-show",
               "parts": [
@@ -498,7 +513,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 3
             }
@@ -521,59 +536,45 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "alia",
+          "name": "alias",
           "req": false,
           "type": "`$STRING`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "data",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
-        },
-        {
-          "active": true,
           "name": "debut",
           "req": false,
           "type": "`$STRING`",
-          "index$": 2
+          "index$": 1
         },
         {
           "active": true,
           "name": "id",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 3
+          "index$": 2
         },
         {
           "active": true,
           "name": "last_played",
           "req": false,
           "type": "`$STRING`",
-          "index$": 4
-        },
-        {
-          "active": true,
-          "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 5
+          "index$": 3
         },
         {
           "active": true,
           "name": "times_played",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 6
+          "index$": 4
         },
         {
           "active": true,
           "name": "title",
           "req": false,
           "type": "`$STRING`",
-          "index$": 7
+          "index$": 5
         }
       ],
       "name": "song",
@@ -623,6 +624,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/songs",
               "parts": [
@@ -638,7 +640,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -664,6 +666,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/songs/{id}",
               "parts": [
@@ -677,7 +680,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -693,52 +696,38 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
-        },
-        {
-          "active": true,
           "name": "end_date",
           "req": false,
           "type": "`$STRING`",
-          "index$": 1
+          "index$": 0
         },
         {
           "active": true,
           "name": "id",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 2
+          "index$": 1
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 3
+          "index$": 2
         },
         {
           "active": true,
           "name": "shows_count",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 4
+          "index$": 3
         },
         {
           "active": true,
           "name": "start_date",
           "req": false,
           "type": "`$STRING`",
-          "index$": 5
-        },
-        {
-          "active": true,
-          "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 6
+          "index$": 4
         }
       ],
       "name": "tour",
@@ -750,6 +739,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/tours",
               "parts": [
@@ -758,7 +748,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -784,6 +774,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/tours/{id}",
               "parts": [
@@ -797,7 +788,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -813,17 +804,59 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
+          "name": "duration",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$INTEGER`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "success",
+          "name": "id",
           "req": false,
-          "type": "`$BOOLEAN`",
+          "type": "`$INTEGER`",
           "index$": 1
+        },
+        {
+          "active": true,
+          "name": "mp3",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 2
+        },
+        {
+          "active": true,
+          "name": "position",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 3
+        },
+        {
+          "active": true,
+          "name": "set",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 4
+        },
+        {
+          "active": true,
+          "name": "show_id",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 5
+        },
+        {
+          "active": true,
+          "name": "song_id",
+          "req": false,
+          "type": "`$INTEGER`",
+          "index$": 6
+        },
+        {
+          "active": true,
+          "name": "title",
+          "req": false,
+          "type": "`$STRING`",
+          "index$": 7
         }
       ],
       "name": "track",
@@ -847,6 +880,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/tracks/{id}",
               "parts": [
@@ -860,7 +894,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -876,59 +910,45 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "data",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
-        },
-        {
-          "active": true,
           "name": "id",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 1
+          "index$": 0
         },
         {
           "active": true,
           "name": "latitude",
           "req": false,
           "type": "`$NUMBER`",
-          "index$": 2
+          "index$": 1
         },
         {
           "active": true,
           "name": "location",
           "req": false,
           "type": "`$STRING`",
-          "index$": 3
+          "index$": 2
         },
         {
           "active": true,
           "name": "longitude",
           "req": false,
           "type": "`$NUMBER`",
-          "index$": 4
+          "index$": 3
         },
         {
           "active": true,
           "name": "name",
           "req": false,
           "type": "`$STRING`",
-          "index$": 5
+          "index$": 4
         },
         {
           "active": true,
           "name": "shows_count",
           "req": false,
           "type": "`$INTEGER`",
-          "index$": 6
-        },
-        {
-          "active": true,
-          "name": "success",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 7
+          "index$": 5
         }
       ],
       "name": "venue",
@@ -978,6 +998,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/venues",
               "parts": [
@@ -993,7 +1014,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }
@@ -1019,6 +1040,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/venues/{id}",
               "parts": [
@@ -1032,7 +1054,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.data`"
               },
               "index$": 0
             }

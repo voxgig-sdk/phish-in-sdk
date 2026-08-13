@@ -33,15 +33,17 @@ class EraListMatch
 /** Search entity data model. */
 class Search
 {
-    public ?array $data = null;
-    public ?bool $success = null;
+    public ?array $shows = null;
+    public ?array $songs = null;
+    public ?array $venues = null;
 }
 
 /** Request payload for Search#load. */
 class SearchLoadMatch
 {
-    public ?array $data = null;
-    public ?bool $success = null;
+    public ?array $shows = null;
+    public ?array $songs = null;
+    public ?array $venues = null;
 }
 
 /** Show entity data model. */
@@ -54,11 +56,11 @@ class Show
     public ?int $page = null;
     public ?int $show_count = null;
     public ?bool $success = null;
-    public ?int $total_entry = null;
-    public ?int $total_page = null;
+    public ?int $total_entries = null;
+    public ?int $total_pages = null;
     public ?int $tour_id = null;
     public ?string $tour_name = null;
-    public ?array $track = null;
+    public ?array $tracks = null;
     public ?int $venue_id = null;
     public ?string $venue_name = null;
     public ?int $year = null;
@@ -82,11 +84,11 @@ class ShowListMatch
     public ?int $page = null;
     public ?int $show_count = null;
     public ?bool $success = null;
-    public ?int $total_entry = null;
-    public ?int $total_page = null;
+    public ?int $total_entries = null;
+    public ?int $total_pages = null;
     public ?int $tour_id = null;
     public ?string $tour_name = null;
-    public ?array $track = null;
+    public ?array $tracks = null;
     public ?int $venue_id = null;
     public ?string $venue_name = null;
     public ?int $year = null;
@@ -95,12 +97,10 @@ class ShowListMatch
 /** Song entity data model. */
 class Song
 {
-    public ?string $alia = null;
-    public ?array $data = null;
+    public ?string $alias = null;
     public ?string $debut = null;
     public ?int $id = null;
     public ?string $last_played = null;
-    public ?bool $success = null;
     public ?int $times_played = null;
     public ?string $title = null;
 }
@@ -114,12 +114,10 @@ class SongLoadMatch
 /** Request payload for Song#list. */
 class SongListMatch
 {
-    public ?string $alia = null;
-    public ?array $data = null;
+    public ?string $alias = null;
     public ?string $debut = null;
     public ?int $id = null;
     public ?string $last_played = null;
-    public ?bool $success = null;
     public ?int $times_played = null;
     public ?string $title = null;
 }
@@ -127,13 +125,11 @@ class SongListMatch
 /** Tour entity data model. */
 class Tour
 {
-    public ?array $data = null;
     public ?string $end_date = null;
     public ?int $id = null;
     public ?string $name = null;
     public ?int $shows_count = null;
     public ?string $start_date = null;
-    public ?bool $success = null;
 }
 
 /** Request payload for Tour#load. */
@@ -145,20 +141,24 @@ class TourLoadMatch
 /** Request payload for Tour#list. */
 class TourListMatch
 {
-    public ?array $data = null;
     public ?string $end_date = null;
     public ?int $id = null;
     public ?string $name = null;
     public ?int $shows_count = null;
     public ?string $start_date = null;
-    public ?bool $success = null;
 }
 
 /** Track entity data model. */
 class Track
 {
-    public ?array $data = null;
-    public ?bool $success = null;
+    public ?int $duration = null;
+    public ?int $id = null;
+    public ?string $mp3 = null;
+    public ?int $position = null;
+    public ?string $set = null;
+    public ?int $show_id = null;
+    public ?int $song_id = null;
+    public ?string $title = null;
 }
 
 /** Request payload for Track#load. */
@@ -170,14 +170,12 @@ class TrackLoadMatch
 /** Venue entity data model. */
 class Venue
 {
-    public ?array $data = null;
     public ?int $id = null;
     public ?float $latitude = null;
     public ?string $location = null;
     public ?float $longitude = null;
     public ?string $name = null;
     public ?int $shows_count = null;
-    public ?bool $success = null;
 }
 
 /** Request payload for Venue#load. */
@@ -189,14 +187,12 @@ class VenueLoadMatch
 /** Request payload for Venue#list. */
 class VenueListMatch
 {
-    public ?array $data = null;
     public ?int $id = null;
     public ?float $latitude = null;
     public ?string $location = null;
     public ?float $longitude = null;
     public ?string $name = null;
     public ?int $shows_count = null;
-    public ?bool $success = null;
 }
 
 /** Year entity data model. */

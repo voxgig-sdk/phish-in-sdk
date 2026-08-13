@@ -57,8 +57,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    eras = client.Era().list()
-    print(eras)
+    songs = client.Song().list()
+    print(songs)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -124,9 +124,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = PhishInSDK.test()
 
-# Entity ops return the bare record and raise on error.
-era = client.Era().list()
-# era contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+song = client.Song().list()
+# song contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -263,8 +264,9 @@ API path: `/eras`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `shows` |  |
+| `songs` |  |
+| `venues` |  |
 
 Operations: Load.
 
@@ -281,11 +283,11 @@ API path: `/search`
 | `page` |  |
 | `show_count` |  |
 | `success` |  |
-| `total_entry` |  |
-| `total_page` |  |
+| `total_entries` |  |
+| `total_pages` |  |
 | `tour_id` |  |
 | `tour_name` |  |
-| `track` |  |
+| `tracks` |  |
 | `venue_id` |  |
 | `venue_name` |  |
 | `year` |  |
@@ -298,12 +300,10 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `alia` |  |
-| `data` |  |
+| `alias` |  |
 | `debut` |  |
 | `id` |  |
 | `last_played` |  |
-| `success` |  |
 | `times_played` |  |
 | `title` |  |
 
@@ -315,13 +315,11 @@ API path: `/songs`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `end_date` |  |
 | `id` |  |
 | `name` |  |
 | `shows_count` |  |
 | `start_date` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -331,8 +329,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `duration` |  |
+| `id` |  |
+| `mp3` |  |
+| `position` |  |
+| `set` |  |
+| `show_id` |  |
+| `song_id` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -342,14 +346,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `id` |  |
 | `latitude` |  |
 | `location` |  |
 | `longitude` |  |
 | `name` |  |
 | `shows_count` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -409,8 +411,9 @@ Create an instance: `search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
-| `success` | `bool` |  |
+| `shows` | `list` |  |
+| `songs` | `list` |  |
+| `venues` | `list` |  |
 
 #### Example: Load
 
@@ -441,11 +444,11 @@ Create an instance: `show = client.Show()`
 | `page` | `int` |  |
 | `show_count` | `int` |  |
 | `success` | `bool` |  |
-| `total_entry` | `int` |  |
-| `total_page` | `int` |  |
+| `total_entries` | `int` |  |
+| `total_pages` | `int` |  |
 | `tour_id` | `int` |  |
 | `tour_name` | `str` |  |
-| `track` | `list` |  |
+| `tracks` | `list` |  |
 | `venue_id` | `int` |  |
 | `venue_name` | `str` |  |
 | `year` | `int` |  |
@@ -478,12 +481,10 @@ Create an instance: `song = client.Song()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alia` | `str` |  |
-| `data` | `dict` |  |
+| `alias` | `str` |  |
 | `debut` | `str` |  |
 | `id` | `int` |  |
 | `last_played` | `str` |  |
-| `success` | `bool` |  |
 | `times_played` | `int` |  |
 | `title` | `str` |  |
 
@@ -515,13 +516,11 @@ Create an instance: `tour = client.Tour()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
 | `end_date` | `str` |  |
 | `id` | `int` |  |
 | `name` | `str` |  |
 | `shows_count` | `int` |  |
 | `start_date` | `str` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -550,8 +549,14 @@ Create an instance: `track = client.Track()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
-| `success` | `bool` |  |
+| `duration` | `int` |  |
+| `id` | `int` |  |
+| `mp3` | `str` |  |
+| `position` | `int` |  |
+| `set` | `str` |  |
+| `show_id` | `int` |  |
+| `song_id` | `int` |  |
+| `title` | `str` |  |
 
 #### Example: Load
 
@@ -575,14 +580,12 @@ Create an instance: `venue = client.Venue()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `dict` |  |
 | `id` | `int` |  |
 | `latitude` | `float` |  |
 | `location` | `str` |  |
 | `longitude` | `float` |  |
 | `name` | `str` |  |
 | `shows_count` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -677,11 +680,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-era = client.Era()
-era.list()
+song = client.Song()
+song.list()
 
-# era.data_get() now returns the era data from the last list
-# era.match_get() returns the last match criteria
+# song.data_get() now returns the song data from the last list
+# song.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

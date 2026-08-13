@@ -8,30 +8,36 @@ guide: {
   entity: era: {
     path: "/eras": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
   }
 
   entity: search: {
     path: "/search": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: show: {
     path: "/random-show": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/shows": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/shows/on-date/{date}": {
       op: load: method: *GET
     }
     path: "/shows/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
     path: "/years": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/years/{year}": {
       op: load: method: *GET
@@ -41,33 +47,40 @@ guide: {
   entity: song: {
     path: "/songs": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/songs/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: tour: {
     path: "/tours": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/tours/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: track: {
     path: "/tracks/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 
   entity: venue: {
     path: "/venues": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.data`")|top
     }
     path: "/venues/{id}": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.data`")|top
     }
   }
 

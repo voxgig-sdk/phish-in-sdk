@@ -19,12 +19,14 @@
 ---@field start_date? string
 
 ---@class Search
----@field data? table
----@field success? boolean
+---@field shows? table
+---@field songs? table
+---@field venues? table
 
 ---@class SearchLoadMatch
----@field data? table
----@field success? boolean
+---@field shows? table
+---@field songs? table
+---@field venues? table
 
 ---@class Show
 ---@field data? table
@@ -34,11 +36,11 @@
 ---@field page? number
 ---@field show_count? number
 ---@field success? boolean
----@field total_entry? number
----@field total_page? number
+---@field total_entries? number
+---@field total_pages? number
 ---@field tour_id? number
 ---@field tour_name? string
----@field track? table
+---@field tracks? table
 ---@field venue_id? number
 ---@field venue_name? string
 ---@field year? number
@@ -56,22 +58,20 @@
 ---@field page? number
 ---@field show_count? number
 ---@field success? boolean
----@field total_entry? number
----@field total_page? number
+---@field total_entries? number
+---@field total_pages? number
 ---@field tour_id? number
 ---@field tour_name? string
----@field track? table
+---@field tracks? table
 ---@field venue_id? number
 ---@field venue_name? string
 ---@field year? number
 
 ---@class Song
----@field alia? string
----@field data? table
+---@field alias? string
 ---@field debut? string
 ---@field id? number
 ---@field last_played? string
----@field success? boolean
 ---@field times_played? number
 ---@field title? string
 
@@ -79,65 +79,61 @@
 ---@field id number
 
 ---@class SongListMatch
----@field alia? string
----@field data? table
+---@field alias? string
 ---@field debut? string
 ---@field id? number
 ---@field last_played? string
----@field success? boolean
 ---@field times_played? number
 ---@field title? string
 
 ---@class Tour
----@field data? table
 ---@field end_date? string
 ---@field id? number
 ---@field name? string
 ---@field shows_count? number
 ---@field start_date? string
----@field success? boolean
 
 ---@class TourLoadMatch
 ---@field id number
 
 ---@class TourListMatch
----@field data? table
 ---@field end_date? string
 ---@field id? number
 ---@field name? string
 ---@field shows_count? number
 ---@field start_date? string
----@field success? boolean
 
 ---@class Track
----@field data? table
----@field success? boolean
+---@field duration? number
+---@field id? number
+---@field mp3? string
+---@field position? number
+---@field set? string
+---@field show_id? number
+---@field song_id? number
+---@field title? string
 
 ---@class TrackLoadMatch
 ---@field id number
 
 ---@class Venue
----@field data? table
 ---@field id? number
 ---@field latitude? number
 ---@field location? string
 ---@field longitude? number
 ---@field name? string
 ---@field shows_count? number
----@field success? boolean
 
 ---@class VenueLoadMatch
 ---@field id number
 
 ---@class VenueListMatch
----@field data? table
 ---@field id? number
 ---@field latitude? number
 ---@field location? string
 ---@field longitude? number
 ---@field name? string
 ---@field shows_count? number
----@field success? boolean
 
 ---@class Year
 

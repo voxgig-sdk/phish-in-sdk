@@ -2,18 +2,21 @@
   "existing": {
     "search": {
       "SEARCH00": {
-        "data": {},
-        "success": false,
+        "shows": [],
+        "songs": [],
+        "venues": [],
         "id": "SEARCH00"
       },
       "SEARCH01": {
-        "data": {},
-        "success": false,
+        "shows": [],
+        "songs": [],
+        "venues": [],
         "id": "SEARCH01"
       },
       "SEARCH02": {
-        "data": {},
-        "success": false,
+        "shows": [],
+        "songs": [],
+        "venues": [],
         "id": "SEARCH02"
       }
     }
@@ -21,8 +24,9 @@
   "new": {
     "search": {
       "search_ref01": {
-        "data": {},
-        "success": false
+        "shows": [],
+        "songs": [],
+        "venues": []
       }
     }
   }

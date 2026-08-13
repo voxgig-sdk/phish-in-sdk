@@ -26,8 +26,8 @@ import {
 describe('EraEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PHISHIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PHISHIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PHISH_IN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PHISH_IN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PhishInSDK.test()
@@ -63,7 +63,7 @@ describe('EraEntity', async () => {
     const era_ref01_ent = client.Era()
     const era_ref01_match: any = {}
 
-    const era_ref01_list = await era_ref01_ent.list(era_ref01_match)
+    const era_ref01_list = (await era_ref01_ent.list(era_ref01_match)).map((e: any) => e.data())
 
 
   })

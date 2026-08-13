@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $eras = $client->Era()->list();
+    $songs = $client->Song()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -120,14 +120,18 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = PhishInSDK::test();
+$client = PhishInSDK::test([
+    "entity" => ["song" => ["test01" => ["id" => "test01"]]],
+]);
 
-// Entity ops return the bare mock record (throws on error).
-$era = $client->Era()->list();
-print_r($era);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$song = $client->Song()->list();
+print_r($song);
 ```
 
 ### Use a custom fetch function
@@ -232,7 +236,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -267,8 +271,9 @@ API path: `/eras`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `shows` |  |
+| `songs` |  |
+| `venues` |  |
 
 Operations: Load.
 
@@ -285,11 +290,11 @@ API path: `/search`
 | `page` |  |
 | `show_count` |  |
 | `success` |  |
-| `total_entry` |  |
-| `total_page` |  |
+| `total_entries` |  |
+| `total_pages` |  |
 | `tour_id` |  |
 | `tour_name` |  |
-| `track` |  |
+| `tracks` |  |
 | `venue_id` |  |
 | `venue_name` |  |
 | `year` |  |
@@ -302,12 +307,10 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `alia` |  |
-| `data` |  |
+| `alias` |  |
 | `debut` |  |
 | `id` |  |
 | `last_played` |  |
-| `success` |  |
 | `times_played` |  |
 | `title` |  |
 
@@ -319,13 +322,11 @@ API path: `/songs`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `end_date` |  |
 | `id` |  |
 | `name` |  |
 | `shows_count` |  |
 | `start_date` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -335,8 +336,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `duration` |  |
+| `id` |  |
+| `mp3` |  |
+| `position` |  |
+| `set` |  |
+| `show_id` |  |
+| `song_id` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -346,14 +353,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `id` |  |
 | `latitude` |  |
 | `location` |  |
 | `longitude` |  |
 | `name` |  |
 | `shows_count` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -414,13 +419,14 @@ Create an instance: `$search = $client->Search();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
-| `success` | `bool` |  |
+| `shows` | `array` |  |
+| `songs` | `array` |  |
+| `venues` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Search record (throws on error).
+// load() returns the ENTITY — call data_get() for the Search record (throws on error).
 $search = $client->Search()->load();
 ```
 
@@ -447,11 +453,11 @@ Create an instance: `$show = $client->Show();`
 | `page` | `int` |  |
 | `show_count` | `int` |  |
 | `success` | `bool` |  |
-| `total_entry` | `int` |  |
-| `total_page` | `int` |  |
+| `total_entries` | `int` |  |
+| `total_pages` | `int` |  |
 | `tour_id` | `int` |  |
 | `tour_name` | `string` |  |
-| `track` | `array` |  |
+| `tracks` | `array` |  |
 | `venue_id` | `int` |  |
 | `venue_name` | `string` |  |
 | `year` | `int` |  |
@@ -459,7 +465,7 @@ Create an instance: `$show = $client->Show();`
 #### Example: Load
 
 ```php
-// load() returns the bare Show record (throws on error).
+// load() returns the ENTITY — call data_get() for the Show record (throws on error).
 $show = $client->Show()->load(["id" => 1]);
 ```
 
@@ -486,19 +492,17 @@ Create an instance: `$song = $client->Song();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alia` | `string` |  |
-| `data` | `array` |  |
+| `alias` | `string` |  |
 | `debut` | `string` |  |
 | `id` | `int` |  |
 | `last_played` | `string` |  |
-| `success` | `bool` |  |
 | `times_played` | `int` |  |
 | `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Song record (throws on error).
+// load() returns the ENTITY — call data_get() for the Song record (throws on error).
 $song = $client->Song()->load(["id" => 1]);
 ```
 
@@ -525,18 +529,16 @@ Create an instance: `$tour = $client->Tour();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
 | `end_date` | `string` |  |
 | `id` | `int` |  |
 | `name` | `string` |  |
 | `shows_count` | `int` |  |
 | `start_date` | `string` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Tour record (throws on error).
+// load() returns the ENTITY — call data_get() for the Tour record (throws on error).
 $tour = $client->Tour()->load(["id" => 1]);
 ```
 
@@ -562,13 +564,19 @@ Create an instance: `$track = $client->Track();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
-| `success` | `bool` |  |
+| `duration` | `int` |  |
+| `id` | `int` |  |
+| `mp3` | `string` |  |
+| `position` | `int` |  |
+| `set` | `string` |  |
+| `show_id` | `int` |  |
+| `song_id` | `int` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Track record (throws on error).
+// load() returns the ENTITY — call data_get() for the Track record (throws on error).
 $track = $client->Track()->load(["id" => 1]);
 ```
 
@@ -588,19 +596,17 @@ Create an instance: `$venue = $client->Venue();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `array` |  |
 | `id` | `int` |  |
 | `latitude` | `float` |  |
 | `location` | `string` |  |
 | `longitude` | `float` |  |
 | `name` | `string` |  |
 | `shows_count` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Venue record (throws on error).
+// load() returns the ENTITY — call data_get() for the Venue record (throws on error).
 $venue = $client->Venue()->load(["id" => 1]);
 ```
 
@@ -693,11 +699,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$era = $client->Era();
-$era->list();
+$song = $client->Song();
+$song->list();
 
-// $era->data_get() now returns the era data from the last list
-// $era->match_get() returns the last match criteria
+// $song->data_get() now returns the song data from the last list
+// $song->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

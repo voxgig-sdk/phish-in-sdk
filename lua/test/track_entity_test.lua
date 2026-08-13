@@ -29,7 +29,7 @@ describe("TrackEntity", function()
     -- The basic flow consumes synthetic IDs from the fixture. In live mode
     -- without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup.synthetic_only then
-      pending("live entity test uses synthetic IDs from fixture — set PHISHIN_TEST_TRACK_ENTID JSON to run live")
+      pending("live entity test uses synthetic IDs from fixture — set PHISH_IN_TEST_TRACK_ENTID JSON to run live")
       return
     end
     local client = setup.client
@@ -44,10 +44,14 @@ describe("TrackEntity", function()
 
     -- LOAD
     local track_ref01_ent = client:Track(nil)
-    local track_ref01_match_dt0 = {}
+    local track_ref01_match_dt0 = {
+      id = track_ref01_data["id"],
+    }
     local track_ref01_data_dt0_loaded, err = track_ref01_ent:load(track_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(track_ref01_data_dt0_loaded)
+    local track_ref01_data_dt0_load_result = helpers.to_map(type(track_ref01_data_dt0_loaded) == 'table' and track_ref01_data_dt0_loaded.data_get and track_ref01_data_dt0_loaded:data_get() or track_ref01_data_dt0_loaded)
+    assert.is_not_nil(track_ref01_data_dt0_load_result)
+    assert.are.equal(track_ref01_data_dt0_load_result["id"], track_ref01_data["id"])
 
   end)
 end)
@@ -84,22 +88,22 @@ function track_basic_setup(extra)
   -- Detect ENTID env override before envOverride consumes it. When live
   -- mode is on without a real override, the basic test runs against synthetic
   -- IDs from the fixture and 4xx's. Surface this so the test can skip.
-  local entid_env_raw = os.getenv("PHISHIN_TEST_TRACK_ENTID")
+  local entid_env_raw = os.getenv("PHISH_IN_TEST_TRACK_ENTID")
   local idmap_overridden = entid_env_raw ~= nil and entid_env_raw:match("^%s*{") ~= nil
 
   local env = runner.env_override({
-    ["PHISHIN_TEST_TRACK_ENTID"] = idmap,
-    ["PHISHIN_TEST_LIVE"] = "FALSE",
-    ["PHISHIN_TEST_EXPLAIN"] = "FALSE",
+    ["PHISH_IN_TEST_TRACK_ENTID"] = idmap,
+    ["PHISH_IN_TEST_LIVE"] = "FALSE",
+    ["PHISH_IN_TEST_EXPLAIN"] = "FALSE",
   })
 
   local idmap_resolved = helpers.to_map(
-    env["PHISHIN_TEST_TRACK_ENTID"])
+    env["PHISH_IN_TEST_TRACK_ENTID"])
   if idmap_resolved == nil then
     idmap_resolved = helpers.to_map(idmap)
   end
 
-  if env["PHISHIN_TEST_LIVE"] == "TRUE" then
+  if env["PHISH_IN_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
       },
@@ -108,13 +112,13 @@ function track_basic_setup(extra)
     client = sdk.new(helpers.to_map(merged_opts))
   end
 
-  local live = env["PHISHIN_TEST_LIVE"] == "TRUE"
+  local live = env["PHISH_IN_TEST_LIVE"] == "TRUE"
   return {
     client = client,
     data = entity_data,
     idmap = idmap_resolved,
     env = env,
-    explain = env["PHISHIN_TEST_EXPLAIN"] == "TRUE",
+    explain = env["PHISH_IN_TEST_EXPLAIN"] == "TRUE",
     live = live,
     synthetic_only = live and not idmap_overridden,
     now = os.time() * 1000,

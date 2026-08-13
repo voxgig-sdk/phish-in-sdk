@@ -37,7 +37,7 @@ class EraEntity extends PhishInEntityBase<Era> {
 
 
 
-  async list(this: any, reqmatch?: EraListMatch, ctrl?: Control): Promise<Era[]> {
+  async list(this: any, reqmatch?: EraListMatch, ctrl?: Control): Promise<EraEntity[]> {
 
     const utility = this._utility
 

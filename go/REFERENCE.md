@@ -180,8 +180,9 @@ fmt.Println(search.GetName()) // "search"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
+| `shows` | `[]any` | No |  |
+| `songs` | `[]any` | No |  |
+| `venues` | `[]any` | No |  |
 
 ### Operations
 
@@ -239,11 +240,11 @@ fmt.Println(show.GetName()) // "show"
 | `page` | `int` | No |  |
 | `show_count` | `int` | No |  |
 | `success` | `bool` | No |  |
-| `total_entry` | `int` | No |  |
-| `total_page` | `int` | No |  |
+| `total_entries` | `int` | No |  |
+| `total_pages` | `int` | No |  |
 | `tour_id` | `int` | No |  |
 | `tour_name` | `string` | No |  |
-| `track` | `[]any` | No |  |
+| `tracks` | `[]any` | No |  |
 | `venue_id` | `int` | No |  |
 | `venue_name` | `string` | No |  |
 | `year` | `int` | No |  |
@@ -309,12 +310,10 @@ fmt.Println(song.GetName()) // "song"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | `string` | No |  |
-| `data` | `map[string]any` | No |  |
+| `alias` | `string` | No |  |
 | `debut` | `string` | No |  |
 | `id` | `int` | No |  |
 | `last_played` | `string` | No |  |
-| `success` | `bool` | No |  |
 | `times_played` | `int` | No |  |
 | `title` | `string` | No |  |
 
@@ -379,13 +378,11 @@ fmt.Println(tour.GetName()) // "tour"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
 | `end_date` | `string` | No |  |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
 | `shows_count` | `int` | No |  |
 | `start_date` | `string` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -448,8 +445,14 @@ fmt.Println(track.GetName()) // "track"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
-| `success` | `bool` | No |  |
+| `duration` | `int` | No |  |
+| `id` | `int` | No |  |
+| `mp3` | `string` | No |  |
+| `position` | `int` | No |  |
+| `set` | `string` | No |  |
+| `show_id` | `int` | No |  |
+| `song_id` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -500,14 +503,12 @@ fmt.Println(venue.GetName()) // "venue"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `map[string]any` | No |  |
 | `id` | `int` | No |  |
 | `latitude` | `float64` | No |  |
 | `location` | `string` | No |  |
 | `longitude` | `float64` | No |  |
 | `name` | `string` | No |  |
 | `shows_count` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 

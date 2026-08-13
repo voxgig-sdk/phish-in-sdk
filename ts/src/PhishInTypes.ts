@@ -20,13 +20,15 @@ export interface EraListMatch {
 }
 
 export interface Search {
-  data?: Record<string, any>
-  success?: boolean
+  shows?: any[]
+  songs?: any[]
+  venues?: any[]
 }
 
 export interface SearchLoadMatch {
-  data?: Record<string, any>
-  success?: boolean
+  shows?: any[]
+  songs?: any[]
+  venues?: any[]
 }
 
 export interface Show {
@@ -37,11 +39,11 @@ export interface Show {
   page?: number
   show_count?: number
   success?: boolean
-  total_entry?: number
-  total_page?: number
+  total_entries?: number
+  total_pages?: number
   tour_id?: number
   tour_name?: string
-  track?: any[]
+  tracks?: any[]
   venue_id?: number
   venue_name?: string
   year?: number
@@ -61,23 +63,21 @@ export interface ShowListMatch {
   page?: number
   show_count?: number
   success?: boolean
-  total_entry?: number
-  total_page?: number
+  total_entries?: number
+  total_pages?: number
   tour_id?: number
   tour_name?: string
-  track?: any[]
+  tracks?: any[]
   venue_id?: number
   venue_name?: string
   year?: number
 }
 
 export interface Song {
-  alia?: string
-  data?: Record<string, any>
+  alias?: string
   debut?: string
   id?: number
   last_played?: string
-  success?: boolean
   times_played?: number
   title?: string
 }
@@ -87,24 +87,20 @@ export interface SongLoadMatch {
 }
 
 export interface SongListMatch {
-  alia?: string
-  data?: Record<string, any>
+  alias?: string
   debut?: string
   id?: number
   last_played?: string
-  success?: boolean
   times_played?: number
   title?: string
 }
 
 export interface Tour {
-  data?: Record<string, any>
   end_date?: string
   id?: number
   name?: string
   shows_count?: number
   start_date?: string
-  success?: boolean
 }
 
 export interface TourLoadMatch {
@@ -112,18 +108,22 @@ export interface TourLoadMatch {
 }
 
 export interface TourListMatch {
-  data?: Record<string, any>
   end_date?: string
   id?: number
   name?: string
   shows_count?: number
   start_date?: string
-  success?: boolean
 }
 
 export interface Track {
-  data?: Record<string, any>
-  success?: boolean
+  duration?: number
+  id?: number
+  mp3?: string
+  position?: number
+  set?: string
+  show_id?: number
+  song_id?: number
+  title?: string
 }
 
 export interface TrackLoadMatch {
@@ -131,14 +131,12 @@ export interface TrackLoadMatch {
 }
 
 export interface Venue {
-  data?: Record<string, any>
   id?: number
   latitude?: number
   location?: string
   longitude?: number
   name?: string
   shows_count?: number
-  success?: boolean
 }
 
 export interface VenueLoadMatch {
@@ -146,14 +144,12 @@ export interface VenueLoadMatch {
 }
 
 export interface VenueListMatch {
-  data?: Record<string, any>
   id?: number
   latitude?: number
   location?: string
   longitude?: number
   name?: string
   shows_count?: number
-  success?: boolean
 }
 
 export interface Year {

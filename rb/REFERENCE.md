@@ -176,8 +176,9 @@ search = client.Search
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
+| `shows` | `Array` | No |  |
+| `songs` | `Array` | No |  |
+| `venues` | `Array` | No |  |
 
 ### Operations
 
@@ -236,11 +237,11 @@ show = client.Show
 | `page` | `Integer` | No |  |
 | `show_count` | `Integer` | No |  |
 | `success` | `Boolean` | No |  |
-| `total_entry` | `Integer` | No |  |
-| `total_page` | `Integer` | No |  |
+| `total_entries` | `Integer` | No |  |
+| `total_pages` | `Integer` | No |  |
 | `tour_id` | `Integer` | No |  |
 | `tour_name` | `String` | No |  |
-| `track` | `Array` | No |  |
+| `tracks` | `Array` | No |  |
 | `venue_id` | `Integer` | No |  |
 | `venue_name` | `String` | No |  |
 | `year` | `Integer` | No |  |
@@ -303,12 +304,10 @@ song = client.Song
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | `String` | No |  |
-| `data` | `Hash` | No |  |
+| `alias` | `String` | No |  |
 | `debut` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `last_played` | `String` | No |  |
-| `success` | `Boolean` | No |  |
 | `times_played` | `Integer` | No |  |
 | `title` | `String` | No |  |
 
@@ -370,13 +369,11 @@ tour = client.Tour
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
 | `end_date` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `name` | `String` | No |  |
 | `shows_count` | `Integer` | No |  |
 | `start_date` | `String` | No |  |
-| `success` | `Boolean` | No |  |
 
 ### Operations
 
@@ -436,8 +433,14 @@ track = client.Track
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
-| `success` | `Boolean` | No |  |
+| `duration` | `Integer` | No |  |
+| `id` | `Integer` | No |  |
+| `mp3` | `String` | No |  |
+| `position` | `Integer` | No |  |
+| `set` | `String` | No |  |
+| `show_id` | `Integer` | No |  |
+| `song_id` | `Integer` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
@@ -489,14 +492,12 @@ venue = client.Venue
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `Hash` | No |  |
 | `id` | `Integer` | No |  |
 | `latitude` | `Float` | No |  |
 | `location` | `String` | No |  |
 | `longitude` | `Float` | No |  |
 | `name` | `String` | No |  |
 | `shows_count` | `Integer` | No |  |
-| `success` | `Boolean` | No |  |
 
 ### Operations
 

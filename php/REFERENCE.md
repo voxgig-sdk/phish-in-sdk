@@ -175,8 +175,9 @@ $search = $client->Search();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
-| `success` | `bool` | No |  |
+| `shows` | `array` | No |  |
+| `songs` | `array` | No |  |
+| `venues` | `array` | No |  |
 
 ### Operations
 
@@ -235,11 +236,11 @@ $show = $client->Show();
 | `page` | `int` | No |  |
 | `show_count` | `int` | No |  |
 | `success` | `bool` | No |  |
-| `total_entry` | `int` | No |  |
-| `total_page` | `int` | No |  |
+| `total_entries` | `int` | No |  |
+| `total_pages` | `int` | No |  |
 | `tour_id` | `int` | No |  |
 | `tour_name` | `string` | No |  |
-| `track` | `array` | No |  |
+| `tracks` | `array` | No |  |
 | `venue_id` | `int` | No |  |
 | `venue_name` | `string` | No |  |
 | `year` | `int` | No |  |
@@ -302,12 +303,10 @@ $song = $client->Song();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | `string` | No |  |
-| `data` | `array` | No |  |
+| `alias` | `string` | No |  |
 | `debut` | `string` | No |  |
 | `id` | `int` | No |  |
 | `last_played` | `string` | No |  |
-| `success` | `bool` | No |  |
 | `times_played` | `int` | No |  |
 | `title` | `string` | No |  |
 
@@ -369,13 +368,11 @@ $tour = $client->Tour();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
 | `end_date` | `string` | No |  |
 | `id` | `int` | No |  |
 | `name` | `string` | No |  |
 | `shows_count` | `int` | No |  |
 | `start_date` | `string` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -435,8 +432,14 @@ $track = $client->Track();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
-| `success` | `bool` | No |  |
+| `duration` | `int` | No |  |
+| `id` | `int` | No |  |
+| `mp3` | `string` | No |  |
+| `position` | `int` | No |  |
+| `set` | `string` | No |  |
+| `show_id` | `int` | No |  |
+| `song_id` | `int` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -488,14 +491,12 @@ $venue = $client->Venue();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `array` | No |  |
 | `id` | `int` | No |  |
 | `latitude` | `float` | No |  |
 | `location` | `string` | No |  |
 | `longitude` | `float` | No |  |
 | `name` | `string` | No |  |
 | `shows_count` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 

@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = PhishInSDK.test()
-const eras = await client.Era().list()
-// eras is an array of bare Era records populated with mock data
-console.log(eras)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = PhishInSDK.test({
+  entity: {
+    song: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const songs = await client.Song().list()
+// songs is an array of Song entities, populated with mock data
+// — call songs[0].data() for the record itself
+console.log(songs)
 ```
 
 ### Python
 
 ```python
 client = PhishInSDK.test()
-eras = client.Era().list()
-print(eras)
+songs = client.Song().list()
+print(songs)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(eras)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = PhishInSDK::test([
-    "entity" => ["era" => ["test01" => []]],
+    "entity" => ["song" => ["test01" => ["id" => "test01"]]],
 ]);
-$eras = $client->Era()->list();
+$songs = $client->Song()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Era(nil).List(
+result, err := client.Song(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Era(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = PhishInSDK.test({
-  "entity" => { "era" => { "test01" => {} } },
+  "entity" => { "song" => { "test01" => { "id" => "test01" } } },
 })
-eras = client.Era.list()
+songs = client.Song.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Era():list()
+local results, err = client:Song():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { PhishInSDK } from '@voxgig-sdk/phish-in'
 
 const client = new PhishInSDK()
 
-// List all eras (returns Era[])
+// List all eras (returns EraEntity[] — .data() for the record)
 const eras = await client.Era().list()
 for (const era of eras) {
   console.log(era)
@@ -350,6 +359,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://phish.in/api-docs](https://phish.in/api-docs)
 

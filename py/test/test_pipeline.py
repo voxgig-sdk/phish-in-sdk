@@ -16,11 +16,11 @@
 import pytest
 
 from phishin_sdk import PhishInSDK
-from core.error import PhishInError
-from core.result import PhishInResult
-from core.response import PhishInResponse
-from core.spec import PhishInSpec
-from feature.base_feature import PhishInBaseFeature
+from phishin_sdk.core.error import PhishInError
+from phishin_sdk.core.result import PhishInResult
+from phishin_sdk.core.response import PhishInResponse
+from phishin_sdk.core.spec import PhishInSpec
+from phishin_sdk.feature.base_feature import PhishInBaseFeature
 
 
 def _client():

@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-eras, err := client.Era(nil).List(nil, nil)
+songs, err := client.Song(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = eras
+_ = songs
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-era, err := client.Era(nil).List(
+song, err := client.Song(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(era) // the returned mock data
+fmt.Println(song) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -282,8 +282,9 @@ API path: `/eras`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"success"` |  |
+| `"shows"` |  |
+| `"songs"` |  |
+| `"venues"` |  |
 
 Operations: Load.
 
@@ -300,11 +301,11 @@ API path: `/search`
 | `"page"` |  |
 | `"show_count"` |  |
 | `"success"` |  |
-| `"total_entry"` |  |
-| `"total_page"` |  |
+| `"total_entries"` |  |
+| `"total_pages"` |  |
 | `"tour_id"` |  |
 | `"tour_name"` |  |
-| `"track"` |  |
+| `"tracks"` |  |
 | `"venue_id"` |  |
 | `"venue_name"` |  |
 | `"year"` |  |
@@ -317,12 +318,10 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `"alia"` |  |
-| `"data"` |  |
+| `"alias"` |  |
 | `"debut"` |  |
 | `"id"` |  |
 | `"last_played"` |  |
-| `"success"` |  |
 | `"times_played"` |  |
 | `"title"` |  |
 
@@ -334,13 +333,11 @@ API path: `/songs`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
 | `"end_date"` |  |
 | `"id"` |  |
 | `"name"` |  |
 | `"shows_count"` |  |
 | `"start_date"` |  |
-| `"success"` |  |
 
 Operations: List, Load.
 
@@ -350,8 +347,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
-| `"success"` |  |
+| `"duration"` |  |
+| `"id"` |  |
+| `"mp3"` |  |
+| `"position"` |  |
+| `"set"` |  |
+| `"show_id"` |  |
+| `"song_id"` |  |
+| `"title"` |  |
 
 Operations: Load.
 
@@ -361,14 +364,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `"data"` |  |
 | `"id"` |  |
 | `"latitude"` |  |
 | `"location"` |  |
 | `"longitude"` |  |
 | `"name"` |  |
 | `"shows_count"` |  |
-| `"success"` |  |
 
 Operations: List, Load.
 
@@ -432,8 +433,9 @@ Create an instance: `search := client.Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `success` | `bool` |  |
+| `shows` | `[]any` |  |
+| `songs` | `[]any` |  |
+| `venues` | `[]any` |  |
 
 #### Example: Load
 
@@ -468,11 +470,11 @@ Create an instance: `show := client.Show(nil)`
 | `page` | `int` |  |
 | `show_count` | `int` |  |
 | `success` | `bool` |  |
-| `total_entry` | `int` |  |
-| `total_page` | `int` |  |
+| `total_entries` | `int` |  |
+| `total_pages` | `int` |  |
 | `tour_id` | `int` |  |
 | `tour_name` | `string` |  |
-| `track` | `[]any` |  |
+| `tracks` | `[]any` |  |
 | `venue_id` | `int` |  |
 | `venue_name` | `string` |  |
 | `year` | `int` |  |
@@ -513,12 +515,10 @@ Create an instance: `song := client.Song(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alia` | `string` |  |
-| `data` | `map[string]any` |  |
+| `alias` | `string` |  |
 | `debut` | `string` |  |
 | `id` | `int` |  |
 | `last_played` | `string` |  |
-| `success` | `bool` |  |
 | `times_played` | `int` |  |
 | `title` | `string` |  |
 
@@ -558,13 +558,11 @@ Create an instance: `tour := client.Tour(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
 | `end_date` | `string` |  |
 | `id` | `int` |  |
 | `name` | `string` |  |
 | `shows_count` | `int` |  |
 | `start_date` | `string` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -601,8 +599,14 @@ Create an instance: `track := client.Track(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
-| `success` | `bool` |  |
+| `duration` | `int` |  |
+| `id` | `int` |  |
+| `mp3` | `string` |  |
+| `position` | `int` |  |
+| `set` | `string` |  |
+| `show_id` | `int` |  |
+| `song_id` | `int` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -630,14 +634,12 @@ Create an instance: `venue := client.Venue(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `map[string]any` |  |
 | `id` | `int` |  |
 | `latitude` | `float64` |  |
 | `location` | `string` |  |
 | `longitude` | `float64` |  |
 | `name` | `string` |  |
 | `shows_count` | `int` |  |
-| `success` | `bool` |  |
 
 #### Example: Load
 
@@ -738,11 +740,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-era := client.Era(nil)
-era.List(nil, nil)
+song := client.Song(nil)
+song.List(nil, nil)
 
-// era.Data() now returns the era data from the last list
-// era.Match() returns the last match criteria
+// song.Data() now returns the song data from the last list
+// song.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

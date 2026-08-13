@@ -6,16 +6,51 @@ main: kit: entity: track: {
 
   fields: [
     {
-      name: "data"
+      name: "duration"
       req: false
-      type: "`$OBJECT`"
+      type: "`$INTEGER`"
     }
     {
-      name: "success"
+      name: "id"
       req: false
-      type: "`$BOOLEAN`"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "mp3"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "position"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "set"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "show_id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "song_id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
     }
   ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
 
   name: "track"
   op: {
@@ -47,7 +82,7 @@ main: kit: entity: track: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

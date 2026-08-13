@@ -23,8 +23,8 @@ module PhishInTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("PHISHIN_TEST_LIVE")
-    override = getenv("PHISHIN_TEST_OVERRIDE")
+    live = getenv("PHISH_IN_TEST_LIVE")
+    override = getenv("PHISH_IN_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module PhishInTestRunner
       end
     end
 
-    explain = getenv("PHISHIN_TEST_EXPLAIN")
-    m["PHISHIN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("PHISH_IN_TEST_EXPLAIN")
+    m["PHISH_IN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

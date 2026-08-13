@@ -66,11 +66,11 @@ function era_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "PHISHIN_TEST_ERA_ENTID" => [],
-        "PHISHIN_TEST_LIVE" => "FALSE",
+        "PHISH_IN_TEST_ERA_ENTID" => [],
+        "PHISH_IN_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["PHISHIN_TEST_LIVE"] === "TRUE";
+    $live = $env["PHISH_IN_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

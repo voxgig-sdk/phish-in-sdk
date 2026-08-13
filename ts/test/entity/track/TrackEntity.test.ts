@@ -26,8 +26,8 @@ import {
 describe('TrackEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PHISHIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PHISHIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PHISH_IN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PHISH_IN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PhishInSDK.test()
@@ -59,9 +59,12 @@ describe('TrackEntity', async () => {
 
     let track_ref01_data = Object.values(setup.data.existing.track)[0] as any
 
-    // LOAD: skipped — no entity id field and load requires path params.
-    // Entity-var is declared here so later flow steps still compile.
+    // LOAD
     const track_ref01_ent = client.Track()
+    const track_ref01_match_dt0: any = {}
+    track_ref01_match_dt0.id = track_ref01_data.id
+    const track_ref01_data_dt0 = (await track_ref01_ent.load(track_ref01_match_dt0)).data()
+    assert(track_ref01_data_dt0.id === track_ref01_data.id)
 
 
   })

@@ -171,8 +171,9 @@ search = client.Search()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
-| `success` | `bool` | No |  |
+| `shows` | `list` | No |  |
+| `songs` | `list` | No |  |
+| `venues` | `list` | No |  |
 
 ### Operations
 
@@ -230,11 +231,11 @@ show = client.Show()
 | `page` | `int` | No |  |
 | `show_count` | `int` | No |  |
 | `success` | `bool` | No |  |
-| `total_entry` | `int` | No |  |
-| `total_page` | `int` | No |  |
+| `total_entries` | `int` | No |  |
+| `total_pages` | `int` | No |  |
 | `tour_id` | `int` | No |  |
 | `tour_name` | `str` | No |  |
-| `track` | `list` | No |  |
+| `tracks` | `list` | No |  |
 | `venue_id` | `int` | No |  |
 | `venue_name` | `str` | No |  |
 | `year` | `int` | No |  |
@@ -298,12 +299,10 @@ song = client.Song()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alia` | `str` | No |  |
-| `data` | `dict` | No |  |
+| `alias` | `str` | No |  |
 | `debut` | `str` | No |  |
 | `id` | `int` | No |  |
 | `last_played` | `str` | No |  |
-| `success` | `bool` | No |  |
 | `times_played` | `int` | No |  |
 | `title` | `str` | No |  |
 
@@ -366,13 +365,11 @@ tour = client.Tour()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
 | `end_date` | `str` | No |  |
 | `id` | `int` | No |  |
 | `name` | `str` | No |  |
 | `shows_count` | `int` | No |  |
 | `start_date` | `str` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 
@@ -433,8 +430,14 @@ track = client.Track()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
-| `success` | `bool` | No |  |
+| `duration` | `int` | No |  |
+| `id` | `int` | No |  |
+| `mp3` | `str` | No |  |
+| `position` | `int` | No |  |
+| `set` | `str` | No |  |
+| `show_id` | `int` | No |  |
+| `song_id` | `int` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
@@ -485,14 +488,12 @@ venue = client.Venue()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `data` | `dict` | No |  |
 | `id` | `int` | No |  |
 | `latitude` | `float` | No |  |
 | `location` | `str` | No |  |
 | `longitude` | `float` | No |  |
 | `name` | `str` | No |  |
 | `shows_count` | `int` | No |  |
-| `success` | `bool` | No |  |
 
 ### Operations
 

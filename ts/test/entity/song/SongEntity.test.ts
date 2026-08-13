@@ -26,8 +26,8 @@ import {
 describe('SongEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PHISHIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PHISHIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PHISH_IN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PHISH_IN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PhishInSDK.test()
@@ -63,13 +63,13 @@ describe('SongEntity', async () => {
     const song_ref01_ent = client.Song()
     const song_ref01_match: any = {}
 
-    const song_ref01_list = await song_ref01_ent.list(song_ref01_match)
+    const song_ref01_list = (await song_ref01_ent.list(song_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const song_ref01_match_dt0: any = {}
     song_ref01_match_dt0.id = song_ref01_data.id
-    const song_ref01_data_dt0 = await song_ref01_ent.load(song_ref01_match_dt0)
+    const song_ref01_data_dt0 = (await song_ref01_ent.load(song_ref01_match_dt0)).data()
     assert(song_ref01_data_dt0.id === song_ref01_data.id)
 
 

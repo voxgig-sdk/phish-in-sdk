@@ -2,27 +2,47 @@
   "existing": {
     "track": {
       "TRACK00": {
-        "data": {},
-        "success": false,
-        "id": "TRACK00"
+        "duration": "s50",
+        "id": "TRACK00",
+        "mp3": "s52",
+        "position": "s53",
+        "set": "s54",
+        "show_id": "SHOW01",
+        "song_id": "SONG01",
+        "title": "s57"
       },
       "TRACK01": {
-        "data": {},
-        "success": false,
-        "id": "TRACK01"
+        "duration": "sa0",
+        "id": "TRACK01",
+        "mp3": "sa2",
+        "position": "sa3",
+        "set": "sa4",
+        "show_id": "SHOW01",
+        "song_id": "SONG01",
+        "title": "sa7"
       },
       "TRACK02": {
-        "data": {},
-        "success": false,
-        "id": "TRACK02"
+        "duration": "sf0",
+        "id": "TRACK02",
+        "mp3": "sf2",
+        "position": "sf3",
+        "set": "sf4",
+        "show_id": "SHOW01",
+        "song_id": "SONG01",
+        "title": "sf7"
       }
     }
   },
   "new": {
     "track": {
       "track_ref01": {
-        "data": {},
-        "success": false
+        "duration": "s140",
+        "mp3": "s142",
+        "position": "s143",
+        "set": "s144",
+        "show_id": "SHOW01",
+        "song_id": "SONG01",
+        "title": "s147"
       }
     }
   }

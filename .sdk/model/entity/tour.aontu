@@ -6,11 +6,6 @@ main: kit: entity: tour: {
 
   fields: [
     {
-      name: "data"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
       name: "end_date"
       req: false
       type: "`$STRING`"
@@ -35,11 +30,6 @@ main: kit: entity: tour: {
       req: false
       type: "`$STRING`"
     }
-    {
-      name: "success"
-      req: false
-      type: "`$BOOLEAN`"
-    }
   ]
 
   id: {
@@ -60,7 +50,7 @@ main: kit: entity: tour: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
@@ -93,7 +83,7 @@ main: kit: entity: tour: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]

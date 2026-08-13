@@ -52,27 +52,35 @@ EraListMatch = Struct.new(
 
 # Search entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] shows
+#   @return [Array, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] songs
+#   @return [Array, nil]
+#
+# @!attribute [rw] venues
+#   @return [Array, nil]
 Search = Struct.new(
-  :data,
-  :success,
+  :shows,
+  :songs,
+  :venues,
   keyword_init: true
 )
 
 # Request payload for Search#load.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] shows
+#   @return [Array, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] songs
+#   @return [Array, nil]
+#
+# @!attribute [rw] venues
+#   @return [Array, nil]
 SearchLoadMatch = Struct.new(
-  :data,
-  :success,
+  :shows,
+  :songs,
+  :venues,
   keyword_init: true
 )
 
@@ -99,10 +107,10 @@ SearchLoadMatch = Struct.new(
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] total_entry
+# @!attribute [rw] total_entries
 #   @return [Integer, nil]
 #
-# @!attribute [rw] total_page
+# @!attribute [rw] total_pages
 #   @return [Integer, nil]
 #
 # @!attribute [rw] tour_id
@@ -111,7 +119,7 @@ SearchLoadMatch = Struct.new(
 # @!attribute [rw] tour_name
 #   @return [String, nil]
 #
-# @!attribute [rw] track
+# @!attribute [rw] tracks
 #   @return [Array, nil]
 #
 # @!attribute [rw] venue_id
@@ -130,11 +138,11 @@ Show = Struct.new(
   :page,
   :show_count,
   :success,
-  :total_entry,
-  :total_page,
+  :total_entries,
+  :total_pages,
   :tour_id,
   :tour_name,
-  :track,
+  :tracks,
   :venue_id,
   :venue_name,
   :year,
@@ -181,10 +189,10 @@ ShowLoadMatch = Struct.new(
 # @!attribute [rw] success
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] total_entry
+# @!attribute [rw] total_entries
 #   @return [Integer, nil]
 #
-# @!attribute [rw] total_page
+# @!attribute [rw] total_pages
 #   @return [Integer, nil]
 #
 # @!attribute [rw] tour_id
@@ -193,7 +201,7 @@ ShowLoadMatch = Struct.new(
 # @!attribute [rw] tour_name
 #   @return [String, nil]
 #
-# @!attribute [rw] track
+# @!attribute [rw] tracks
 #   @return [Array, nil]
 #
 # @!attribute [rw] venue_id
@@ -212,11 +220,11 @@ ShowListMatch = Struct.new(
   :page,
   :show_count,
   :success,
-  :total_entry,
-  :total_page,
+  :total_entries,
+  :total_pages,
   :tour_id,
   :tour_name,
-  :track,
+  :tracks,
   :venue_id,
   :venue_name,
   :year,
@@ -225,11 +233,8 @@ ShowListMatch = Struct.new(
 
 # Song entity data model.
 #
-# @!attribute [rw] alia
+# @!attribute [rw] alias
 #   @return [String, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
 #
 # @!attribute [rw] debut
 #   @return [String, nil]
@@ -240,21 +245,16 @@ ShowListMatch = Struct.new(
 # @!attribute [rw] last_played
 #   @return [String, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
 # @!attribute [rw] times_played
 #   @return [Integer, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 Song = Struct.new(
-  :alia,
-  :data,
+  :alias,
   :debut,
   :id,
   :last_played,
-  :success,
   :times_played,
   :title,
   keyword_init: true
@@ -271,11 +271,8 @@ SongLoadMatch = Struct.new(
 
 # Request payload for Song#list.
 #
-# @!attribute [rw] alia
+# @!attribute [rw] alias
 #   @return [String, nil]
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
 #
 # @!attribute [rw] debut
 #   @return [String, nil]
@@ -286,30 +283,22 @@ SongLoadMatch = Struct.new(
 # @!attribute [rw] last_played
 #   @return [String, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
 # @!attribute [rw] times_played
 #   @return [Integer, nil]
 #
 # @!attribute [rw] title
 #   @return [String, nil]
 SongListMatch = Struct.new(
-  :alia,
-  :data,
+  :alias,
   :debut,
   :id,
   :last_played,
-  :success,
   :times_played,
   :title,
   keyword_init: true
 )
 
 # Tour entity data model.
-#
-# @!attribute [rw] data
-#   @return [Hash, nil]
 #
 # @!attribute [rw] end_date
 #   @return [String, nil]
@@ -325,17 +314,12 @@ SongListMatch = Struct.new(
 #
 # @!attribute [rw] start_date
 #   @return [String, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 Tour = Struct.new(
-  :data,
   :end_date,
   :id,
   :name,
   :shows_count,
   :start_date,
-  :success,
   keyword_init: true
 )
 
@@ -350,9 +334,6 @@ TourLoadMatch = Struct.new(
 
 # Request payload for Tour#list.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] end_date
 #   @return [String, nil]
 #
@@ -367,30 +348,49 @@ TourLoadMatch = Struct.new(
 #
 # @!attribute [rw] start_date
 #   @return [String, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 TourListMatch = Struct.new(
-  :data,
   :end_date,
   :id,
   :name,
   :shows_count,
   :start_date,
-  :success,
   keyword_init: true
 )
 
 # Track entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
+# @!attribute [rw] duration
+#   @return [Integer, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
+# @!attribute [rw] id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] mp3
+#   @return [String, nil]
+#
+# @!attribute [rw] position
+#   @return [Integer, nil]
+#
+# @!attribute [rw] set
+#   @return [String, nil]
+#
+# @!attribute [rw] show_id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] song_id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
 Track = Struct.new(
-  :data,
-  :success,
+  :duration,
+  :id,
+  :mp3,
+  :position,
+  :set,
+  :show_id,
+  :song_id,
+  :title,
   keyword_init: true
 )
 
@@ -405,9 +405,6 @@ TrackLoadMatch = Struct.new(
 
 # Venue entity data model.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
@@ -425,18 +422,13 @@ TrackLoadMatch = Struct.new(
 #
 # @!attribute [rw] shows_count
 #   @return [Integer, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 Venue = Struct.new(
-  :data,
   :id,
   :latitude,
   :location,
   :longitude,
   :name,
   :shows_count,
-  :success,
   keyword_init: true
 )
 
@@ -451,9 +443,6 @@ VenueLoadMatch = Struct.new(
 
 # Request payload for Venue#list.
 #
-# @!attribute [rw] data
-#   @return [Hash, nil]
-#
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
@@ -471,18 +460,13 @@ VenueLoadMatch = Struct.new(
 #
 # @!attribute [rw] shows_count
 #   @return [Integer, nil]
-#
-# @!attribute [rw] success
-#   @return [Boolean, nil]
 VenueListMatch = Struct.new(
-  :data,
   :id,
   :latitude,
   :location,
   :longitude,
   :name,
   :shows_count,
-  :success,
   keyword_init: true
 )
 

@@ -2,43 +2,35 @@
   "existing": {
     "tour": {
       "TOUR00": {
-        "data": {},
-        "end_date": "s47",
+        "end_date": "s32",
         "id": "TOUR00",
-        "name": "s49",
-        "shows_count": "s4a",
-        "start_date": "s4b",
-        "success": true
+        "name": "s34",
+        "shows_count": "s35",
+        "start_date": "s36"
       },
       "TOUR01": {
-        "data": {},
-        "end_date": "s8d",
+        "end_date": "s64",
         "id": "TOUR01",
-        "name": "s8f",
-        "shows_count": "s90",
-        "start_date": "s91",
-        "success": true
+        "name": "s66",
+        "shows_count": "s67",
+        "start_date": "s68"
       },
       "TOUR02": {
-        "data": {},
-        "end_date": "sd3",
+        "end_date": "s96",
         "id": "TOUR02",
-        "name": "sd5",
-        "shows_count": "sd6",
-        "start_date": "sd7",
-        "success": true
+        "name": "s98",
+        "shows_count": "s99",
+        "start_date": "s9a"
       }
     }
   },
   "new": {
     "tour": {
       "tour_ref01": {
-        "data": {},
-        "end_date": "s119",
-        "name": "s11b",
-        "shows_count": "s11c",
-        "start_date": "s11d",
-        "success": true
+        "end_date": "sc8",
+        "name": "sca",
+        "shows_count": "scb",
+        "start_date": "scc"
       }
     }
   }

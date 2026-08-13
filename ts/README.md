@@ -35,7 +35,9 @@ const client = new PhishInSDK()
 
 ### 2. List era records
 
-`list()` resolves to an array of Era objects — iterate it directly:
+`list()` resolves to an array of Era ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const eras = await client.Era().list()
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const eras = await client.Era().list()
-  console.log(eras)
+  const songs = await client.Song().list()
+  console.log(songs)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = PhishInSDK.test()
 
-const era = await client.Era().list()
-// era is a bare entity populated with mock response data
-console.log(era)
+const song = await client.Song().list()
+// song is the entity, populated with mock response data
+// — call song.data() for the record itself
+console.log(song)
 ```
 
 You can also use the instance method:
@@ -136,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Era()
+const entity = client.Song()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -306,8 +309,9 @@ API path: `/eras`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `shows` |  |
+| `songs` |  |
+| `venues` |  |
 
 Operations: load.
 
@@ -324,11 +328,11 @@ API path: `/search`
 | `page` |  |
 | `show_count` |  |
 | `success` |  |
-| `total_entry` |  |
-| `total_page` |  |
+| `total_entries` |  |
+| `total_pages` |  |
 | `tour_id` |  |
 | `tour_name` |  |
-| `track` |  |
+| `tracks` |  |
 | `venue_id` |  |
 | `venue_name` |  |
 | `year` |  |
@@ -341,12 +345,10 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `alia` |  |
-| `data` |  |
+| `alias` |  |
 | `debut` |  |
 | `id` |  |
 | `last_played` |  |
-| `success` |  |
 | `times_played` |  |
 | `title` |  |
 
@@ -358,13 +360,11 @@ API path: `/songs`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `end_date` |  |
 | `id` |  |
 | `name` |  |
 | `shows_count` |  |
 | `start_date` |  |
-| `success` |  |
 
 Operations: list, load.
 
@@ -374,8 +374,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `duration` |  |
+| `id` |  |
+| `mp3` |  |
+| `position` |  |
+| `set` |  |
+| `show_id` |  |
+| `song_id` |  |
+| `title` |  |
 
 Operations: load.
 
@@ -385,14 +391,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `id` |  |
 | `latitude` |  |
 | `location` |  |
 | `longitude` |  |
 | `name` |  |
 | `shows_count` |  |
-| `success` |  |
 
 Operations: list, load.
 
@@ -452,8 +456,9 @@ Create an instance: `const search = client.Search()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
+| `shows` | `any[]` |  |
+| `songs` | `any[]` |  |
+| `venues` | `any[]` |  |
 
 #### Example: Load
 
@@ -484,11 +489,11 @@ Create an instance: `const show = client.Show()`
 | `page` | `number` |  |
 | `show_count` | `number` |  |
 | `success` | `boolean` |  |
-| `total_entry` | `number` |  |
-| `total_page` | `number` |  |
+| `total_entries` | `number` |  |
+| `total_pages` | `number` |  |
 | `tour_id` | `number` |  |
 | `tour_name` | `string` |  |
-| `track` | `any[]` |  |
+| `tracks` | `any[]` |  |
 | `venue_id` | `number` |  |
 | `venue_name` | `string` |  |
 | `year` | `number` |  |
@@ -521,12 +526,10 @@ Create an instance: `const song = client.Song()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alia` | `string` |  |
-| `data` | `Record<string, any>` |  |
+| `alias` | `string` |  |
 | `debut` | `string` |  |
 | `id` | `number` |  |
 | `last_played` | `string` |  |
-| `success` | `boolean` |  |
 | `times_played` | `number` |  |
 | `title` | `string` |  |
 
@@ -558,13 +561,11 @@ Create an instance: `const tour = client.Tour()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
 | `end_date` | `string` |  |
 | `id` | `number` |  |
 | `name` | `string` |  |
 | `shows_count` | `number` |  |
 | `start_date` | `string` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -593,8 +594,14 @@ Create an instance: `const track = client.Track()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
-| `success` | `boolean` |  |
+| `duration` | `number` |  |
+| `id` | `number` |  |
+| `mp3` | `string` |  |
+| `position` | `number` |  |
+| `set` | `string` |  |
+| `show_id` | `number` |  |
+| `song_id` | `number` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -618,14 +625,12 @@ Create an instance: `const venue = client.Venue()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `Record<string, any>` |  |
 | `id` | `number` |  |
 | `latitude` | `number` |  |
 | `location` | `string` |  |
 | `longitude` | `number` |  |
 | `name` | `string` |  |
 | `shows_count` | `number` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -714,11 +719,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const era = client.Era()
-await era.list()
+const song = client.Song()
+await song.list()
 
-// era.data() now returns the era data from the last `list`
-// era.match() returns the last match criteria
+// song.data() now returns the song data from the last `list`
+// song.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

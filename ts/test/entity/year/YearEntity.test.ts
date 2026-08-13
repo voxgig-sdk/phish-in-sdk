@@ -26,8 +26,8 @@ import {
 describe('YearEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PHISHIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PHISHIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PHISH_IN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PHISH_IN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PhishInSDK.test()

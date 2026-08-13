@@ -26,8 +26,8 @@ import {
 describe('VenueEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PHISHIN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PHISHIN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PHISH_IN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PHISH_IN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = PhishInSDK.test()
@@ -63,13 +63,13 @@ describe('VenueEntity', async () => {
     const venue_ref01_ent = client.Venue()
     const venue_ref01_match: any = {}
 
-    const venue_ref01_list = await venue_ref01_ent.list(venue_ref01_match)
+    const venue_ref01_list = (await venue_ref01_ent.list(venue_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const venue_ref01_match_dt0: any = {}
     venue_ref01_match_dt0.id = venue_ref01_data.id
-    const venue_ref01_data_dt0 = await venue_ref01_ent.load(venue_ref01_match_dt0)
+    const venue_ref01_data_dt0 = (await venue_ref01_ent.load(venue_ref01_match_dt0)).data()
     assert(venue_ref01_data_dt0.id === venue_ref01_data.id)
 
 

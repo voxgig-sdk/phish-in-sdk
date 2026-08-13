@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local eras, err = client:Era():list()
+local songs, err = client:Song():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Era():list()
+local result, err = client:Song():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -227,9 +227,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local era, err = client:Era():load()
+    local search, err = client:Search():load()
     if err then error(err) end
-    -- era is the loaded record
+    -- search is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -253,8 +253,9 @@ API path: `/eras`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `shows` |  |
+| `songs` |  |
+| `venues` |  |
 
 Operations: Load.
 
@@ -271,11 +272,11 @@ API path: `/search`
 | `page` |  |
 | `show_count` |  |
 | `success` |  |
-| `total_entry` |  |
-| `total_page` |  |
+| `total_entries` |  |
+| `total_pages` |  |
 | `tour_id` |  |
 | `tour_name` |  |
-| `track` |  |
+| `tracks` |  |
 | `venue_id` |  |
 | `venue_name` |  |
 | `year` |  |
@@ -288,12 +289,10 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `alia` |  |
-| `data` |  |
+| `alias` |  |
 | `debut` |  |
 | `id` |  |
 | `last_played` |  |
-| `success` |  |
 | `times_played` |  |
 | `title` |  |
 
@@ -305,13 +304,11 @@ API path: `/songs`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `end_date` |  |
 | `id` |  |
 | `name` |  |
 | `shows_count` |  |
 | `start_date` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -321,8 +318,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
-| `success` |  |
+| `duration` |  |
+| `id` |  |
+| `mp3` |  |
+| `position` |  |
+| `set` |  |
+| `show_id` |  |
+| `song_id` |  |
+| `title` |  |
 
 Operations: Load.
 
@@ -332,14 +335,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `data` |  |
 | `id` |  |
 | `latitude` |  |
 | `location` |  |
 | `longitude` |  |
 | `name` |  |
 | `shows_count` |  |
-| `success` |  |
 
 Operations: List, Load.
 
@@ -399,8 +400,9 @@ Create an instance: `local search = client:Search(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `success` | `boolean` |  |
+| `shows` | `table` |  |
+| `songs` | `table` |  |
+| `venues` | `table` |  |
 
 #### Example: Load
 
@@ -431,11 +433,11 @@ Create an instance: `local show = client:Show(nil)`
 | `page` | `number` |  |
 | `show_count` | `number` |  |
 | `success` | `boolean` |  |
-| `total_entry` | `number` |  |
-| `total_page` | `number` |  |
+| `total_entries` | `number` |  |
+| `total_pages` | `number` |  |
 | `tour_id` | `number` |  |
 | `tour_name` | `string` |  |
-| `track` | `table` |  |
+| `tracks` | `table` |  |
 | `venue_id` | `number` |  |
 | `venue_name` | `string` |  |
 | `year` | `number` |  |
@@ -468,12 +470,10 @@ Create an instance: `local song = client:Song(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alia` | `string` |  |
-| `data` | `table` |  |
+| `alias` | `string` |  |
 | `debut` | `string` |  |
 | `id` | `number` |  |
 | `last_played` | `string` |  |
-| `success` | `boolean` |  |
 | `times_played` | `number` |  |
 | `title` | `string` |  |
 
@@ -505,13 +505,11 @@ Create an instance: `local tour = client:Tour(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
 | `end_date` | `string` |  |
 | `id` | `number` |  |
 | `name` | `string` |  |
 | `shows_count` | `number` |  |
 | `start_date` | `string` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -540,8 +538,14 @@ Create an instance: `local track = client:Track(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
-| `success` | `boolean` |  |
+| `duration` | `number` |  |
+| `id` | `number` |  |
+| `mp3` | `string` |  |
+| `position` | `number` |  |
+| `set` | `string` |  |
+| `show_id` | `number` |  |
+| `song_id` | `number` |  |
+| `title` | `string` |  |
 
 #### Example: Load
 
@@ -565,14 +569,12 @@ Create an instance: `local venue = client:Venue(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `data` | `table` |  |
 | `id` | `number` |  |
 | `latitude` | `number` |  |
 | `location` | `string` |  |
 | `longitude` | `number` |  |
 | `name` | `string` |  |
 | `shows_count` | `number` |  |
-| `success` | `boolean` |  |
 
 #### Example: Load
 
@@ -668,11 +670,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local era = client:Era()
-era:list()
+local song = client:Song()
+song:list()
 
--- era:data_get() now returns the era data from the last list
--- era:match_get() returns the last match criteria
+-- song:data_get() now returns the song data from the last list
+-- song:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

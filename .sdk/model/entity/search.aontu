@@ -6,14 +6,19 @@ main: kit: entity: search: {
 
   fields: [
     {
-      name: "data"
+      name: "shows"
       req: false
-      type: "`$OBJECT`"
+      type: "`$ARRAY`"
     }
     {
-      name: "success"
+      name: "songs"
       req: false
-      type: "`$BOOLEAN`"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "venues"
+      req: false
+      type: "`$ARRAY`"
     }
   ]
 
@@ -46,7 +51,7 @@ main: kit: entity: search: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.data`"
           }
         }
       ]
