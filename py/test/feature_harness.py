@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from phishin_sdk.config import make_config
+from phishin_sdk.config import shared_config
 from phishin_sdk.features import _make_feature
 from phishin_sdk.core.control import PhishInControl
 from phishin_sdk.core.error import PhishInError
@@ -24,7 +24,7 @@ from phishin_sdk.core.spec import PhishInSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 

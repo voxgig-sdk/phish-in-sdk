@@ -40,7 +40,7 @@ class VenueEntityTest extends TestCase
         $this->assertCount(3, $seen);
 
         // Inbound: streaming active -> yields each item from the feature.
-        $cfg = PhishInConfig::make_config();
+        $cfg = PhishInConfig::shared_config();
         if (isset($cfg["feature"]) && is_array($cfg["feature"]) && isset($cfg["feature"]["streaming"])) {
             $sdk = PhishInSDK::test($seed, ["feature" => ["streaming" => ["active" => true]]]);
             $got = [];

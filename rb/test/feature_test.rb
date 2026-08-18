@@ -15,7 +15,7 @@ require_relative "../PhishIn_sdk"
 module PhishInFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = PhishInConfig.make_config["feature"]
+    f = PhishInConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -40,7 +40,7 @@ class PhishInSDK
         $utility = new PhishInUtility();
         $this->_utility = $utility;
 
-        $config = PhishInConfig::make_config();
+        $config = PhishInConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

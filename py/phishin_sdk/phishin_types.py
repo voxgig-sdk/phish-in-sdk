@@ -60,10 +60,8 @@ class Show(TypedDict, total=False):
     year: int
 
 
-class ShowLoadMatch(TypedDict, total=False):
-    date: str
+class ShowLoadMatch(TypedDict):
     id: int
-    year: int
 
 
 class ShowListMatch(TypedDict, total=False):

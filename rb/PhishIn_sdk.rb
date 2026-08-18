@@ -28,7 +28,7 @@ class PhishInSDK
     utility = PhishInUtility.new
     @_utility = utility
 
-    config = PhishInConfig.make_config
+    config = PhishInConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

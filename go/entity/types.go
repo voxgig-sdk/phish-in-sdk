@@ -63,9 +63,7 @@ type Show struct {
 
 // ShowLoadMatch is the typed request payload for Show.LoadTyped.
 type ShowLoadMatch struct {
-	Date *string `json:"date,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Year *int `json:"year,omitempty"`
+	Id int `json:"id"`
 }
 
 // ShowListMatch is the typed request payload for Show.ListTyped.

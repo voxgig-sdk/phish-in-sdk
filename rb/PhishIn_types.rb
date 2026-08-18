@@ -151,18 +151,10 @@ Show = Struct.new(
 
 # Request payload for Show#load.
 #
-# @!attribute [rw] date
-#   @return [String, nil]
-#
 # @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] year
-#   @return [Integer, nil]
+#   @return [Integer]
 ShowLoadMatch = Struct.new(
-  :date,
   :id,
-  :year,
   keyword_init: true
 )
 

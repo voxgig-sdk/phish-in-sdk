@@ -33,7 +33,7 @@ class ShowEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = PhishInConfig.make_config
+    cfg = PhishInConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = PhishInSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

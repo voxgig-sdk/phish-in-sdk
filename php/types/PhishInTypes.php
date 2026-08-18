@@ -69,9 +69,7 @@ class Show
 /** Request payload for Show#load. */
 class ShowLoadMatch
 {
-    public ?string $date = null;
-    public ?int $id = null;
-    public ?int $year = null;
+    public int $id;
 }
 
 /** Request payload for Show#list. */

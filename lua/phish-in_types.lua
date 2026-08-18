@@ -46,9 +46,7 @@
 ---@field year? number
 
 ---@class ShowLoadMatch
----@field date? string
----@field id? number
----@field year? number
+---@field id number
 
 ---@class ShowListMatch
 ---@field data? table
