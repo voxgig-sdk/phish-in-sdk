@@ -173,18 +173,21 @@
               "active": true,
               "name": "date",
               "req": false,
+              "short": "Date of the show",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the show",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "location",
               "req": false,
+              "short": "Location of the venue",
               "type": "`$STRING`"
             },
             {
@@ -221,12 +224,14 @@
               "active": true,
               "name": "tour_id",
               "req": false,
+              "short": "ID of the tour",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "tour_name",
               "req": false,
+              "short": "Name of the tour",
               "type": "`$STRING`"
             },
             {
@@ -239,12 +244,14 @@
               "active": true,
               "name": "venue_id",
               "req": false,
+              "short": "ID of the venue",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "venue_name",
               "req": false,
+              "short": "Name of the venue",
               "type": "`$STRING`"
             },
             {
@@ -478,36 +485,42 @@
               "active": true,
               "name": "alias",
               "req": false,
+              "short": "Alternative name or alias",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "debut",
               "req": false,
+              "short": "Date of first performance",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the song",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "last_played",
               "req": false,
+              "short": "Date of most recent performance",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "times_played",
               "req": false,
+              "short": "Number of times the song has been played",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Title of the song",
               "type": "`$STRING`"
             }
           ],
@@ -741,48 +754,56 @@
               "active": true,
               "name": "duration",
               "req": false,
+              "short": "Duration in seconds",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the track",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "mp3",
               "req": false,
+              "short": "URL to MP3 file",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "position",
               "req": false,
+              "short": "Position in the setlist",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "set",
               "req": false,
+              "short": "Set identifier (e.g., 1, 2, E for encore)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "show_id",
               "req": false,
+              "short": "ID of the show",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "song_id",
               "req": false,
+              "short": "ID of the song",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "Title of the track/song",
               "type": "`$STRING`"
             }
           ],
@@ -844,6 +865,7 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique identifier for the venue",
               "type": "`$INTEGER`"
             },
             {
@@ -856,6 +878,7 @@
               "active": true,
               "name": "location",
               "req": false,
+              "short": "Location (city, state/country)",
               "type": "`$STRING`"
             },
             {
@@ -868,12 +891,14 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Name of the venue",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "shows_count",
               "req": false,
+              "short": "Number of shows at this venue",
               "type": "`$INTEGER`"
             }
           ],

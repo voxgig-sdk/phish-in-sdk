@@ -1,0 +1,102 @@
+# Entity: track
+
+main: kit: entity: track: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "duration"
+      req: false
+      short: "Duration in seconds"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier for the track"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "mp3"
+      req: false
+      short: "URL to MP3 file"
+      type: "`$STRING`"
+    }
+    {
+      name: "position"
+      req: false
+      short: "Position in the setlist"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "set"
+      req: false
+      short: "Set identifier (e.g., 1, 2, E for encore)"
+      type: "`$STRING`"
+    }
+    {
+      name: "show_id"
+      req: false
+      short: "ID of the show"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "song_id"
+      req: false
+      short: "ID of the song"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "Title of the track/song"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "track"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/tracks/{id}"
+          parts: [
+            "tracks"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

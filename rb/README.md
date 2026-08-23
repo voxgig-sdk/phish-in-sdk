@@ -274,19 +274,19 @@ API path: `/search`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `date` |  |
-| `id` |  |
-| `location` |  |
+| `date` | Date of the show |
+| `id` | Unique identifier for the show |
+| `location` | Location of the venue |
 | `page` |  |
 | `show_count` |  |
 | `success` |  |
 | `total_entries` |  |
 | `total_pages` |  |
-| `tour_id` |  |
-| `tour_name` |  |
+| `tour_id` | ID of the tour |
+| `tour_name` | Name of the tour |
 | `tracks` |  |
-| `venue_id` |  |
-| `venue_name` |  |
+| `venue_id` | ID of the venue |
+| `venue_name` | Name of the venue |
 | `year` |  |
 
 Operations: List, Load.
@@ -297,12 +297,12 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `alias` |  |
-| `debut` |  |
-| `id` |  |
-| `last_played` |  |
-| `times_played` |  |
-| `title` |  |
+| `alias` | Alternative name or alias |
+| `debut` | Date of first performance |
+| `id` | Unique identifier for the song |
+| `last_played` | Date of most recent performance |
+| `times_played` | Number of times the song has been played |
+| `title` | Title of the song |
 
 Operations: List, Load.
 
@@ -326,14 +326,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `duration` |  |
-| `id` |  |
-| `mp3` |  |
-| `position` |  |
-| `set` |  |
-| `show_id` |  |
-| `song_id` |  |
-| `title` |  |
+| `duration` | Duration in seconds |
+| `id` | Unique identifier for the track |
+| `mp3` | URL to MP3 file |
+| `position` | Position in the setlist |
+| `set` | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | ID of the show |
+| `song_id` | ID of the song |
+| `title` | Title of the track/song |
 
 Operations: Load.
 
@@ -343,12 +343,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
+| `id` | Unique identifier for the venue |
 | `latitude` |  |
-| `location` |  |
+| `location` | Location (city, state/country) |
 | `longitude` |  |
-| `name` |  |
-| `shows_count` |  |
+| `name` | Name of the venue |
+| `shows_count` | Number of shows at this venue |
 
 Operations: List, Load.
 
@@ -437,19 +437,19 @@ Create an instance: `show = client.Show`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `Array` |  |
-| `date` | `String` |  |
-| `id` | `Integer` |  |
-| `location` | `String` |  |
+| `date` | `String` | Date of the show |
+| `id` | `Integer` | Unique identifier for the show |
+| `location` | `String` | Location of the venue |
 | `page` | `Integer` |  |
 | `show_count` | `Integer` |  |
 | `success` | `Boolean` |  |
 | `total_entries` | `Integer` |  |
 | `total_pages` | `Integer` |  |
-| `tour_id` | `Integer` |  |
-| `tour_name` | `String` |  |
+| `tour_id` | `Integer` | ID of the tour |
+| `tour_name` | `String` | Name of the tour |
 | `tracks` | `Array` |  |
-| `venue_id` | `Integer` |  |
-| `venue_name` | `String` |  |
+| `venue_id` | `Integer` | ID of the venue |
+| `venue_name` | `String` | Name of the venue |
 | `year` | `Integer` |  |
 
 #### Example: Load
@@ -482,12 +482,12 @@ Create an instance: `song = client.Song`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alias` | `String` |  |
-| `debut` | `String` |  |
-| `id` | `Integer` |  |
-| `last_played` | `String` |  |
-| `times_played` | `Integer` |  |
-| `title` | `String` |  |
+| `alias` | `String` | Alternative name or alias |
+| `debut` | `String` | Date of first performance |
+| `id` | `Integer` | Unique identifier for the song |
+| `last_played` | `String` | Date of most recent performance |
+| `times_played` | `Integer` | Number of times the song has been played |
+| `title` | `String` | Title of the song |
 
 #### Example: Load
 
@@ -554,14 +554,14 @@ Create an instance: `track = client.Track`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `duration` | `Integer` |  |
-| `id` | `Integer` |  |
-| `mp3` | `String` |  |
-| `position` | `Integer` |  |
-| `set` | `String` |  |
-| `show_id` | `Integer` |  |
-| `song_id` | `Integer` |  |
-| `title` | `String` |  |
+| `duration` | `Integer` | Duration in seconds |
+| `id` | `Integer` | Unique identifier for the track |
+| `mp3` | `String` | URL to MP3 file |
+| `position` | `Integer` | Position in the setlist |
+| `set` | `String` | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | `Integer` | ID of the show |
+| `song_id` | `Integer` | ID of the song |
+| `title` | `String` | Title of the track/song |
 
 #### Example: Load
 
@@ -586,12 +586,12 @@ Create an instance: `venue = client.Venue`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `Integer` |  |
+| `id` | `Integer` | Unique identifier for the venue |
 | `latitude` | `Float` |  |
-| `location` | `String` |  |
+| `location` | `String` | Location (city, state/country) |
 | `longitude` | `Float` |  |
-| `name` | `String` |  |
-| `shows_count` | `Integer` |  |
+| `name` | `String` | Name of the venue |
+| `shows_count` | `Integer` | Number of shows at this venue |
 
 #### Example: Load
 

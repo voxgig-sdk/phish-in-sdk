@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -322,19 +322,19 @@ API path: `/search`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `date` |  |
-| `id` |  |
-| `location` |  |
+| `date` | Date of the show |
+| `id` | Unique identifier for the show |
+| `location` | Location of the venue |
 | `page` |  |
 | `show_count` |  |
 | `success` |  |
 | `total_entries` |  |
 | `total_pages` |  |
-| `tour_id` |  |
-| `tour_name` |  |
+| `tour_id` | ID of the tour |
+| `tour_name` | Name of the tour |
 | `tracks` |  |
-| `venue_id` |  |
-| `venue_name` |  |
+| `venue_id` | ID of the venue |
+| `venue_name` | Name of the venue |
 | `year` |  |
 
 Operations: list, load.
@@ -345,12 +345,12 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `alias` |  |
-| `debut` |  |
-| `id` |  |
-| `last_played` |  |
-| `times_played` |  |
-| `title` |  |
+| `alias` | Alternative name or alias |
+| `debut` | Date of first performance |
+| `id` | Unique identifier for the song |
+| `last_played` | Date of most recent performance |
+| `times_played` | Number of times the song has been played |
+| `title` | Title of the song |
 
 Operations: list, load.
 
@@ -374,14 +374,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `duration` |  |
-| `id` |  |
-| `mp3` |  |
-| `position` |  |
-| `set` |  |
-| `show_id` |  |
-| `song_id` |  |
-| `title` |  |
+| `duration` | Duration in seconds |
+| `id` | Unique identifier for the track |
+| `mp3` | URL to MP3 file |
+| `position` | Position in the setlist |
+| `set` | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | ID of the show |
+| `song_id` | ID of the song |
+| `title` | Title of the track/song |
 
 Operations: load.
 
@@ -391,12 +391,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
+| `id` | Unique identifier for the venue |
 | `latitude` |  |
-| `location` |  |
+| `location` | Location (city, state/country) |
 | `longitude` |  |
-| `name` |  |
-| `shows_count` |  |
+| `name` | Name of the venue |
+| `shows_count` | Number of shows at this venue |
 
 Operations: list, load.
 
@@ -483,19 +483,19 @@ Create an instance: `const show = client.Show()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `any[]` |  |
-| `date` | `string` |  |
-| `id` | `number` |  |
-| `location` | `string` |  |
+| `date` | `string` | Date of the show |
+| `id` | `number` | Unique identifier for the show |
+| `location` | `string` | Location of the venue |
 | `page` | `number` |  |
 | `show_count` | `number` |  |
 | `success` | `boolean` |  |
 | `total_entries` | `number` |  |
 | `total_pages` | `number` |  |
-| `tour_id` | `number` |  |
-| `tour_name` | `string` |  |
+| `tour_id` | `number` | ID of the tour |
+| `tour_name` | `string` | Name of the tour |
 | `tracks` | `any[]` |  |
-| `venue_id` | `number` |  |
-| `venue_name` | `string` |  |
+| `venue_id` | `number` | ID of the venue |
+| `venue_name` | `string` | Name of the venue |
 | `year` | `number` |  |
 
 #### Example: Load
@@ -526,12 +526,12 @@ Create an instance: `const song = client.Song()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alias` | `string` |  |
-| `debut` | `string` |  |
-| `id` | `number` |  |
-| `last_played` | `string` |  |
-| `times_played` | `number` |  |
-| `title` | `string` |  |
+| `alias` | `string` | Alternative name or alias |
+| `debut` | `string` | Date of first performance |
+| `id` | `number` | Unique identifier for the song |
+| `last_played` | `string` | Date of most recent performance |
+| `times_played` | `number` | Number of times the song has been played |
+| `title` | `string` | Title of the song |
 
 #### Example: Load
 
@@ -594,14 +594,14 @@ Create an instance: `const track = client.Track()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `duration` | `number` |  |
-| `id` | `number` |  |
-| `mp3` | `string` |  |
-| `position` | `number` |  |
-| `set` | `string` |  |
-| `show_id` | `number` |  |
-| `song_id` | `number` |  |
-| `title` | `string` |  |
+| `duration` | `number` | Duration in seconds |
+| `id` | `number` | Unique identifier for the track |
+| `mp3` | `string` | URL to MP3 file |
+| `position` | `number` | Position in the setlist |
+| `set` | `string` | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | `number` | ID of the show |
+| `song_id` | `number` | ID of the song |
+| `title` | `string` | Title of the track/song |
 
 #### Example: Load
 
@@ -625,12 +625,12 @@ Create an instance: `const venue = client.Venue()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
+| `id` | `number` | Unique identifier for the venue |
 | `latitude` | `number` |  |
-| `location` | `string` |  |
+| `location` | `string` | Location (city, state/country) |
 | `longitude` | `number` |  |
-| `name` | `string` |  |
-| `shows_count` | `number` |  |
+| `name` | `string` | Name of the venue |
+| `shows_count` | `number` | Number of shows at this venue |
 
 #### Example: Load
 

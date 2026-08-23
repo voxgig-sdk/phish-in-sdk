@@ -1,0 +1,149 @@
+# Entity: song
+
+main: kit: entity: song: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "alias"
+      req: false
+      short: "Alternative name or alias"
+      type: "`$STRING`"
+    }
+    {
+      name: "debut"
+      req: false
+      short: "Date of first performance"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier for the song"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "last_played"
+      req: false
+      short: "Date of most recent performance"
+      type: "`$STRING`"
+    }
+    {
+      name: "times_played"
+      req: false
+      short: "Number of times the song has been played"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "title"
+      req: false
+      short: "Title of the song"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "song"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "per_page"
+                orig: "per_page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "sort_attr"
+                orig: "sort_attr"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "asc"
+                kind: "query"
+                name: "sort_dir"
+                orig: "sort_dir"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/songs"
+          parts: [
+            "songs"
+          ]
+          select: {
+            exist: [
+              "page"
+              "per_page"
+              "sort_attr"
+              "sort_dir"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/songs/{id}"
+          parts: [
+            "songs"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

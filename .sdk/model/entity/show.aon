@@ -1,0 +1,285 @@
+# Entity: show
+
+main: kit: entity: show: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "data"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "date"
+      req: false
+      short: "Date of the show"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique identifier for the show"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "location"
+      req: false
+      short: "Location of the venue"
+      type: "`$STRING`"
+    }
+    {
+      name: "page"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "show_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "success"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "total_entries"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "total_pages"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "tour_id"
+      req: false
+      short: "ID of the tour"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "tour_name"
+      req: false
+      short: "Name of the tour"
+      type: "`$STRING`"
+    }
+    {
+      name: "tracks"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "venue_id"
+      req: false
+      short: "ID of the venue"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "venue_name"
+      req: false
+      short: "Name of the venue"
+      type: "`$STRING`"
+    }
+    {
+      name: "year"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "show"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 20
+                kind: "query"
+                name: "per_page"
+                orig: "per_page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "sort_attr"
+                orig: "sort_attr"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "desc"
+                kind: "query"
+                name: "sort_dir"
+                orig: "sort_dir"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shows"
+          parts: [
+            "shows"
+          ]
+          select: {
+            exist: [
+              "page"
+              "per_page"
+              "sort_attr"
+              "sort_dir"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/years"
+          parts: [
+            "years"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "date"
+                orig: "date"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shows/on-date/{date}"
+          parts: [
+            "shows"
+            "on-date"
+            "{date}"
+          ]
+          select: {
+            exist: [
+              "date"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/shows/{id}"
+          parts: [
+            "shows"
+            "{id}"
+          ]
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "year"
+                orig: "year"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/years/{year}"
+          parts: [
+            "years"
+            "{year}"
+          ]
+          select: {
+            exist: [
+              "year"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/random-show"
+          parts: [
+            "random-show"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "on_date"
+      ]
+      [
+        "year"
+      ]
+    ]
+  }
+
+
+
+}

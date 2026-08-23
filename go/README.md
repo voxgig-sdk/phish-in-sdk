@@ -6,7 +6,7 @@ The Golang SDK for the PhishIn API — an entity-oriented client using standard 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Era(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -295,19 +295,19 @@ API path: `/search`
 | Field | Description |
 | --- | --- |
 | `"data"` |  |
-| `"date"` |  |
-| `"id"` |  |
-| `"location"` |  |
+| `"date"` | Date of the show |
+| `"id"` | Unique identifier for the show |
+| `"location"` | Location of the venue |
 | `"page"` |  |
 | `"show_count"` |  |
 | `"success"` |  |
 | `"total_entries"` |  |
 | `"total_pages"` |  |
-| `"tour_id"` |  |
-| `"tour_name"` |  |
+| `"tour_id"` | ID of the tour |
+| `"tour_name"` | Name of the tour |
 | `"tracks"` |  |
-| `"venue_id"` |  |
-| `"venue_name"` |  |
+| `"venue_id"` | ID of the venue |
+| `"venue_name"` | Name of the venue |
 | `"year"` |  |
 
 Operations: List, Load.
@@ -318,12 +318,12 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `"alias"` |  |
-| `"debut"` |  |
-| `"id"` |  |
-| `"last_played"` |  |
-| `"times_played"` |  |
-| `"title"` |  |
+| `"alias"` | Alternative name or alias |
+| `"debut"` | Date of first performance |
+| `"id"` | Unique identifier for the song |
+| `"last_played"` | Date of most recent performance |
+| `"times_played"` | Number of times the song has been played |
+| `"title"` | Title of the song |
 
 Operations: List, Load.
 
@@ -347,14 +347,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `"duration"` |  |
-| `"id"` |  |
-| `"mp3"` |  |
-| `"position"` |  |
-| `"set"` |  |
-| `"show_id"` |  |
-| `"song_id"` |  |
-| `"title"` |  |
+| `"duration"` | Duration in seconds |
+| `"id"` | Unique identifier for the track |
+| `"mp3"` | URL to MP3 file |
+| `"position"` | Position in the setlist |
+| `"set"` | Set identifier (e.g., 1, 2, E for encore) |
+| `"show_id"` | ID of the show |
+| `"song_id"` | ID of the song |
+| `"title"` | Title of the track/song |
 
 Operations: Load.
 
@@ -364,12 +364,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `"id"` |  |
+| `"id"` | Unique identifier for the venue |
 | `"latitude"` |  |
-| `"location"` |  |
+| `"location"` | Location (city, state/country) |
 | `"longitude"` |  |
-| `"name"` |  |
-| `"shows_count"` |  |
+| `"name"` | Name of the venue |
+| `"shows_count"` | Number of shows at this venue |
 
 Operations: List, Load.
 
@@ -464,19 +464,19 @@ Create an instance: `show := client.Show(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `[]any` |  |
-| `date` | `string` |  |
-| `id` | `int` |  |
-| `location` | `string` |  |
+| `date` | `string` | Date of the show |
+| `id` | `int` | Unique identifier for the show |
+| `location` | `string` | Location of the venue |
 | `page` | `int` |  |
 | `show_count` | `int` |  |
 | `success` | `bool` |  |
 | `total_entries` | `int` |  |
 | `total_pages` | `int` |  |
-| `tour_id` | `int` |  |
-| `tour_name` | `string` |  |
+| `tour_id` | `int` | ID of the tour |
+| `tour_name` | `string` | Name of the tour |
 | `tracks` | `[]any` |  |
-| `venue_id` | `int` |  |
-| `venue_name` | `string` |  |
+| `venue_id` | `int` | ID of the venue |
+| `venue_name` | `string` | Name of the venue |
 | `year` | `int` |  |
 
 #### Example: Load
@@ -515,12 +515,12 @@ Create an instance: `song := client.Song(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alias` | `string` |  |
-| `debut` | `string` |  |
-| `id` | `int` |  |
-| `last_played` | `string` |  |
-| `times_played` | `int` |  |
-| `title` | `string` |  |
+| `alias` | `string` | Alternative name or alias |
+| `debut` | `string` | Date of first performance |
+| `id` | `int` | Unique identifier for the song |
+| `last_played` | `string` | Date of most recent performance |
+| `times_played` | `int` | Number of times the song has been played |
+| `title` | `string` | Title of the song |
 
 #### Example: Load
 
@@ -599,14 +599,14 @@ Create an instance: `track := client.Track(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `duration` | `int` |  |
-| `id` | `int` |  |
-| `mp3` | `string` |  |
-| `position` | `int` |  |
-| `set` | `string` |  |
-| `show_id` | `int` |  |
-| `song_id` | `int` |  |
-| `title` | `string` |  |
+| `duration` | `int` | Duration in seconds |
+| `id` | `int` | Unique identifier for the track |
+| `mp3` | `string` | URL to MP3 file |
+| `position` | `int` | Position in the setlist |
+| `set` | `string` | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | `int` | ID of the show |
+| `song_id` | `int` | ID of the song |
+| `title` | `string` | Title of the track/song |
 
 #### Example: Load
 
@@ -634,12 +634,12 @@ Create an instance: `venue := client.Venue(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `int` |  |
+| `id` | `int` | Unique identifier for the venue |
 | `latitude` | `float64` |  |
-| `location` | `string` |  |
+| `location` | `string` | Location (city, state/country) |
 | `longitude` | `float64` |  |
-| `name` | `string` |  |
-| `shows_count` | `int` |  |
+| `name` | `string` | Name of the venue |
+| `shows_count` | `int` | Number of shows at this venue |
 
 #### Example: Load
 

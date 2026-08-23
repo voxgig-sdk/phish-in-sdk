@@ -266,19 +266,19 @@ API path: `/search`
 | Field | Description |
 | --- | --- |
 | `data` |  |
-| `date` |  |
-| `id` |  |
-| `location` |  |
+| `date` | Date of the show |
+| `id` | Unique identifier for the show |
+| `location` | Location of the venue |
 | `page` |  |
 | `show_count` |  |
 | `success` |  |
 | `total_entries` |  |
 | `total_pages` |  |
-| `tour_id` |  |
-| `tour_name` |  |
+| `tour_id` | ID of the tour |
+| `tour_name` | Name of the tour |
 | `tracks` |  |
-| `venue_id` |  |
-| `venue_name` |  |
+| `venue_id` | ID of the venue |
+| `venue_name` | Name of the venue |
 | `year` |  |
 
 Operations: List, Load.
@@ -289,12 +289,12 @@ API path: `/shows`
 
 | Field | Description |
 | --- | --- |
-| `alias` |  |
-| `debut` |  |
-| `id` |  |
-| `last_played` |  |
-| `times_played` |  |
-| `title` |  |
+| `alias` | Alternative name or alias |
+| `debut` | Date of first performance |
+| `id` | Unique identifier for the song |
+| `last_played` | Date of most recent performance |
+| `times_played` | Number of times the song has been played |
+| `title` | Title of the song |
 
 Operations: List, Load.
 
@@ -318,14 +318,14 @@ API path: `/tours`
 
 | Field | Description |
 | --- | --- |
-| `duration` |  |
-| `id` |  |
-| `mp3` |  |
-| `position` |  |
-| `set` |  |
-| `show_id` |  |
-| `song_id` |  |
-| `title` |  |
+| `duration` | Duration in seconds |
+| `id` | Unique identifier for the track |
+| `mp3` | URL to MP3 file |
+| `position` | Position in the setlist |
+| `set` | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | ID of the show |
+| `song_id` | ID of the song |
+| `title` | Title of the track/song |
 
 Operations: Load.
 
@@ -335,12 +335,12 @@ API path: `/tracks/{id}`
 
 | Field | Description |
 | --- | --- |
-| `id` |  |
+| `id` | Unique identifier for the venue |
 | `latitude` |  |
-| `location` |  |
+| `location` | Location (city, state/country) |
 | `longitude` |  |
-| `name` |  |
-| `shows_count` |  |
+| `name` | Name of the venue |
+| `shows_count` | Number of shows at this venue |
 
 Operations: List, Load.
 
@@ -427,19 +427,19 @@ Create an instance: `local show = client:Show(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `data` | `table` |  |
-| `date` | `string` |  |
-| `id` | `number` |  |
-| `location` | `string` |  |
+| `date` | `string` | Date of the show |
+| `id` | `number` | Unique identifier for the show |
+| `location` | `string` | Location of the venue |
 | `page` | `number` |  |
 | `show_count` | `number` |  |
 | `success` | `boolean` |  |
 | `total_entries` | `number` |  |
 | `total_pages` | `number` |  |
-| `tour_id` | `number` |  |
-| `tour_name` | `string` |  |
+| `tour_id` | `number` | ID of the tour |
+| `tour_name` | `string` | Name of the tour |
 | `tracks` | `table` |  |
-| `venue_id` | `number` |  |
-| `venue_name` | `string` |  |
+| `venue_id` | `number` | ID of the venue |
+| `venue_name` | `string` | Name of the venue |
 | `year` | `number` |  |
 
 #### Example: Load
@@ -470,12 +470,12 @@ Create an instance: `local song = client:Song(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `alias` | `string` |  |
-| `debut` | `string` |  |
-| `id` | `number` |  |
-| `last_played` | `string` |  |
-| `times_played` | `number` |  |
-| `title` | `string` |  |
+| `alias` | `string` | Alternative name or alias |
+| `debut` | `string` | Date of first performance |
+| `id` | `number` | Unique identifier for the song |
+| `last_played` | `string` | Date of most recent performance |
+| `times_played` | `number` | Number of times the song has been played |
+| `title` | `string` | Title of the song |
 
 #### Example: Load
 
@@ -538,14 +538,14 @@ Create an instance: `local track = client:Track(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `duration` | `number` |  |
-| `id` | `number` |  |
-| `mp3` | `string` |  |
-| `position` | `number` |  |
-| `set` | `string` |  |
-| `show_id` | `number` |  |
-| `song_id` | `number` |  |
-| `title` | `string` |  |
+| `duration` | `number` | Duration in seconds |
+| `id` | `number` | Unique identifier for the track |
+| `mp3` | `string` | URL to MP3 file |
+| `position` | `number` | Position in the setlist |
+| `set` | `string` | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | `number` | ID of the show |
+| `song_id` | `number` | ID of the song |
+| `title` | `string` | Title of the track/song |
 
 #### Example: Load
 
@@ -569,12 +569,12 @@ Create an instance: `local venue = client:Venue(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `id` | `number` |  |
+| `id` | `number` | Unique identifier for the venue |
 | `latitude` | `number` |  |
-| `location` | `string` |  |
+| `location` | `string` | Location (city, state/country) |
 | `longitude` | `number` |  |
-| `name` | `string` |  |
-| `shows_count` | `number` |  |
+| `name` | `string` | Name of the venue |
+| `shows_count` | `number` | Number of shows at this venue |
 
 #### Example: Load
 

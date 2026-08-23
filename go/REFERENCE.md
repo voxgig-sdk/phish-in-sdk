@@ -234,19 +234,19 @@ fmt.Println(show.GetName()) // "show"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `[]any` | No |  |
-| `date` | `string` | No |  |
-| `id` | `int` | No |  |
-| `location` | `string` | No |  |
+| `date` | `string` | No | Date of the show |
+| `id` | `int` | No | Unique identifier for the show |
+| `location` | `string` | No | Location of the venue |
 | `page` | `int` | No |  |
 | `show_count` | `int` | No |  |
 | `success` | `bool` | No |  |
 | `total_entries` | `int` | No |  |
 | `total_pages` | `int` | No |  |
-| `tour_id` | `int` | No |  |
-| `tour_name` | `string` | No |  |
+| `tour_id` | `int` | No | ID of the tour |
+| `tour_name` | `string` | No | Name of the tour |
 | `tracks` | `[]any` | No |  |
-| `venue_id` | `int` | No |  |
-| `venue_name` | `string` | No |  |
+| `venue_id` | `int` | No | ID of the venue |
+| `venue_name` | `string` | No | Name of the venue |
 | `year` | `int` | No |  |
 
 ### Operations
@@ -310,12 +310,12 @@ fmt.Println(song.GetName()) // "song"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alias` | `string` | No |  |
-| `debut` | `string` | No |  |
-| `id` | `int` | No |  |
-| `last_played` | `string` | No |  |
-| `times_played` | `int` | No |  |
-| `title` | `string` | No |  |
+| `alias` | `string` | No | Alternative name or alias |
+| `debut` | `string` | No | Date of first performance |
+| `id` | `int` | No | Unique identifier for the song |
+| `last_played` | `string` | No | Date of most recent performance |
+| `times_played` | `int` | No | Number of times the song has been played |
+| `title` | `string` | No | Title of the song |
 
 ### Operations
 
@@ -445,14 +445,14 @@ fmt.Println(track.GetName()) // "track"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `duration` | `int` | No |  |
-| `id` | `int` | No |  |
-| `mp3` | `string` | No |  |
-| `position` | `int` | No |  |
-| `set` | `string` | No |  |
-| `show_id` | `int` | No |  |
-| `song_id` | `int` | No |  |
-| `title` | `string` | No |  |
+| `duration` | `int` | No | Duration in seconds |
+| `id` | `int` | No | Unique identifier for the track |
+| `mp3` | `string` | No | URL to MP3 file |
+| `position` | `int` | No | Position in the setlist |
+| `set` | `string` | No | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | `int` | No | ID of the show |
+| `song_id` | `int` | No | ID of the song |
+| `title` | `string` | No | Title of the track/song |
 
 ### Operations
 
@@ -503,12 +503,12 @@ fmt.Println(venue.GetName()) // "venue"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `int` | No |  |
+| `id` | `int` | No | Unique identifier for the venue |
 | `latitude` | `float64` | No |  |
-| `location` | `string` | No |  |
+| `location` | `string` | No | Location (city, state/country) |
 | `longitude` | `float64` | No |  |
-| `name` | `string` | No |  |
-| `shows_count` | `int` | No |  |
+| `name` | `string` | No | Name of the venue |
+| `shows_count` | `int` | No | Number of shows at this venue |
 
 ### Operations
 

@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "PhishIn",
+			"slug": "phish-in",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -146,14 +149,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "date",
+						"short": "Date of the show",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the show",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "location",
+						"short": "Location of the venue",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -178,10 +184,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "tour_id",
+						"short": "ID of the tour",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "tour_name",
+						"short": "Name of the tour",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -190,10 +198,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "venue_id",
+						"short": "ID of the venue",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "venue_name",
+						"short": "Name of the venue",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -398,26 +408,32 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "alias",
+						"short": "Alternative name or alias",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "debut",
+						"short": "Date of first performance",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the song",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "last_played",
+						"short": "Date of most recent performance",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "times_played",
+						"short": "Number of times the song has been played",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Title of the song",
 						"type": "`$STRING`",
 					},
 				},
@@ -609,34 +625,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "duration",
+						"short": "Duration in seconds",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the track",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "mp3",
+						"short": "URL to MP3 file",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "position",
+						"short": "Position in the setlist",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "set",
+						"short": "Set identifier (e.g., 1, 2, E for encore)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "show_id",
+						"short": "ID of the show",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "song_id",
+						"short": "ID of the song",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "Title of the track/song",
 						"type": "`$STRING`",
 					},
 				},
@@ -686,6 +710,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "id",
+						"short": "Unique identifier for the venue",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -694,6 +719,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "location",
+						"short": "Location (city, state/country)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -702,10 +728,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Name of the venue",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "shows_count",
+						"short": "Number of shows at this venue",
 						"type": "`$INTEGER`",
 					},
 				},

@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'PhishIn',
+        slug: "phish-in",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -183,14 +194,17 @@ class Config {
         },
         {
           "name": "date",
+          "short": "Date of the show",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the show",
           "type": "`$INTEGER`"
         },
         {
           "name": "location",
+          "short": "Location of the venue",
           "type": "`$STRING`"
         },
         {
@@ -215,10 +229,12 @@ class Config {
         },
         {
           "name": "tour_id",
+          "short": "ID of the tour",
           "type": "`$INTEGER`"
         },
         {
           "name": "tour_name",
+          "short": "Name of the tour",
           "type": "`$STRING`"
         },
         {
@@ -227,10 +243,12 @@ class Config {
         },
         {
           "name": "venue_id",
+          "short": "ID of the venue",
           "type": "`$INTEGER`"
         },
         {
           "name": "venue_name",
+          "short": "Name of the venue",
           "type": "`$STRING`"
         },
         {
@@ -435,26 +453,32 @@ class Config {
       "fields": [
         {
           "name": "alias",
+          "short": "Alternative name or alias",
           "type": "`$STRING`"
         },
         {
           "name": "debut",
+          "short": "Date of first performance",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the song",
           "type": "`$INTEGER`"
         },
         {
           "name": "last_played",
+          "short": "Date of most recent performance",
           "type": "`$STRING`"
         },
         {
           "name": "times_played",
+          "short": "Number of times the song has been played",
           "type": "`$INTEGER`"
         },
         {
           "name": "title",
+          "short": "Title of the song",
           "type": "`$STRING`"
         }
       ],
@@ -646,34 +670,42 @@ class Config {
       "fields": [
         {
           "name": "duration",
+          "short": "Duration in seconds",
           "type": "`$INTEGER`"
         },
         {
           "name": "id",
+          "short": "Unique identifier for the track",
           "type": "`$INTEGER`"
         },
         {
           "name": "mp3",
+          "short": "URL to MP3 file",
           "type": "`$STRING`"
         },
         {
           "name": "position",
+          "short": "Position in the setlist",
           "type": "`$INTEGER`"
         },
         {
           "name": "set",
+          "short": "Set identifier (e.g., 1, 2, E for encore)",
           "type": "`$STRING`"
         },
         {
           "name": "show_id",
+          "short": "ID of the show",
           "type": "`$INTEGER`"
         },
         {
           "name": "song_id",
+          "short": "ID of the song",
           "type": "`$INTEGER`"
         },
         {
           "name": "title",
+          "short": "Title of the track/song",
           "type": "`$STRING`"
         }
       ],
@@ -723,6 +755,7 @@ class Config {
       "fields": [
         {
           "name": "id",
+          "short": "Unique identifier for the venue",
           "type": "`$INTEGER`"
         },
         {
@@ -731,6 +764,7 @@ class Config {
         },
         {
           "name": "location",
+          "short": "Location (city, state/country)",
           "type": "`$STRING`"
         },
         {
@@ -739,10 +773,12 @@ class Config {
         },
         {
           "name": "name",
+          "short": "Name of the venue",
           "type": "`$STRING`"
         },
         {
           "name": "shows_count",
+          "short": "Number of shows at this venue",
           "type": "`$INTEGER`"
         }
       ],

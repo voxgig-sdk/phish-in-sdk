@@ -225,19 +225,19 @@ show = client.Show()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `data` | `list` | No |  |
-| `date` | `str` | No |  |
-| `id` | `int` | No |  |
-| `location` | `str` | No |  |
+| `date` | `str` | No | Date of the show |
+| `id` | `int` | No | Unique identifier for the show |
+| `location` | `str` | No | Location of the venue |
 | `page` | `int` | No |  |
 | `show_count` | `int` | No |  |
 | `success` | `bool` | No |  |
 | `total_entries` | `int` | No |  |
 | `total_pages` | `int` | No |  |
-| `tour_id` | `int` | No |  |
-| `tour_name` | `str` | No |  |
+| `tour_id` | `int` | No | ID of the tour |
+| `tour_name` | `str` | No | Name of the tour |
 | `tracks` | `list` | No |  |
-| `venue_id` | `int` | No |  |
-| `venue_name` | `str` | No |  |
+| `venue_id` | `int` | No | ID of the venue |
+| `venue_name` | `str` | No | Name of the venue |
 | `year` | `int` | No |  |
 
 ### Operations
@@ -299,12 +299,12 @@ song = client.Song()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `alias` | `str` | No |  |
-| `debut` | `str` | No |  |
-| `id` | `int` | No |  |
-| `last_played` | `str` | No |  |
-| `times_played` | `int` | No |  |
-| `title` | `str` | No |  |
+| `alias` | `str` | No | Alternative name or alias |
+| `debut` | `str` | No | Date of first performance |
+| `id` | `int` | No | Unique identifier for the song |
+| `last_played` | `str` | No | Date of most recent performance |
+| `times_played` | `int` | No | Number of times the song has been played |
+| `title` | `str` | No | Title of the song |
 
 ### Operations
 
@@ -430,14 +430,14 @@ track = client.Track()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `duration` | `int` | No |  |
-| `id` | `int` | No |  |
-| `mp3` | `str` | No |  |
-| `position` | `int` | No |  |
-| `set` | `str` | No |  |
-| `show_id` | `int` | No |  |
-| `song_id` | `int` | No |  |
-| `title` | `str` | No |  |
+| `duration` | `int` | No | Duration in seconds |
+| `id` | `int` | No | Unique identifier for the track |
+| `mp3` | `str` | No | URL to MP3 file |
+| `position` | `int` | No | Position in the setlist |
+| `set` | `str` | No | Set identifier (e.g., 1, 2, E for encore) |
+| `show_id` | `int` | No | ID of the show |
+| `song_id` | `int` | No | ID of the song |
+| `title` | `str` | No | Title of the track/song |
 
 ### Operations
 
@@ -488,12 +488,12 @@ venue = client.Venue()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `id` | `int` | No |  |
+| `id` | `int` | No | Unique identifier for the venue |
 | `latitude` | `float` | No |  |
-| `location` | `str` | No |  |
+| `location` | `str` | No | Location (city, state/country) |
 | `longitude` | `float` | No |  |
-| `name` | `str` | No |  |
-| `shows_count` | `int` | No |  |
+| `name` | `str` | No | Name of the venue |
+| `shows_count` | `int` | No | Number of shows at this venue |
 
 ### Operations
 
