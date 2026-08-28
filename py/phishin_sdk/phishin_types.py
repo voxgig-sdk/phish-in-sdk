@@ -36,10 +36,8 @@ class Search(TypedDict, total=False):
     venues: list
 
 
-class SearchLoadMatch(TypedDict, total=False):
-    shows: list
-    songs: list
-    venues: list
+class SearchLoadMatch(TypedDict):
+    term: str
 
 
 class Show(TypedDict, total=False):
@@ -65,21 +63,10 @@ class ShowLoadMatch(TypedDict):
 
 
 class ShowListMatch(TypedDict, total=False):
-    data: list
-    date: str
-    id: int
-    location: str
     page: int
-    show_count: int
-    success: bool
-    total_entries: int
-    total_pages: int
-    tour_id: int
-    tour_name: str
-    tracks: list
-    venue_id: int
-    venue_name: str
-    year: int
+    per_page: int
+    sort_attr: str
+    sort_dir: str
 
 
 class Song(TypedDict, total=False):
@@ -96,12 +83,10 @@ class SongLoadMatch(TypedDict):
 
 
 class SongListMatch(TypedDict, total=False):
-    alias: str
-    debut: str
-    id: int
-    last_played: str
-    times_played: int
-    title: str
+    page: int
+    per_page: int
+    sort_attr: str
+    sort_dir: str
 
 
 class Tour(TypedDict, total=False):
@@ -153,12 +138,10 @@ class VenueLoadMatch(TypedDict):
 
 
 class VenueListMatch(TypedDict, total=False):
-    id: int
-    latitude: float
-    location: str
-    longitude: float
-    name: str
-    shows_count: int
+    page: int
+    per_page: int
+    sort_attr: str
+    sort_dir: str
 
 
 class Year(TypedDict):

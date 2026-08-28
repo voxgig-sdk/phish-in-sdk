@@ -69,18 +69,10 @@ Search = Struct.new(
 
 # Request payload for Search#load.
 #
-# @!attribute [rw] shows
-#   @return [Array, nil]
-#
-# @!attribute [rw] songs
-#   @return [Array, nil]
-#
-# @!attribute [rw] venues
-#   @return [Array, nil]
+# @!attribute [rw] term
+#   @return [String]
 SearchLoadMatch = Struct.new(
-  :shows,
-  :songs,
-  :venues,
+  :term,
   keyword_init: true
 )
 
@@ -160,66 +152,22 @@ ShowLoadMatch = Struct.new(
 
 # Request payload for Show#list.
 #
-# @!attribute [rw] data
-#   @return [Array, nil]
-#
-# @!attribute [rw] date
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] location
-#   @return [String, nil]
-#
 # @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] show_count
+# @!attribute [rw] per_page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] success
-#   @return [Boolean, nil]
-#
-# @!attribute [rw] total_entries
-#   @return [Integer, nil]
-#
-# @!attribute [rw] total_pages
-#   @return [Integer, nil]
-#
-# @!attribute [rw] tour_id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] tour_name
+# @!attribute [rw] sort_attr
 #   @return [String, nil]
 #
-# @!attribute [rw] tracks
-#   @return [Array, nil]
-#
-# @!attribute [rw] venue_id
-#   @return [Integer, nil]
-#
-# @!attribute [rw] venue_name
+# @!attribute [rw] sort_dir
 #   @return [String, nil]
-#
-# @!attribute [rw] year
-#   @return [Integer, nil]
 ShowListMatch = Struct.new(
-  :data,
-  :date,
-  :id,
-  :location,
   :page,
-  :show_count,
-  :success,
-  :total_entries,
-  :total_pages,
-  :tour_id,
-  :tour_name,
-  :tracks,
-  :venue_id,
-  :venue_name,
-  :year,
+  :per_page,
+  :sort_attr,
+  :sort_dir,
   keyword_init: true
 )
 
@@ -263,30 +211,22 @@ SongLoadMatch = Struct.new(
 
 # Request payload for Song#list.
 #
-# @!attribute [rw] alias
-#   @return [String, nil]
-#
-# @!attribute [rw] debut
-#   @return [String, nil]
-#
-# @!attribute [rw] id
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] last_played
-#   @return [String, nil]
-#
-# @!attribute [rw] times_played
+# @!attribute [rw] per_page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] title
+# @!attribute [rw] sort_attr
+#   @return [String, nil]
+#
+# @!attribute [rw] sort_dir
 #   @return [String, nil]
 SongListMatch = Struct.new(
-  :alias,
-  :debut,
-  :id,
-  :last_played,
-  :times_played,
-  :title,
+  :page,
+  :per_page,
+  :sort_attr,
+  :sort_dir,
   keyword_init: true
 )
 
@@ -435,30 +375,22 @@ VenueLoadMatch = Struct.new(
 
 # Request payload for Venue#list.
 #
-# @!attribute [rw] id
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] latitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] location
-#   @return [String, nil]
-#
-# @!attribute [rw] longitude
-#   @return [Float, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] shows_count
+# @!attribute [rw] per_page
 #   @return [Integer, nil]
+#
+# @!attribute [rw] sort_attr
+#   @return [String, nil]
+#
+# @!attribute [rw] sort_dir
+#   @return [String, nil]
 VenueListMatch = Struct.new(
-  :id,
-  :latitude,
-  :location,
-  :longitude,
-  :name,
-  :shows_count,
+  :page,
+  :per_page,
+  :sort_attr,
+  :sort_dir,
   keyword_init: true
 )
 

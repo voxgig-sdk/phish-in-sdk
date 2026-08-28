@@ -37,9 +37,7 @@ type Search struct {
 
 // SearchLoadMatch is the typed request payload for Search.LoadTyped.
 type SearchLoadMatch struct {
-	Shows *[]any `json:"shows,omitempty"`
-	Songs *[]any `json:"songs,omitempty"`
-	Venues *[]any `json:"venues,omitempty"`
+	Term string `json:"term"`
 }
 
 // Show is the typed data model for the show entity.
@@ -68,21 +66,10 @@ type ShowLoadMatch struct {
 
 // ShowListMatch is the typed request payload for Show.ListTyped.
 type ShowListMatch struct {
-	Data *[]any `json:"data,omitempty"`
-	Date *string `json:"date,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Location *string `json:"location,omitempty"`
 	Page *int `json:"page,omitempty"`
-	ShowCount *int `json:"show_count,omitempty"`
-	Success *bool `json:"success,omitempty"`
-	TotalEntries *int `json:"total_entries,omitempty"`
-	TotalPages *int `json:"total_pages,omitempty"`
-	TourId *int `json:"tour_id,omitempty"`
-	TourName *string `json:"tour_name,omitempty"`
-	Tracks *[]any `json:"tracks,omitempty"`
-	VenueId *int `json:"venue_id,omitempty"`
-	VenueName *string `json:"venue_name,omitempty"`
-	Year *int `json:"year,omitempty"`
+	PerPage *int `json:"per_page,omitempty"`
+	SortAttr *string `json:"sort_attr,omitempty"`
+	SortDir *string `json:"sort_dir,omitempty"`
 }
 
 // Song is the typed data model for the song entity.
@@ -102,12 +89,10 @@ type SongLoadMatch struct {
 
 // SongListMatch is the typed request payload for Song.ListTyped.
 type SongListMatch struct {
-	Alias *string `json:"alias,omitempty"`
-	Debut *string `json:"debut,omitempty"`
-	Id *int `json:"id,omitempty"`
-	LastPlayed *string `json:"last_played,omitempty"`
-	TimesPlayed *int `json:"times_played,omitempty"`
-	Title *string `json:"title,omitempty"`
+	Page *int `json:"page,omitempty"`
+	PerPage *int `json:"per_page,omitempty"`
+	SortAttr *string `json:"sort_attr,omitempty"`
+	SortDir *string `json:"sort_dir,omitempty"`
 }
 
 // Tour is the typed data model for the tour entity.
@@ -167,12 +152,10 @@ type VenueLoadMatch struct {
 
 // VenueListMatch is the typed request payload for Venue.ListTyped.
 type VenueListMatch struct {
-	Id *int `json:"id,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Location *string `json:"location,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Name *string `json:"name,omitempty"`
-	ShowsCount *int `json:"shows_count,omitempty"`
+	Page *int `json:"page,omitempty"`
+	PerPage *int `json:"per_page,omitempty"`
+	SortAttr *string `json:"sort_attr,omitempty"`
+	SortDir *string `json:"sort_dir,omitempty"`
 }
 
 // Year is the typed data model for the year entity.

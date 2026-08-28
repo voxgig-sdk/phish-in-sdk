@@ -41,9 +41,7 @@ class Search
 /** Request payload for Search#load. */
 class SearchLoadMatch
 {
-    public ?array $shows = null;
-    public ?array $songs = null;
-    public ?array $venues = null;
+    public string $term;
 }
 
 /** Show entity data model. */
@@ -75,21 +73,10 @@ class ShowLoadMatch
 /** Request payload for Show#list. */
 class ShowListMatch
 {
-    public ?array $data = null;
-    public ?string $date = null;
-    public ?int $id = null;
-    public ?string $location = null;
     public ?int $page = null;
-    public ?int $show_count = null;
-    public ?bool $success = null;
-    public ?int $total_entries = null;
-    public ?int $total_pages = null;
-    public ?int $tour_id = null;
-    public ?string $tour_name = null;
-    public ?array $tracks = null;
-    public ?int $venue_id = null;
-    public ?string $venue_name = null;
-    public ?int $year = null;
+    public ?int $per_page = null;
+    public ?string $sort_attr = null;
+    public ?string $sort_dir = null;
 }
 
 /** Song entity data model. */
@@ -112,12 +99,10 @@ class SongLoadMatch
 /** Request payload for Song#list. */
 class SongListMatch
 {
-    public ?string $alias = null;
-    public ?string $debut = null;
-    public ?int $id = null;
-    public ?string $last_played = null;
-    public ?int $times_played = null;
-    public ?string $title = null;
+    public ?int $page = null;
+    public ?int $per_page = null;
+    public ?string $sort_attr = null;
+    public ?string $sort_dir = null;
 }
 
 /** Tour entity data model. */
@@ -185,12 +170,10 @@ class VenueLoadMatch
 /** Request payload for Venue#list. */
 class VenueListMatch
 {
-    public ?int $id = null;
-    public ?float $latitude = null;
-    public ?string $location = null;
-    public ?float $longitude = null;
-    public ?string $name = null;
-    public ?int $shows_count = null;
+    public ?int $page = null;
+    public ?int $per_page = null;
+    public ?string $sort_attr = null;
+    public ?string $sort_dir = null;
 }
 
 /** Year entity data model. */

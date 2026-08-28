@@ -26,9 +26,7 @@ export interface Search {
 }
 
 export interface SearchLoadMatch {
-  shows?: any[]
-  songs?: any[]
-  venues?: any[]
+  term: string
 }
 
 export interface Show {
@@ -54,21 +52,10 @@ export interface ShowLoadMatch {
 }
 
 export interface ShowListMatch {
-  data?: any[]
-  date?: string
-  id?: number
-  location?: string
   page?: number
-  show_count?: number
-  success?: boolean
-  total_entries?: number
-  total_pages?: number
-  tour_id?: number
-  tour_name?: string
-  tracks?: any[]
-  venue_id?: number
-  venue_name?: string
-  year?: number
+  per_page?: number
+  sort_attr?: string
+  sort_dir?: string
 }
 
 export interface Song {
@@ -85,12 +72,10 @@ export interface SongLoadMatch {
 }
 
 export interface SongListMatch {
-  alias?: string
-  debut?: string
-  id?: number
-  last_played?: string
-  times_played?: number
-  title?: string
+  page?: number
+  per_page?: number
+  sort_attr?: string
+  sort_dir?: string
 }
 
 export interface Tour {
@@ -142,12 +127,10 @@ export interface VenueLoadMatch {
 }
 
 export interface VenueListMatch {
-  id?: number
-  latitude?: number
-  location?: string
-  longitude?: number
-  name?: string
-  shows_count?: number
+  page?: number
+  per_page?: number
+  sort_attr?: string
+  sort_dir?: string
 }
 
 export interface Year {

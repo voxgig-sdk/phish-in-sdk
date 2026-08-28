@@ -24,9 +24,7 @@
 ---@field venues? table
 
 ---@class SearchLoadMatch
----@field shows? table
----@field songs? table
----@field venues? table
+---@field term string
 
 ---@class Show
 ---@field data? table
@@ -49,21 +47,10 @@
 ---@field id number
 
 ---@class ShowListMatch
----@field data? table
----@field date? string
----@field id? number
----@field location? string
 ---@field page? number
----@field show_count? number
----@field success? boolean
----@field total_entries? number
----@field total_pages? number
----@field tour_id? number
----@field tour_name? string
----@field tracks? table
----@field venue_id? number
----@field venue_name? string
----@field year? number
+---@field per_page? number
+---@field sort_attr? string
+---@field sort_dir? string
 
 ---@class Song
 ---@field alias? string
@@ -77,12 +64,10 @@
 ---@field id number
 
 ---@class SongListMatch
----@field alias? string
----@field debut? string
----@field id? number
----@field last_played? string
----@field times_played? number
----@field title? string
+---@field page? number
+---@field per_page? number
+---@field sort_attr? string
+---@field sort_dir? string
 
 ---@class Tour
 ---@field end_date? string
@@ -126,12 +111,10 @@
 ---@field id number
 
 ---@class VenueListMatch
----@field id? number
----@field latitude? number
----@field location? string
----@field longitude? number
----@field name? string
----@field shows_count? number
+---@field page? number
+---@field per_page? number
+---@field sort_attr? string
+---@field sort_dir? string
 
 ---@class Year
 
