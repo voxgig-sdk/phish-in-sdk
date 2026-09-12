@@ -79,9 +79,13 @@ main: kit: entity: track: {
           }
           method: "GET"
           orig: "/tracks/{id}"
-          parts: [
-            "tracks"
-            "{id}"
+          segments: [
+            {
+              lit: "tracks"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

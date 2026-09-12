@@ -6,6 +6,7 @@ main: kit: entity: tour: {
 
   fields: [
     {
+      format: "date"
       name: "end_date"
       req: false
       type: "`$STRING`"
@@ -26,6 +27,7 @@ main: kit: entity: tour: {
       type: "`$INTEGER`"
     }
     {
+      format: "date"
       name: "start_date"
       req: false
       type: "`$STRING`"
@@ -45,8 +47,10 @@ main: kit: entity: tour: {
         {
           method: "GET"
           orig: "/tours"
-          parts: [
-            "tours"
+          segments: [
+            {
+              lit: "tours"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -72,9 +76,13 @@ main: kit: entity: tour: {
           }
           method: "GET"
           orig: "/tours/{id}"
-          parts: [
-            "tours"
-            "{id}"
+          segments: [
+            {
+              lit: "tours"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

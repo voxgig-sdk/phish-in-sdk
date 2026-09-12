@@ -12,6 +12,7 @@ main: kit: entity: venue: {
       type: "`$INTEGER`"
     }
     {
+      format: "float"
       name: "latitude"
       req: false
       type: "`$NUMBER`"
@@ -23,6 +24,7 @@ main: kit: entity: venue: {
       type: "`$STRING`"
     }
     {
+      format: "float"
       name: "longitude"
       req: false
       type: "`$NUMBER`"
@@ -89,8 +91,10 @@ main: kit: entity: venue: {
           }
           method: "GET"
           orig: "/venues"
-          parts: [
-            "venues"
+          segments: [
+            {
+              lit: "venues"
+            }
           ]
           select: {
             exist: [
@@ -124,9 +128,13 @@ main: kit: entity: venue: {
           }
           method: "GET"
           orig: "/venues/{id}"
-          parts: [
-            "venues"
-            "{id}"
+          segments: [
+            {
+              lit: "venues"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

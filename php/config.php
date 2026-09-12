@@ -65,6 +65,7 @@ class PhishInConfig
         'era' => [
           'fields' => [
             [
+              'format' => 'date',
               'name' => 'end_date',
               'type' => '`$STRING`',
             ],
@@ -77,9 +78,14 @@ class PhishInConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'start_date',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'era',
           'op' => [
@@ -92,13 +98,18 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/eras',
-                  'parts' => [
-                    'eras',
+                  'segments' => [
+                    [
+                      'lit' => 'eras',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'eras',
                   ],
                 ],
               ],
@@ -144,8 +155,10 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/search',
-                  'parts' => [
-                    'search',
+                  'segments' => [
+                    [
+                      'lit' => 'search',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -155,6 +168,9 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'search',
                   ],
                 ],
               ],
@@ -171,6 +187,7 @@ class PhishInConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'date',
               'name' => 'date',
               'short' => 'Date of the show',
               'type' => '`$STRING`',
@@ -234,6 +251,10 @@ class PhishInConfig
               'type' => '`$INTEGER`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'show',
           'op' => [
             'list' => [
@@ -275,8 +296,10 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows',
-                  'parts' => [
-                    'shows',
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -290,19 +313,27 @@ class PhishInConfig
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
                   ],
+                  'parts' => [
+                    'shows',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/years',
-                  'parts' => [
-                    'years',
+                  'segments' => [
+                    [
+                      'lit' => 'years',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'years',
                   ],
                 ],
               ],
@@ -326,10 +357,16 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/on-date/{date}',
-                  'parts' => [
-                    'shows',
-                    'on-date',
-                    '{date}',
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'lit' => 'on-date',
+                    ],
+                    [
+                      'var' => 'date',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -339,6 +376,11 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    'on-date',
+                    '{date}',
                   ],
                 ],
                 [
@@ -356,9 +398,13 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/shows/{id}',
-                  'parts' => [
-                    'shows',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'shows',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -368,6 +414,10 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'shows',
+                    '{id}',
                   ],
                 ],
                 [
@@ -385,9 +435,13 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/years/{year}',
-                  'parts' => [
-                    'years',
-                    '{year}',
+                  'segments' => [
+                    [
+                      'lit' => 'years',
+                    ],
+                    [
+                      'var' => 'year',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -398,19 +452,28 @@ class PhishInConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
+                  'parts' => [
+                    'years',
+                    '{year}',
+                  ],
                 ],
                 [
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/random-show',
-                  'parts' => [
-                    'random-show',
+                  'segments' => [
+                    [
+                      'lit' => 'random-show',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'random-show',
                   ],
                 ],
               ],
@@ -435,6 +498,7 @@ class PhishInConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date',
               'name' => 'debut',
               'short' => 'Date of first performance',
               'type' => '`$STRING`',
@@ -445,6 +509,7 @@ class PhishInConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'date',
               'name' => 'last_played',
               'short' => 'Date of most recent performance',
               'type' => '`$STRING`',
@@ -459,6 +524,10 @@ class PhishInConfig
               'short' => 'Title of the song',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'song',
           'op' => [
@@ -501,8 +570,10 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/songs',
-                  'parts' => [
-                    'songs',
+                  'segments' => [
+                    [
+                      'lit' => 'songs',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -515,6 +586,9 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'songs',
                   ],
                 ],
               ],
@@ -538,9 +612,13 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/songs/{id}',
-                  'parts' => [
-                    'songs',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'songs',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -550,6 +628,10 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'songs',
+                    '{id}',
                   ],
                 ],
               ],
@@ -562,6 +644,7 @@ class PhishInConfig
         'tour' => [
           'fields' => [
             [
+              'format' => 'date',
               'name' => 'end_date',
               'type' => '`$STRING`',
             ],
@@ -578,9 +661,14 @@ class PhishInConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'date',
               'name' => 'start_date',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'tour',
           'op' => [
@@ -593,13 +681,18 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tours',
-                  'parts' => [
-                    'tours',
+                  'segments' => [
+                    [
+                      'lit' => 'tours',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'tours',
                   ],
                 ],
               ],
@@ -623,9 +716,13 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tours/{id}',
-                  'parts' => [
-                    'tours',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'tours',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -635,6 +732,10 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'tours',
+                    '{id}',
                   ],
                 ],
               ],
@@ -687,6 +788,10 @@ class PhishInConfig
               'type' => '`$STRING`',
             ],
           ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
+          ],
           'name' => 'track',
           'op' => [
             'load' => [
@@ -708,9 +813,13 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tracks/{id}',
-                  'parts' => [
-                    'tracks',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'tracks',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -720,6 +829,10 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'tracks',
+                    '{id}',
                   ],
                 ],
               ],
@@ -737,6 +850,7 @@ class PhishInConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'float',
               'name' => 'latitude',
               'type' => '`$NUMBER`',
             ],
@@ -746,6 +860,7 @@ class PhishInConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'float',
               'name' => 'longitude',
               'type' => '`$NUMBER`',
             ],
@@ -759,6 +874,10 @@ class PhishInConfig
               'short' => 'Number of shows at this venue',
               'type' => '`$INTEGER`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'venue',
           'op' => [
@@ -801,8 +920,10 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/venues',
-                  'parts' => [
-                    'venues',
+                  'segments' => [
+                    [
+                      'lit' => 'venues',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -815,6 +936,9 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'venues',
                   ],
                 ],
               ],
@@ -838,9 +962,13 @@ class PhishInConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/venues/{id}',
-                  'parts' => [
-                    'venues',
-                    '{id}',
+                  'segments' => [
+                    [
+                      'lit' => 'venues',
+                    ],
+                    [
+                      'var' => 'id',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -850,6 +978,10 @@ class PhishInConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.data`',
+                  ],
+                  'parts' => [
+                    'venues',
+                    '{id}',
                   ],
                 ],
               ],

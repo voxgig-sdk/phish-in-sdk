@@ -6,6 +6,7 @@ main: kit: entity: era: {
 
   fields: [
     {
+      format: "date"
       name: "end_date"
       req: false
       type: "`$STRING`"
@@ -21,6 +22,7 @@ main: kit: entity: era: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "start_date"
       req: false
       type: "`$STRING`"
@@ -40,8 +42,10 @@ main: kit: entity: era: {
         {
           method: "GET"
           orig: "/eras"
-          parts: [
-            "eras"
+          segments: [
+            {
+              lit: "eras"
+            }
           ]
           transform: {
             req: "`reqdata`"

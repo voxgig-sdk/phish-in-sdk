@@ -12,6 +12,7 @@ main: kit: entity: song: {
       type: "`$STRING`"
     }
     {
+      format: "date"
       name: "debut"
       req: false
       short: "Date of first performance"
@@ -24,6 +25,7 @@ main: kit: entity: song: {
       type: "`$INTEGER`"
     }
     {
+      format: "date"
       name: "last_played"
       req: false
       short: "Date of most recent performance"
@@ -91,8 +93,10 @@ main: kit: entity: song: {
           }
           method: "GET"
           orig: "/songs"
-          parts: [
-            "songs"
+          segments: [
+            {
+              lit: "songs"
+            }
           ]
           select: {
             exist: [
@@ -126,9 +130,13 @@ main: kit: entity: song: {
           }
           method: "GET"
           orig: "/songs/{id}"
-          parts: [
-            "songs"
-            "{id}"
+          segments: [
+            {
+              lit: "songs"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [

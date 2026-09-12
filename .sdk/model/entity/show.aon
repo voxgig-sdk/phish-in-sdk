@@ -11,6 +11,7 @@ main: kit: entity: show: {
       type: "`$ARRAY`"
     }
     {
+      format: "date"
       name: "date"
       req: false
       short: "Date of the show"
@@ -137,8 +138,10 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/shows"
-          parts: [
-            "shows"
+          segments: [
+            {
+              lit: "shows"
+            }
           ]
           select: {
             exist: [
@@ -156,8 +159,10 @@ main: kit: entity: show: {
         {
           method: "GET"
           orig: "/years"
-          parts: [
-            "years"
+          segments: [
+            {
+              lit: "years"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -183,10 +188,16 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/shows/on-date/{date}"
-          parts: [
-            "shows"
-            "on-date"
-            "{date}"
+          segments: [
+            {
+              lit: "shows"
+            }
+            {
+              lit: "on-date"
+            }
+            {
+              var: "date"
+            }
           ]
           select: {
             exist: [
@@ -212,9 +223,13 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/shows/{id}"
-          parts: [
-            "shows"
-            "{id}"
+          segments: [
+            {
+              lit: "shows"
+            }
+            {
+              var: "id"
+            }
           ]
           select: {
             exist: [
@@ -240,9 +255,13 @@ main: kit: entity: show: {
           }
           method: "GET"
           orig: "/years/{year}"
-          parts: [
-            "years"
-            "{year}"
+          segments: [
+            {
+              lit: "years"
+            }
+            {
+              var: "year"
+            }
           ]
           select: {
             exist: [
@@ -257,8 +276,10 @@ main: kit: entity: show: {
         {
           method: "GET"
           orig: "/random-show"
-          parts: [
-            "random-show"
+          segments: [
+            {
+              lit: "random-show"
+            }
           ]
           transform: {
             req: "`reqdata`"

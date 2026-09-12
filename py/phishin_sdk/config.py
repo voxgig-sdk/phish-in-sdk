@@ -1,6 +1,14 @@
 # PhishIn SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -60,6 +68,7 @@ def make_config():
       "era": {
         "fields": [
           {
+            "format": "date",
             "name": "end_date",
             "type": "`$STRING`",
           },
@@ -72,10 +81,15 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date",
             "name": "start_date",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "era",
         "op": {
           "list": {
@@ -87,14 +101,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/eras",
-                "parts": [
-                  "eras",
+                "segments": [
+                  {
+                    "lit": "eras",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "eras",
+                ],
               },
             ],
           },
@@ -139,8 +158,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/search",
-                "parts": [
-                  "search",
+                "segments": [
+                  {
+                    "lit": "search",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -151,6 +172,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "search",
+                ],
               },
             ],
           },
@@ -166,6 +190,7 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "date",
             "name": "date",
             "short": "Date of the show",
             "type": "`$STRING`",
@@ -229,6 +254,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "show",
         "op": {
           "list": {
@@ -270,8 +299,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows",
-                "parts": [
-                  "shows",
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -285,20 +316,28 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "shows",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/years",
-                "parts": [
-                  "years",
+                "segments": [
+                  {
+                    "lit": "years",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "years",
+                ],
               },
             ],
           },
@@ -321,10 +360,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/on-date/{date}",
-                "parts": [
-                  "shows",
-                  "on-date",
-                  "{date}",
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "lit": "on-date",
+                  },
+                  {
+                    "var": "date",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -335,6 +380,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "shows",
+                  "on-date",
+                  "{date}",
+                ],
               },
               {
                 "args": {
@@ -351,9 +401,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/shows/{id}",
-                "parts": [
-                  "shows",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "shows",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -364,6 +418,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "shows",
+                  "{id}",
+                ],
               },
               {
                 "args": {
@@ -380,9 +438,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/years/{year}",
-                "parts": [
-                  "years",
-                  "{year}",
+                "segments": [
+                  {
+                    "lit": "years",
+                  },
+                  {
+                    "var": "year",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -393,20 +455,29 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "years",
+                  "{year}",
+                ],
               },
               {
                 "args": {},
                 "kind": "http",
                 "method": "GET",
                 "orig": "/random-show",
-                "parts": [
-                  "random-show",
+                "segments": [
+                  {
+                    "lit": "random-show",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "random-show",
+                ],
               },
             ],
           },
@@ -430,6 +501,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date",
             "name": "debut",
             "short": "Date of first performance",
             "type": "`$STRING`",
@@ -440,6 +512,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date",
             "name": "last_played",
             "short": "Date of most recent performance",
             "type": "`$STRING`",
@@ -455,6 +528,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "song",
         "op": {
           "list": {
@@ -496,8 +573,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/songs",
-                "parts": [
-                  "songs",
+                "segments": [
+                  {
+                    "lit": "songs",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -511,6 +590,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "songs",
+                ],
               },
             ],
           },
@@ -533,9 +615,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/songs/{id}",
-                "parts": [
-                  "songs",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "songs",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -546,6 +632,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "songs",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -557,6 +647,7 @@ def make_config():
       "tour": {
         "fields": [
           {
+            "format": "date",
             "name": "end_date",
             "type": "`$STRING`",
           },
@@ -573,10 +664,15 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date",
             "name": "start_date",
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "tour",
         "op": {
           "list": {
@@ -588,14 +684,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tours",
-                "parts": [
-                  "tours",
+                "segments": [
+                  {
+                    "lit": "tours",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "tours",
+                ],
               },
             ],
           },
@@ -618,9 +719,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tours/{id}",
-                "parts": [
-                  "tours",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "tours",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -631,6 +736,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "tours",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -682,6 +791,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "track",
         "op": {
           "load": {
@@ -703,9 +816,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tracks/{id}",
-                "parts": [
-                  "tracks",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "tracks",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -716,6 +833,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "tracks",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -732,6 +853,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "float",
             "name": "latitude",
             "type": "`$NUMBER`",
           },
@@ -741,6 +863,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "float",
             "name": "longitude",
             "type": "`$NUMBER`",
           },
@@ -755,6 +878,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "venue",
         "op": {
           "list": {
@@ -796,8 +923,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/venues",
-                "parts": [
-                  "venues",
+                "segments": [
+                  {
+                    "lit": "venues",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -811,6 +940,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "venues",
+                ],
               },
             ],
           },
@@ -833,9 +965,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/venues/{id}",
-                "parts": [
-                  "venues",
-                  "{id}",
+                "segments": [
+                  {
+                    "lit": "venues",
+                  },
+                  {
+                    "var": "id",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -846,6 +982,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.data`",
                 },
+                "parts": [
+                  "venues",
+                  "{id}",
+                ],
               },
             ],
           },
