@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/phish-in",
+  "name": "@voxgig-sdk/phish-in-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Phish.in public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

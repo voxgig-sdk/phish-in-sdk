@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { PhishInSDK } from '@voxgig-sdk/phish-in'
+import { PhishInSDK } from '@voxgig-sdk/phish-in-sdk'
 
 const client = new PhishInSDK()
 ```
@@ -732,7 +732,7 @@ phish-in/
 Import the SDK from the package root:
 
 ```ts
-import { PhishInSDK } from '@voxgig-sdk/phish-in'
+import { PhishInSDK } from '@voxgig-sdk/phish-in-sdk'
 ```
 
 ### Entity state

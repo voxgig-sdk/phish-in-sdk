@@ -105,7 +105,7 @@ local results, err = client:Song():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
+| TypeScript | `@voxgig-sdk/phish-in-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
 | Python | `voxgig-sdk-phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
 | PHP | `voxgig-sdk/phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/phish-in-sdk/go` | `go get github.com/voxgig-sdk/phish-in-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Song():list()
 ### TypeScript
 
 ```ts
-import { PhishInSDK } from '@voxgig-sdk/phish-in'
+import { PhishInSDK } from '@voxgig-sdk/phish-in-sdk'
 
 const client = new PhishInSDK()
 
