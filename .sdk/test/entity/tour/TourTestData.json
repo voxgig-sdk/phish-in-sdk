@@ -5,21 +5,21 @@
         "end_date": "s32",
         "id": "TOUR00",
         "name": "s34",
-        "shows_count": "s35",
+        "shows_count": 53,
         "start_date": "s36"
       },
       "TOUR01": {
         "end_date": "s64",
         "id": "TOUR01",
         "name": "s66",
-        "shows_count": "s67",
+        "shows_count": 103,
         "start_date": "s68"
       },
       "TOUR02": {
         "end_date": "s96",
         "id": "TOUR02",
         "name": "s98",
-        "shows_count": "s99",
+        "shows_count": 153,
         "start_date": "s9a"
       }
     }
@@ -29,8 +29,122 @@
       "tour_ref01": {
         "end_date": "sc8",
         "name": "sca",
-        "shows_count": "scb",
+        "shows_count": 203,
         "start_date": "scc"
+      }
+    }
+  },
+  "requests": {
+    "GET /tours": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getTours",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "end_date": {
+                            "format": "date",
+                            "type": "string"
+                          },
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "shows_count": {
+                            "type": "integer"
+                          },
+                          "start_date": {
+                            "format": "date",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /tours/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getTourById",
+        "parameters": [
+          {
+            "description": "Tour ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "end_date": {
+                          "format": "date",
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "shows_count": {
+                          "type": "integer"
+                        },
+                        "start_date": {
+                          "format": "date",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Tour not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

@@ -45,6 +45,12 @@ main: kit: entity: tour: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /tours"
+            json: "{\"operationId\":\"getTours\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"end_date\":{\"format\":\"date\",\"type\":\"string\"},\"id\":{\"type\":\"integer\"},\"name\":{\"type\":\"string\"},\"shows_count\":{\"type\":\"integer\"},\"start_date\":{\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/tours"
           segments: [
@@ -73,6 +79,12 @@ main: kit: entity: tour: {
                 type: "`$INTEGER`"
               }
             ]
+          }
+          contract: {
+            id: "GET /tours/{id}"
+            json: "{\"operationId\":\"getTourById\",\"parameters\":[{\"description\":\"Tour ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"end_date\":{\"format\":\"date\",\"type\":\"string\"},\"id\":{\"type\":\"integer\"},\"name\":{\"type\":\"string\"},\"shows_count\":{\"type\":\"integer\"},\"start_date\":{\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Tour not found\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
           }
           method: "GET"
           orig: "/tours/{id}"

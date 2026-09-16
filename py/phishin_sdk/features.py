@@ -1,12 +1,18 @@
 # PhishIn SDK feature factory
 
 from phishin_sdk.feature.base_feature import PhishInBaseFeature
+from phishin_sdk.feature.ratelimit_feature import PhishInRatelimitFeature
+from phishin_sdk.feature.retry_feature import PhishInRetryFeature
 from phishin_sdk.feature.test_feature import PhishInTestFeature
+from phishin_sdk.feature.timeout_feature import PhishInTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: PhishInBaseFeature(),
+    "ratelimit": lambda: PhishInRatelimitFeature(),
+    "retry": lambda: PhishInRetryFeature(),
     "test": lambda: PhishInTestFeature(),
+    "timeout": lambda: PhishInTimeoutFeature(),
 }
 
 

@@ -2,30 +2,30 @@
   "existing": {
     "track": {
       "TRACK00": {
-        "duration": "s50",
+        "duration": 80,
         "id": "TRACK00",
         "mp3": "s52",
-        "position": "s53",
+        "position": 83,
         "set": "s54",
         "show_id": "SHOW01",
         "song_id": "SONG01",
         "title": "s57"
       },
       "TRACK01": {
-        "duration": "sa0",
+        "duration": 160,
         "id": "TRACK01",
         "mp3": "sa2",
-        "position": "sa3",
+        "position": 163,
         "set": "sa4",
         "show_id": "SHOW01",
         "song_id": "SONG01",
         "title": "sa7"
       },
       "TRACK02": {
-        "duration": "sf0",
+        "duration": 240,
         "id": "TRACK02",
         "mp3": "sf2",
-        "position": "sf3",
+        "position": 243,
         "set": "sf4",
         "show_id": "SHOW01",
         "song_id": "SONG01",
@@ -36,13 +36,91 @@
   "new": {
     "track": {
       "track_ref01": {
-        "duration": "s140",
+        "duration": 320,
         "mp3": "s142",
-        "position": "s143",
+        "position": 323,
         "set": "s144",
         "show_id": "SHOW01",
         "song_id": "SONG01",
         "title": "s147"
+      }
+    }
+  },
+  "requests": {
+    "GET /tracks/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getTrackById",
+        "parameters": [
+          {
+            "description": "Track ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "duration": {
+                          "description": "Duration in seconds",
+                          "type": "integer"
+                        },
+                        "id": {
+                          "description": "Unique identifier for the track",
+                          "type": "integer"
+                        },
+                        "mp3": {
+                          "description": "URL to MP3 file",
+                          "type": "string"
+                        },
+                        "position": {
+                          "description": "Position in the setlist",
+                          "type": "integer"
+                        },
+                        "set": {
+                          "description": "Set identifier (e.g., 1, 2, E for encore)",
+                          "type": "string"
+                        },
+                        "show_id": {
+                          "description": "ID of the show",
+                          "type": "integer"
+                        },
+                        "song_id": {
+                          "description": "ID of the song",
+                          "type": "integer"
+                        },
+                        "title": {
+                          "description": "Title of the track/song",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Track not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

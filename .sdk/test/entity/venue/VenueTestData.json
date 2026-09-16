@@ -7,7 +7,7 @@
         "location": "s3e",
         "longitude": 63,
         "name": "s40",
-        "shows_count": "s41"
+        "shows_count": 65
       },
       "VENUE01": {
         "id": "VENUE01",
@@ -15,7 +15,7 @@
         "location": "s7a",
         "longitude": 123,
         "name": "s7c",
-        "shows_count": "s7d"
+        "shows_count": 125
       },
       "VENUE02": {
         "id": "VENUE02",
@@ -23,7 +23,7 @@
         "location": "sb6",
         "longitude": 183,
         "name": "sb8",
-        "shows_count": "sb9"
+        "shows_count": 185
       }
     }
   },
@@ -34,7 +34,193 @@
         "location": "sf2",
         "longitude": 243,
         "name": "sf4",
-        "shows_count": "sf5"
+        "shows_count": 245
+      }
+    }
+  },
+  "requests": {
+    "GET /venues": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getVenues",
+        "parameters": [
+          {
+            "description": "Page number for pagination",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of results per page",
+            "in": "query",
+            "name": "per_page",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Attribute to sort by",
+            "in": "query",
+            "name": "sort_attr",
+            "required": false,
+            "schema": {
+              "enum": [
+                "name",
+                "location",
+                "shows_count"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Sort direction",
+            "in": "query",
+            "name": "sort_dir",
+            "required": false,
+            "schema": {
+              "default": "asc",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "properties": {
+                          "id": {
+                            "description": "Unique identifier for the venue",
+                            "type": "integer"
+                          },
+                          "latitude": {
+                            "format": "float",
+                            "type": "number"
+                          },
+                          "location": {
+                            "description": "Location (city, state/country)",
+                            "type": "string"
+                          },
+                          "longitude": {
+                            "format": "float",
+                            "type": "number"
+                          },
+                          "name": {
+                            "description": "Name of the venue",
+                            "type": "string"
+                          },
+                          "shows_count": {
+                            "description": "Number of shows at this venue",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "total_entries": {
+                      "type": "integer"
+                    },
+                    "total_pages": {
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    },
+    "GET /venues/{id}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getVenueById",
+        "parameters": [
+          {
+            "description": "Venue ID",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "id": {
+                          "description": "Unique identifier for the venue",
+                          "type": "integer"
+                        },
+                        "latitude": {
+                          "format": "float",
+                          "type": "number"
+                        },
+                        "location": {
+                          "description": "Location (city, state/country)",
+                          "type": "string"
+                        },
+                        "longitude": {
+                          "format": "float",
+                          "type": "number"
+                        },
+                        "name": {
+                          "description": "Name of the venue",
+                          "type": "string"
+                        },
+                        "shows_count": {
+                          "description": "Number of shows at this venue",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Venue not found"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

@@ -29,5 +29,191 @@
         "venues": []
       }
     }
+  },
+  "requests": {
+    "GET /search": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "search",
+        "parameters": [
+          {
+            "description": "Search term",
+            "in": "query",
+            "name": "term",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "properties": {
+                        "shows": {
+                          "items": {
+                            "properties": {
+                              "date": {
+                                "description": "Date of the show",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "id": {
+                                "description": "Unique identifier for the show",
+                                "type": "integer"
+                              },
+                              "location": {
+                                "description": "Location of the venue",
+                                "type": "string"
+                              },
+                              "tour_id": {
+                                "description": "ID of the tour",
+                                "type": "integer"
+                              },
+                              "tour_name": {
+                                "description": "Name of the tour",
+                                "type": "string"
+                              },
+                              "tracks": {
+                                "items": {
+                                  "properties": {
+                                    "duration": {
+                                      "description": "Duration in seconds",
+                                      "type": "integer"
+                                    },
+                                    "id": {
+                                      "description": "Unique identifier for the track",
+                                      "type": "integer"
+                                    },
+                                    "mp3": {
+                                      "description": "URL to MP3 file",
+                                      "type": "string"
+                                    },
+                                    "position": {
+                                      "description": "Position in the setlist",
+                                      "type": "integer"
+                                    },
+                                    "set": {
+                                      "description": "Set identifier (e.g., 1, 2, E for encore)",
+                                      "type": "string"
+                                    },
+                                    "show_id": {
+                                      "description": "ID of the show",
+                                      "type": "integer"
+                                    },
+                                    "song_id": {
+                                      "description": "ID of the song",
+                                      "type": "integer"
+                                    },
+                                    "title": {
+                                      "description": "Title of the track/song",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "type": "array"
+                              },
+                              "venue_id": {
+                                "description": "ID of the venue",
+                                "type": "integer"
+                              },
+                              "venue_name": {
+                                "description": "Name of the venue",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "songs": {
+                          "items": {
+                            "properties": {
+                              "alias": {
+                                "description": "Alternative name or alias",
+                                "type": "string"
+                              },
+                              "debut": {
+                                "description": "Date of first performance",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "id": {
+                                "description": "Unique identifier for the song",
+                                "type": "integer"
+                              },
+                              "last_played": {
+                                "description": "Date of most recent performance",
+                                "format": "date",
+                                "type": "string"
+                              },
+                              "times_played": {
+                                "description": "Number of times the song has been played",
+                                "type": "integer"
+                              },
+                              "title": {
+                                "description": "Title of the song",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "venues": {
+                          "items": {
+                            "properties": {
+                              "id": {
+                                "description": "Unique identifier for the venue",
+                                "type": "integer"
+                              },
+                              "latitude": {
+                                "format": "float",
+                                "type": "number"
+                              },
+                              "location": {
+                                "description": "Location (city, state/country)",
+                                "type": "string"
+                              },
+                              "longitude": {
+                                "format": "float",
+                                "type": "number"
+                              },
+                              "name": {
+                                "description": "Name of the venue",
+                                "type": "string"
+                              },
+                              "shows_count": {
+                                "description": "Number of shows at this venue",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "type": "array"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }
