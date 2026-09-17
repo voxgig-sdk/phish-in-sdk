@@ -105,12 +105,12 @@ local results, err = client:Song():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/phish-in-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
-| Python | `voxgig-sdk-phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
-| PHP | `voxgig-sdk/phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
+| TypeScript | `@voxgig-sdk/phish-in-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/tags) |
+| Python | `voxgig-sdk-phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/tags) |
+| PHP | `voxgig-sdk/phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/phish-in-sdk/go` | `go get github.com/voxgig-sdk/phish-in-sdk/go@latest` |
-| Ruby | `voxgig-sdk-phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
-| Lua | `voxgig-sdk-phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/releases) |
+| Ruby | `voxgig-sdk-phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/tags) |
+| Lua | `voxgig-sdk-phish-in` | publish pending — [install from git tag](https://github.com/voxgig-sdk/phish-in-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/phish-in-sdk/go-cli` | `go install github.com/voxgig-sdk/phish-in-sdk/go-cli/cmd/phish-in@latest` |
 | Go MCP server | `github.com/voxgig-sdk/phish-in-sdk/go-mcp` | `go get github.com/voxgig-sdk/phish-in-sdk/go-mcp@latest` |
 

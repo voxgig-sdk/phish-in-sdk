@@ -127,30 +127,30 @@ class Config {
 
     entity: {
       
-      era: {
-      },
-
-      search: {
-      },
-
-      show: {
-      },
-
-      song: {
-      },
-
-      tour: {
-      },
-
-      track: {
-      },
-
-      venue: {
-      },
-
-      year: {
-      },
-
+        era: {
+        },
+  
+        search: {
+        },
+  
+        show: {
+        },
+  
+        song: {
+        },
+  
+        tour: {
+        },
+  
+        track: {
+        },
+  
+        venue: {
+        },
+  
+        year: {
+        },
+  
     }
   }
 

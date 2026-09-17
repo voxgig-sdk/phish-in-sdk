@@ -1,10 +1,10 @@
 # Flows
 
-@"BasicEraFlow.aon"
-@"BasicSearchFlow.aon"
-@"BasicShowFlow.aon"
-@"BasicSongFlow.aon"
-@"BasicTourFlow.aon"
-@"BasicTrackFlow.aon"
-@"BasicVenueFlow.aon"
-@"BasicYearFlow.aon"
+@"./BasicEraFlow.aon"
+@"./BasicSearchFlow.aon"
+@"./BasicShowFlow.aon"
+@"./BasicSongFlow.aon"
+@"./BasicTourFlow.aon"
+@"./BasicTrackFlow.aon"
+@"./BasicVenueFlow.aon"
+@"./BasicYearFlow.aon"
