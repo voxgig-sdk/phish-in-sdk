@@ -1,0 +1,119 @@
+# Entity: track
+
+main: kit: entity: track: {
+
+  alias: field: {}
+
+  fields: {
+    duration: {
+      h: "Duration"
+      n: "duration"
+      r: false
+      sh: "Duration in seconds"
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the track"
+      t: "`$INTEGER`"
+    }
+    mp3: {
+      h: "Mp3"
+      n: "mp3"
+      r: false
+      sh: "URL to MP3 file"
+      t: "`$STRING`"
+    }
+    position: {
+      h: "Position"
+      n: "position"
+      r: false
+      sh: "Position in the setlist"
+      t: "`$INTEGER`"
+    }
+    set: {
+      h: "Set"
+      n: "set"
+      r: false
+      sh: "Set identifier (e.g., 1, 2, E for encore)"
+      t: "`$STRING`"
+    }
+    show_id: {
+      h: "Show Id"
+      n: "show_id"
+      r: false
+      sh: "ID of the show"
+      t: "`$INTEGER`"
+    }
+    song_id: {
+      h: "Song Id"
+      n: "song_id"
+      r: false
+      sh: "ID of the song"
+      t: "`$INTEGER`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "Title of the track/song"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "track"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /tracks/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/tracks/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "tracks"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

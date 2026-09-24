@@ -75,10 +75,6 @@ Create a new `Track` entity instance. Pass `nil` for no initial data.
 
 Create a new `Venue` entity instance. Pass `nil` for no initial data.
 
-#### `Year(data map[string]any) PhishInEntity`
-
-Create a new `Year` entity instance. Pass `nil` for no initial data.
-
 #### `OptionsMap() map[string]any`
 
 Return a deep copy of the current SDK options.
@@ -551,37 +547,6 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `VenueEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
-
-
----
-
-## YearEntity
-
-```go
-year := client.Year(nil)
-fmt.Println(year.GetName()) // "year"
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `YearEntity` instance with the same client and
 options.
 
 #### `GetName() string`

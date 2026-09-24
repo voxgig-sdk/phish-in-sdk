@@ -37,7 +37,7 @@ const SDK_NAME = 'PhishInSDK'
 
 // A fixture for every entity, so list()/load() resolve offline with no
 // network. Snippet client construction is rewritten to seed this.
-const TEST_SEED = {"entity":{"era":{"test01":{"id":"test01"}},"search":{"test01":{"id":"test01"}},"show":{"test01":{"id":"test01"}},"song":{"test01":{"id":"test01"}},"tour":{"test01":{"id":"test01"}},"track":{"test01":{"id":"test01"}},"venue":{"test01":{"id":"test01"}},"year":{"test01":{"id":"test01"}}}}
+const TEST_SEED = {"entity":{"era":{"test01":{"id":"test01"}},"search":{"test01":{"id":"test01"}},"show":{"test01":{"id":"test01"}},"song":{"test01":{"id":"test01"}},"tour":{"test01":{"id":"test01"}},"track":{"test01":{"id":"test01"}},"venue":{"test01":{"id":"test01"}}}}
 const SEED_ARG = JSON.stringify(TEST_SEED)
 const SEEDED_CTOR = SDK_NAME + '.test(' + SEED_ARG + ')'
 

@@ -227,7 +227,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Tour` | `(data map[string]any) PhishInEntity` | Create a Tour entity instance. |
 | `Track` | `(data map[string]any) PhishInEntity` | Create a Track entity instance. |
 | `Venue` | `(data map[string]any) PhishInEntity` | Create a Venue entity instance. |
-| `Year` | `(data map[string]any) PhishInEntity` | Create a Year entity instance. |
 
 ### Entity interface (PhishInEntity)
 
@@ -374,15 +373,6 @@ API path: `/tracks/{id}`
 Operations: List, Load.
 
 API path: `/venues`
-
-#### Year
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 
 
@@ -660,11 +650,6 @@ if err != nil {
 }
 fmt.Println(venues) // the array of records
 ```
-
-
-### Year
-
-Create an instance: `year := client.Year(nil)`
 
 ## Features
 

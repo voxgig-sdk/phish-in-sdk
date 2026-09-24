@@ -1,0 +1,171 @@
+# Entity: venue
+
+main: kit: entity: venue: {
+
+  alias: field: {}
+
+  fields: {
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the venue"
+      t: "`$INTEGER`"
+    }
+    latitude: {
+      fo: "float"
+      h: "Latitude"
+      n: "latitude"
+      r: false
+      t: "`$NUMBER`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      sh: "Location (city, state/country)"
+      t: "`$STRING`"
+    }
+    longitude: {
+      fo: "float"
+      h: "Longitude"
+      n: "longitude"
+      r: false
+      t: "`$NUMBER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Name of the venue"
+      t: "`$STRING`"
+    }
+    shows_count: {
+      h: "Shows Count"
+      n: "shows_count"
+      r: false
+      sh: "Number of shows at this venue"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "venue"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /venues"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort_attr"
+                or: "sort_attr"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "asc"
+                k: "query"
+                n: "sort_dir"
+                or: "sort_dir"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/venues"
+          q: {
+            exist: [
+              "page"
+              "per_page"
+              "sort_attr"
+              "sort_dir"
+            ]
+          }
+          s: [
+            {
+              lit: "venues"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /venues/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/venues/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "venues"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

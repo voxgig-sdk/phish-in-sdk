@@ -119,7 +119,7 @@ function show_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["show01", "show02", "show03", "on_date01", "on_date02", "on_date03", "year01", "year02", "year03"] as $k) {
+    foreach (["show01", "show02", "show03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

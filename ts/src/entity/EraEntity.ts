@@ -19,7 +19,6 @@ import type {
   EraListMatch,
 } from '../PhishInTypes'
 
-// TODO: needs Entity superclass
 class EraEntity extends PhishInEntityBase<Era> {
 
   constructor(client: PhishInSDK, entopts: any) {

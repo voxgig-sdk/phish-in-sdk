@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // Typed models for the PhishIn SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 //
@@ -174,10 +174,5 @@ class VenueListMatch
     public ?int $per_page = null;
     public ?string $sort_attr = null;
     public ?string $sort_dir = null;
-}
-
-/** Year entity data model. */
-class Year
-{
 }
 

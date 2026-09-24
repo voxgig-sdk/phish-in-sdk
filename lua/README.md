@@ -43,7 +43,7 @@ local eras, err = client:Era():list()
 if err then error(err) end
 
 for _, item in ipairs(eras) do
-  print(item["id"], item["end_date"])
+  print(item["id"])
 end
 ```
 
@@ -198,7 +198,6 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Tour` | `(data) -> TourEntity` | Create a Tour entity instance. |
 | `Track` | `(data) -> TrackEntity` | Create a Track entity instance. |
 | `Venue` | `(data) -> VenueEntity` | Create a Venue entity instance. |
-| `Year` | `(data) -> YearEntity` | Create a Year entity instance. |
 
 ### Entity interface
 
@@ -345,15 +344,6 @@ API path: `/tracks/{id}`
 Operations: List, Load.
 
 API path: `/venues`
-
-#### Year
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 
 
@@ -587,11 +577,6 @@ local venue, err = client:Venue():load({ id = 1 })
 ```lua
 local venues, err = client:Venue():list()
 ```
-
-
-### Year
-
-Create an instance: `local year = client:Year(nil)`
 
 ## Features
 

@@ -447,20 +447,6 @@ function PhishInSDK:Venue(data)
 end
 
 
--- Idiomatic facade: client:Year():list() / client:Year():load({ id = ... })
--- Entity access is capitalised (PascalCase) for parity with the other SDKs.
-function PhishInSDK:Year(data)
-  local EntityMod = require("entity.year_entity")
-  if data == nil then
-    if self._year == nil then
-      self._year = EntityMod.new(self, nil)
-    end
-    return self._year
-  end
-  return EntityMod.new(self, data)
-end
-
-
 
 
 function PhishInSDK.test(testopts, sdkopts)

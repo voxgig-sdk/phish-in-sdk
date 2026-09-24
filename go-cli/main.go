@@ -20,7 +20,7 @@ import (
 const prompt = "phish-in"
 
 // entitiesHelp is the space-separated entity list shown by /help.
-const entitiesHelp = "era search show song tour track venue year"
+const entitiesHelp = "era search show song tour track venue"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

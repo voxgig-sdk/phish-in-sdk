@@ -108,5 +108,3 @@ export interface VenueListMatch {
     sort_attr?: string;
     sort_dir?: string;
 }
-export interface Year {
-}

@@ -20,7 +20,7 @@ local SDK_MODULE = "phish-in_sdk"
 -- A test-mode client seeded with a fixture for every entity. The constructor
 -- of each runnable snippet is rewritten to this form so the offline mock has
 -- data to return.
-local TEST_SEED = '{ entity = { ["era"] = { ["test01"] = { id = "test01" } }, ["search"] = { ["test01"] = { id = "test01" } }, ["show"] = { ["test01"] = { id = "test01" } }, ["song"] = { ["test01"] = { id = "test01" } }, ["tour"] = { ["test01"] = { id = "test01" } }, ["track"] = { ["test01"] = { id = "test01" } }, ["venue"] = { ["test01"] = { id = "test01" } }, ["year"] = { ["test01"] = { id = "test01" } } } }'
+local TEST_SEED = '{ entity = { ["era"] = { ["test01"] = { id = "test01" } }, ["search"] = { ["test01"] = { id = "test01" } }, ["show"] = { ["test01"] = { id = "test01" } }, ["song"] = { ["test01"] = { id = "test01" } }, ["tour"] = { ["test01"] = { id = "test01" } }, ["track"] = { ["test01"] = { id = "test01" } }, ["venue"] = { ["test01"] = { id = "test01" } } } }'
 local TEST_CTOR = "sdk.test(" .. TEST_SEED .. ")"
 
 local function script_dir()

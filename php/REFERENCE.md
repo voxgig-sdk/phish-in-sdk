@@ -69,10 +69,6 @@ Create a new `TrackEntity` instance. Pass `null` for no initial data.
 
 Create a new `VenueEntity` instance. Pass `null` for no initial data.
 
-#### `Year($data = null)`
-
-Create a new `YearEntity` instance. Pass `null` for no initial data.
-
 #### `options_map(): array`
 
 Return a deep copy of the current SDK options.
@@ -537,42 +533,6 @@ Set the entity match criteria.
 #### `make(): VenueEntity`
 
 Create a new `VenueEntity` instance with the same client and
-options.
-
-#### `get_name(): string`
-
-Return the entity name.
-
-
----
-
-## YearEntity
-
-```php
-$year = $client->Year();
-```
-
-### Common Methods
-
-#### `data_get(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set($data): void`
-
-Set the entity data.
-
-#### `match_get(): array`
-
-Get the entity match criteria.
-
-#### `match_set($match): void`
-
-Set the entity match criteria.
-
-#### `make(): YearEntity`
-
-Create a new `YearEntity` instance with the same client and
 options.
 
 #### `get_name(): string`

@@ -1,0 +1,340 @@
+# Entity: show
+
+main: kit: entity: show: {
+
+  alias: field: {}
+
+  fields: {
+    data: {
+      h: "Data"
+      n: "data"
+      r: false
+      t: "`$ARRAY`"
+    }
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: false
+      sh: "Date of the show"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the show"
+      t: "`$INTEGER`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      sh: "Location of the venue"
+      t: "`$STRING`"
+    }
+    page: {
+      h: "Page"
+      n: "page"
+      r: false
+      t: "`$INTEGER`"
+    }
+    show_count: {
+      h: "Show Count"
+      n: "show_count"
+      r: false
+      t: "`$INTEGER`"
+    }
+    success: {
+      h: "Success"
+      n: "success"
+      r: false
+      t: "`$BOOLEAN`"
+    }
+    total_entries: {
+      h: "Total Entries"
+      n: "total_entries"
+      r: false
+      t: "`$INTEGER`"
+    }
+    total_pages: {
+      h: "Total Pages"
+      n: "total_pages"
+      r: false
+      t: "`$INTEGER`"
+    }
+    tour_id: {
+      h: "Tour Id"
+      n: "tour_id"
+      r: false
+      sh: "ID of the tour"
+      t: "`$INTEGER`"
+    }
+    tour_name: {
+      h: "Tour Name"
+      n: "tour_name"
+      r: false
+      sh: "Name of the tour"
+      t: "`$STRING`"
+    }
+    tracks: {
+      h: "Tracks"
+      n: "tracks"
+      r: false
+      t: "`$ARRAY`"
+    }
+    venue_id: {
+      h: "Venue Id"
+      n: "venue_id"
+      r: false
+      sh: "ID of the venue"
+      t: "`$INTEGER`"
+    }
+    venue_name: {
+      h: "Venue Name"
+      n: "venue_name"
+      r: false
+      sh: "Name of the venue"
+      t: "`$STRING`"
+    }
+    year: {
+      h: "Year"
+      n: "year"
+      r: false
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "show"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /shows"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort_attr"
+                or: "sort_attr"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "desc"
+                k: "query"
+                n: "sort_dir"
+                or: "sort_dir"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/shows"
+          q: {
+            exist: [
+              "page"
+              "per_page"
+              "sort_attr"
+              "sort_dir"
+            ]
+          }
+          s: [
+            {
+              lit: "shows"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /years"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/years"
+          s: [
+            {
+              lit: "years"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /shows/on-date/{date}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "date"
+                or: "date"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/shows/on-date/{date}"
+          q: {
+            exist: [
+              "date"
+            ]
+          }
+          s: [
+            {
+              lit: "shows"
+            }
+            {
+              lit: "on-date"
+            }
+            {
+              var: "date"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /shows/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/shows/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "shows"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+        {
+          co: {
+            id: "GET /years/{year}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "year"
+                or: "year"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/years/{year}"
+          q: {
+            exist: [
+              "year"
+            ]
+          }
+          s: [
+            {
+              lit: "years"
+            }
+            {
+              var: "year"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /random-show"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/random-show"
+          s: [
+            {
+              lit: "random-show"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

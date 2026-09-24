@@ -68,10 +68,6 @@ Create a new `Track` entity instance. Pass `nil` for no initial data.
 
 Create a new `Venue` entity instance. Pass `nil` for no initial data.
 
-#### `Year(data)`
-
-Create a new `Year` entity instance. Pass `nil` for no initial data.
-
 #### `options_map() -> table`
 
 Return a deep copy of the current SDK options.
@@ -535,42 +531,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `VenueEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
-
-
----
-
-## YearEntity
-
-```lua
-local year = client:Year(nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `YearEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

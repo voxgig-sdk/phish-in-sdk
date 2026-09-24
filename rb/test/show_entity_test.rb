@@ -108,7 +108,7 @@ def show_basic_setup(extra)
 
   # Generate idmap via transform.
   idmap = Vs.transform(
-    ["show01", "show02", "show03", "on_date01", "on_date02", "on_date03", "year01", "year02", "year03"],
+    ["show01", "show02", "show03"],
     {
       "`$PACK`" => ["", {
         "`$KEY`" => "`$COPY`",

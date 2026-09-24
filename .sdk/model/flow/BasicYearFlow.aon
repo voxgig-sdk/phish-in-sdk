@@ -1,9 +1,0 @@
-# BasicYearFlow
-
-main: kit: flow: BasicYearFlow:
-{
-  entity: "year",
-  kind: "basic",
-  name: "BasicYearFlow",
-  "key$": "BasicYearFlow"
-}

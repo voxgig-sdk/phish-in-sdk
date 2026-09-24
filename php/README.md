@@ -218,7 +218,6 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `Tour` | `($data): TourEntity` | Create a Tour entity instance. |
 | `Track` | `($data): TrackEntity` | Create a Track entity instance. |
 | `Venue` | `($data): VenueEntity` | Create a Venue entity instance. |
-| `Year` | `($data): YearEntity` | Create a Year entity instance. |
 
 ### Entity interface
 
@@ -364,15 +363,6 @@ API path: `/tracks/{id}`
 Operations: List, Load.
 
 API path: `/venues`
-
-#### Year
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 
 
@@ -617,11 +607,6 @@ $venue = $client->Venue()->load(["id" => 1]);
 // list() returns an array of Venue records (throws on error).
 $venues = $client->Venue()->list();
 ```
-
-
-### Year
-
-Create an instance: `$year = $client->Year();`
 
 ## Features
 

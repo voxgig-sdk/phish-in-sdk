@@ -229,7 +229,6 @@ new PhishInSDK(options?: {
 | `Tour(data?)` | `TourEntity` | Create a Tour entity instance. |
 | `Track(data?)` | `TrackEntity` | Create a Track entity instance. |
 | `Venue(data?)` | `VenueEntity` | Create a Venue entity instance. |
-| `Year(data?)` | `YearEntity` | Create a Year entity instance. |
 | `tester(testopts?, sdkopts?)` | `PhishInSDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -406,15 +405,6 @@ API path: `/tracks/{id}`
 Operations: list, load.
 
 API path: `/venues`
-
-#### Year
-
-| Field | Description |
-| --- | --- |
-
-Operations: .
-
-API path: ``
 
 
 
@@ -648,11 +638,6 @@ const venue = await client.Venue().load({ id: 1 })
 ```ts
 const venues = await client.Venue().list()
 ```
-
-
-### Year
-
-Create an instance: `const year = client.Year()`
 
 ## Features
 

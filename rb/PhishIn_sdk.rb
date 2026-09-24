@@ -338,13 +338,6 @@ class PhishInSDK
   end
 
 
-  # Canonical facade: client.Year.list / client.Year.load({ "id" => ... })
-  def Year(data = nil)
-    require_relative 'entity/year_entity'
-    YearEntity.new(self, data)
-  end
-
-
 
   def self.test(testopts = nil, sdkopts = nil)
     sdkopts = sdkopts || {}

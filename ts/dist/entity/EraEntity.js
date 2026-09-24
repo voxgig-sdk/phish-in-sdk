@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EraEntity = void 0;
 const PhishInEntityBase_1 = require("../PhishInEntityBase");
-// TODO: needs Entity superclass
 class EraEntity extends PhishInEntityBase_1.PhishInEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

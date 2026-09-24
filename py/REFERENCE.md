@@ -69,10 +69,6 @@ Create a new `TrackEntity` instance. Pass `None` for no initial data.
 
 Create a new `VenueEntity` instance. Pass `None` for no initial data.
 
-#### `Year(data=None)`
-
-Create a new `YearEntity` instance. Pass `None` for no initial data.
-
 #### `options_map() -> dict`
 
 Return a deep copy of the current SDK options.
@@ -536,41 +532,6 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `VenueEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
-
-
----
-
-## YearEntity
-
-```python
-year = client.Year()
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `YearEntity` instance with the same options.
 
 #### `get_name() -> str`
 

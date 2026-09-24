@@ -1,0 +1,44 @@
+# BasicTourFlow
+
+main: kit: flow: BasicTourFlow:
+{
+  entity: "tour",
+  kind: "basic",
+  name: "BasicTourFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "tour_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      i: {
+        ref: "tour_ref01",
+        srcdatavar: "tour_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "tour01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-tour_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTourFlow"
+}

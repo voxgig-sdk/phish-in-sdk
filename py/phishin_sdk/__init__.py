@@ -349,12 +349,6 @@ class PhishInSDK:
         return VenueEntity(self, data)
 
 
-    def Year(self, data=None) -> "YearEntity":
-        """Entity factory: client.Year().list() / client.Year().load({"id": ...})."""
-        from phishin_sdk.entity.year_entity import YearEntity
-        return YearEntity(self, data)
-
-
 
     @classmethod
     def test(cls, testopts=None, sdkopts=None) -> "PhishInSDK":
@@ -389,4 +383,3 @@ if TYPE_CHECKING:
     from phishin_sdk.entity.tour_entity import TourEntity
     from phishin_sdk.entity.track_entity import TrackEntity
     from phishin_sdk.entity.venue_entity import VenueEntity
-    from phishin_sdk.entity.year_entity import YearEntity

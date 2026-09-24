@@ -106,7 +106,7 @@ make build-all   # linux/darwin/windows x amd64/arm64, under dist/<os>-<arch>/
 ### Discover the available entities
 
 `/help` in the REPL prints the full entity list, or see [Entities](#entities)
-below — this SDK exposes 8 entities.
+below — this SDK exposes 7 entities.
 
 ## Reference
 
@@ -160,9 +160,9 @@ Meta-commands use the `/` prefix (everything else on a line is evaluated as boru
 
 ### Entities
 
-The 8 entities this SDK exposes (any is valid as `<entity>`):
+The 7 entities this SDK exposes (any is valid as `<entity>`):
 
-era search show song tour track venue year
+era search show song tour track venue
 
 ## Explanation
 

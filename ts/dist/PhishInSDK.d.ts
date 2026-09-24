@@ -5,7 +5,6 @@ import { SongEntity } from './entity/SongEntity';
 import { TourEntity } from './entity/TourEntity';
 import { TrackEntity } from './entity/TrackEntity';
 import { VenueEntity } from './entity/VenueEntity';
-import { YearEntity } from './entity/YearEntity';
 export type * from './PhishInTypes';
 import { inspect } from 'node:util';
 import type { Context, Feature } from './types';
@@ -58,7 +57,6 @@ declare class PhishInSDK {
     Tour(entopts?: Record<string, any>): TourEntity;
     Track(entopts?: Record<string, any>): TrackEntity;
     Venue(entopts?: Record<string, any>): VenueEntity;
-    Year(entopts?: Record<string, any>): YearEntity;
     static test(testoptsarg?: any, sdkoptsarg?: any): PhishInSDK;
     tester(testopts?: any, sdkopts?: any): PhishInSDK;
     toJSON(): {

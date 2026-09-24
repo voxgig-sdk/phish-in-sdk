@@ -132,18 +132,6 @@ Create a new `Venue` entity instance.
 
 **Returns:** `VenueEntity` instance.
 
-#### `Year(data?: object)`
-
-Create a new `Year` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `YearEntity` instance.
-
 #### `options()`
 
 Return a deep copy of the current SDK options.
@@ -599,40 +587,6 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `VenueEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `PhishInSDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
-## YearEntity
-
-```ts
-const year = client.Year()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `YearEntity` instance with the same client and
 options.
 
 #### `client()`

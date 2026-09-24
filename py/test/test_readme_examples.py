@@ -83,7 +83,6 @@ _ENTITIES = {
     "Tour": "tour",
     "Track": "track",
     "Venue": "venue",
-    "Year": "year",
 }
 
 # The three documents held to the gate, tagged by human label.

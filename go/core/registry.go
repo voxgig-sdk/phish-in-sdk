@@ -26,5 +26,3 @@ var NewTrackEntityFunc func(client *PhishInSDK, entopts map[string]any) PhishInE
 
 var NewVenueEntityFunc func(client *PhishInSDK, entopts map[string]any) PhishInEntity
 
-var NewYearEntityFunc func(client *PhishInSDK, entopts map[string]any) PhishInEntity
-

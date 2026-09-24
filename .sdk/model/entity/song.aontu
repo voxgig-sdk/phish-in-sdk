@@ -1,0 +1,173 @@
+# Entity: song
+
+main: kit: entity: song: {
+
+  alias: field: {}
+
+  fields: {
+    alias: {
+      h: "Alias"
+      n: "alias"
+      r: false
+      sh: "Alternative name or alias"
+      t: "`$STRING`"
+    }
+    debut: {
+      fo: "date"
+      h: "Debut"
+      n: "debut"
+      r: false
+      sh: "Date of first performance"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique identifier for the song"
+      t: "`$INTEGER`"
+    }
+    last_played: {
+      fo: "date"
+      h: "Last Played"
+      n: "last_played"
+      r: false
+      sh: "Date of most recent performance"
+      t: "`$STRING`"
+    }
+    times_played: {
+      h: "Times Played"
+      n: "times_played"
+      r: false
+      sh: "Number of times the song has been played"
+      t: "`$INTEGER`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "Title of the song"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "song"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /songs"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 20
+                k: "query"
+                n: "per_page"
+                or: "per_page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort_attr"
+                or: "sort_attr"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "asc"
+                k: "query"
+                n: "sort_dir"
+                or: "sort_dir"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/songs"
+          q: {
+            exist: [
+              "page"
+              "per_page"
+              "sort_attr"
+              "sort_dir"
+            ]
+          }
+          s: [
+            {
+              lit: "songs"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /songs/{id}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/songs/{id}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          s: [
+            {
+              lit: "songs"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

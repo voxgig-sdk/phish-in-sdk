@@ -50,7 +50,6 @@ class ReadmeExamplesTest < Minitest::Test
     "Tour" => "tour",
     "Track" => "track",
     "Venue" => "venue",
-    "Year" => "year",
   }
 
   # Documented SDK method names — used only to recognise the NARROW

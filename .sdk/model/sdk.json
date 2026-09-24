@@ -24,40 +24,110 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "era": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "date",
-              "name": "end_date",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "end_date": {
+              "a": true,
+              "fo": "date",
+              "h": "End Date",
+              "n": "end_date",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "start_date",
-              "req": false,
-              "type": "`$STRING`"
+            "start_date": {
+              "a": true,
+              "fo": "date",
+              "h": "Start Date",
+              "n": "start_date",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -69,24 +139,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /eras",
-                    "json": "{\"operationId\":\"getEras\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"end_date\":{\"format\":\"date\",\"type\":\"string\"},\"id\":{\"type\":\"integer\"},\"name\":{\"type\":\"string\"},\"start_date\":{\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/eras",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/eras",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "eras"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -103,26 +173,29 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "shows",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "shows": {
+              "a": true,
+              "h": "Shows",
+              "n": "shows",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "songs",
-              "req": false,
-              "type": "`$ARRAY`"
+            "songs": {
+              "a": true,
+              "h": "Songs",
+              "n": "songs",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "venues",
-              "req": false,
-              "type": "`$ARRAY`"
+            "venues": {
+              "a": true,
+              "h": "Venues",
+              "n": "venues",
+              "r": false,
+              "t": "`$ARRAY`"
             }
-          ],
+          },
           "name": "search",
           "op": {
             "load": {
@@ -130,39 +203,39 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /search",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "term",
-                        "orig": "term",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "term",
+                        "or": "term",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /search",
-                    "json": "{\"operationId\":\"search\",\"parameters\":[{\"description\":\"Search term\",\"in\":\"query\",\"name\":\"term\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"shows\":{\"items\":{\"properties\":{\"date\":{\"description\":\"Date of the show\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the show\",\"type\":\"integer\"},\"location\":{\"description\":\"Location of the venue\",\"type\":\"string\"},\"tour_id\":{\"description\":\"ID of the tour\",\"type\":\"integer\"},\"tour_name\":{\"description\":\"Name of the tour\",\"type\":\"string\"},\"tracks\":{\"items\":{\"properties\":{\"duration\":{\"description\":\"Duration in seconds\",\"type\":\"integer\"},\"id\":{\"description\":\"Unique identifier for the track\",\"type\":\"integer\"},\"mp3\":{\"description\":\"URL to MP3 file\",\"type\":\"string\"},\"position\":{\"description\":\"Position in the setlist\",\"type\":\"integer\"},\"set\":{\"description\":\"Set identifier (e.g., 1, 2, E for encore)\",\"type\":\"string\"},\"show_id\":{\"description\":\"ID of the show\",\"type\":\"integer\"},\"song_id\":{\"description\":\"ID of the song\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the track/song\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"venue_id\":{\"description\":\"ID of the venue\",\"type\":\"integer\"},\"venue_name\":{\"description\":\"Name of the venue\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"songs\":{\"items\":{\"properties\":{\"alias\":{\"description\":\"Alternative name or alias\",\"type\":\"string\"},\"debut\":{\"description\":\"Date of first performance\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the song\",\"type\":\"integer\"},\"last_played\":{\"description\":\"Date of most recent performance\",\"format\":\"date\",\"type\":\"string\"},\"times_played\":{\"description\":\"Number of times the song has been played\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the song\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"venues\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the venue\",\"type\":\"integer\"},\"latitude\":{\"format\":\"float\",\"type\":\"number\"},\"location\":{\"description\":\"Location (city, state/country)\",\"type\":\"string\"},\"longitude\":{\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the venue\",\"type\":\"string\"},\"shows_count\":{\"description\":\"Number of shows at this venue\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/search",
-                  "segments": [
-                    {
-                      "lit": "search"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/search",
+                  "q": {
                     "exist": [
                       "term"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "search"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -179,106 +252,121 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "data",
-              "req": false,
-              "type": "`$ARRAY`"
+          "fields": {
+            "data": {
+              "a": true,
+              "h": "Data",
+              "n": "data",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "date",
-              "req": false,
-              "short": "Date of the show",
-              "type": "`$STRING`"
+            "date": {
+              "a": true,
+              "fo": "date",
+              "h": "Date",
+              "n": "date",
+              "r": false,
+              "sh": "Date of the show",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the show",
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the show",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "location",
-              "req": false,
-              "short": "Location of the venue",
-              "type": "`$STRING`"
+            "location": {
+              "a": true,
+              "h": "Location",
+              "n": "location",
+              "r": false,
+              "sh": "Location of the venue",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "page",
-              "req": false,
-              "type": "`$INTEGER`"
+            "page": {
+              "a": true,
+              "h": "Page",
+              "n": "page",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "show_count",
-              "req": false,
-              "type": "`$INTEGER`"
+            "show_count": {
+              "a": true,
+              "h": "Show Count",
+              "n": "show_count",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "success",
-              "req": false,
-              "type": "`$BOOLEAN`"
+            "success": {
+              "a": true,
+              "h": "Success",
+              "n": "success",
+              "r": false,
+              "t": "`$BOOLEAN`"
             },
-            {
-              "active": true,
-              "name": "total_entries",
-              "req": false,
-              "type": "`$INTEGER`"
+            "total_entries": {
+              "a": true,
+              "h": "Total Entries",
+              "n": "total_entries",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "total_pages",
-              "req": false,
-              "type": "`$INTEGER`"
+            "total_pages": {
+              "a": true,
+              "h": "Total Pages",
+              "n": "total_pages",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "tour_id",
-              "req": false,
-              "short": "ID of the tour",
-              "type": "`$INTEGER`"
+            "tour_id": {
+              "a": true,
+              "h": "Tour Id",
+              "n": "tour_id",
+              "r": false,
+              "sh": "ID of the tour",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "tour_name",
-              "req": false,
-              "short": "Name of the tour",
-              "type": "`$STRING`"
+            "tour_name": {
+              "a": true,
+              "h": "Tour Name",
+              "n": "tour_name",
+              "r": false,
+              "sh": "Name of the tour",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "tracks",
-              "req": false,
-              "type": "`$ARRAY`"
+            "tracks": {
+              "a": true,
+              "h": "Tracks",
+              "n": "tracks",
+              "r": false,
+              "t": "`$ARRAY`"
             },
-            {
-              "active": true,
-              "name": "venue_id",
-              "req": false,
-              "short": "ID of the venue",
-              "type": "`$INTEGER`"
+            "venue_id": {
+              "a": true,
+              "h": "Venue Id",
+              "n": "venue_id",
+              "r": false,
+              "sh": "ID of the venue",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "venue_name",
-              "req": false,
-              "short": "Name of the venue",
-              "type": "`$STRING`"
+            "venue_name": {
+              "a": true,
+              "h": "Venue Name",
+              "n": "venue_name",
+              "r": false,
+              "sh": "Name of the venue",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "year",
-              "req": false,
-              "type": "`$INTEGER`"
+            "year": {
+              "a": true,
+              "h": "Year",
+              "n": "year",
+              "r": false,
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -290,61 +378,55 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /shows",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 20,
-                        "kind": "query",
-                        "name": "per_page",
-                        "orig": "per_page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "per_page",
+                        "or": "per_page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "sort_attr",
-                        "orig": "sort_attr",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "sort_attr",
+                        "or": "sort_attr",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "desc",
-                        "kind": "query",
-                        "name": "sort_dir",
-                        "orig": "sort_dir",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "desc",
+                        "k": "query",
+                        "n": "sort_dir",
+                        "or": "sort_dir",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /shows",
-                    "json": "{\"operationId\":\"getShows\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}},{\"description\":\"Number of results per page\",\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"default\":20,\"type\":\"integer\"}},{\"description\":\"Attribute to sort by\",\"in\":\"query\",\"name\":\"sort_attr\",\"required\":false,\"schema\":{\"enum\":[\"date\",\"venue\",\"location\"],\"type\":\"string\"}},{\"description\":\"Sort direction\",\"in\":\"query\",\"name\":\"sort_dir\",\"required\":false,\"schema\":{\"default\":\"desc\",\"enum\":[\"asc\",\"desc\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"date\":{\"description\":\"Date of the show\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the show\",\"type\":\"integer\"},\"location\":{\"description\":\"Location of the venue\",\"type\":\"string\"},\"tour_id\":{\"description\":\"ID of the tour\",\"type\":\"integer\"},\"tour_name\":{\"description\":\"Name of the tour\",\"type\":\"string\"},\"tracks\":{\"items\":{\"properties\":{\"duration\":{\"description\":\"Duration in seconds\",\"type\":\"integer\"},\"id\":{\"description\":\"Unique identifier for the track\",\"type\":\"integer\"},\"mp3\":{\"description\":\"URL to MP3 file\",\"type\":\"string\"},\"position\":{\"description\":\"Position in the setlist\",\"type\":\"integer\"},\"set\":{\"description\":\"Set identifier (e.g., 1, 2, E for encore)\",\"type\":\"string\"},\"show_id\":{\"description\":\"ID of the show\",\"type\":\"integer\"},\"song_id\":{\"description\":\"ID of the song\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the track/song\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"venue_id\":{\"description\":\"ID of the venue\",\"type\":\"integer\"},\"venue_name\":{\"description\":\"Name of the venue\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"page\":{\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"},\"total_entries\":{\"type\":\"integer\"},\"total_pages\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/shows",
-                  "segments": [
-                    {
-                      "lit": "shows"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/shows",
+                  "q": {
                     "exist": [
                       "page",
                       "per_page",
@@ -352,30 +434,36 @@
                       "sort_dir"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "shows"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /years",
-                    "json": "{\"operationId\":\"getYears\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"show_count\":{\"type\":\"integer\"},\"year\":{\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/years",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/years",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "years"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -387,29 +475,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /shows/on-date/{date}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "date",
-                        "orig": "date",
-                        "reqd": true,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "param",
+                        "n": "date",
+                        "or": "date",
+                        "r": true,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /shows/on-date/{date}",
-                    "json": "{\"operationId\":\"getShowsByDate\",\"parameters\":[{\"description\":\"Date in YYYY-MM-DD format\",\"in\":\"path\",\"name\":\"date\",\"required\":true,\"schema\":{\"format\":\"date\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"date\":{\"description\":\"Date of the show\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the show\",\"type\":\"integer\"},\"location\":{\"description\":\"Location of the venue\",\"type\":\"string\"},\"tour_id\":{\"description\":\"ID of the tour\",\"type\":\"integer\"},\"tour_name\":{\"description\":\"Name of the tour\",\"type\":\"string\"},\"tracks\":{\"items\":{\"properties\":{\"duration\":{\"description\":\"Duration in seconds\",\"type\":\"integer\"},\"id\":{\"description\":\"Unique identifier for the track\",\"type\":\"integer\"},\"mp3\":{\"description\":\"URL to MP3 file\",\"type\":\"string\"},\"position\":{\"description\":\"Position in the setlist\",\"type\":\"integer\"},\"set\":{\"description\":\"Set identifier (e.g., 1, 2, E for encore)\",\"type\":\"string\"},\"show_id\":{\"description\":\"ID of the show\",\"type\":\"integer\"},\"song_id\":{\"description\":\"ID of the song\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the track/song\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"venue_id\":{\"description\":\"ID of the venue\",\"type\":\"integer\"},\"venue_name\":{\"description\":\"Name of the venue\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"page\":{\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"},\"total_entries\":{\"type\":\"integer\"},\"total_pages\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/shows/on-date/{date}",
+                  "q": {
+                    "exist": [
+                      "date"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/shows/on-date/{date}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "shows"
                     },
@@ -420,40 +513,40 @@
                       "var": "date"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "date"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /shows/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /shows/{id}",
-                    "json": "{\"operationId\":\"getShowById\",\"parameters\":[{\"description\":\"Show ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"date\":{\"description\":\"Date of the show\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the show\",\"type\":\"integer\"},\"location\":{\"description\":\"Location of the venue\",\"type\":\"string\"},\"tour_id\":{\"description\":\"ID of the tour\",\"type\":\"integer\"},\"tour_name\":{\"description\":\"Name of the tour\",\"type\":\"string\"},\"tracks\":{\"items\":{\"properties\":{\"duration\":{\"description\":\"Duration in seconds\",\"type\":\"integer\"},\"id\":{\"description\":\"Unique identifier for the track\",\"type\":\"integer\"},\"mp3\":{\"description\":\"URL to MP3 file\",\"type\":\"string\"},\"position\":{\"description\":\"Position in the setlist\",\"type\":\"integer\"},\"set\":{\"description\":\"Set identifier (e.g., 1, 2, E for encore)\",\"type\":\"string\"},\"show_id\":{\"description\":\"ID of the show\",\"type\":\"integer\"},\"song_id\":{\"description\":\"ID of the song\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the track/song\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"venue_id\":{\"description\":\"ID of the venue\",\"type\":\"integer\"},\"venue_name\":{\"description\":\"Name of the venue\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Show not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/shows/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/shows/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "shows"
                     },
@@ -461,40 +554,40 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /years/{year}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "year",
-                        "orig": "year",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "year",
+                        "or": "year",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /years/{year}",
-                    "json": "{\"operationId\":\"getShowsByYear\",\"parameters\":[{\"description\":\"Year (YYYY format)\",\"in\":\"path\",\"name\":\"year\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"date\":{\"description\":\"Date of the show\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the show\",\"type\":\"integer\"},\"location\":{\"description\":\"Location of the venue\",\"type\":\"string\"},\"tour_id\":{\"description\":\"ID of the tour\",\"type\":\"integer\"},\"tour_name\":{\"description\":\"Name of the tour\",\"type\":\"string\"},\"tracks\":{\"items\":{\"properties\":{\"duration\":{\"description\":\"Duration in seconds\",\"type\":\"integer\"},\"id\":{\"description\":\"Unique identifier for the track\",\"type\":\"integer\"},\"mp3\":{\"description\":\"URL to MP3 file\",\"type\":\"string\"},\"position\":{\"description\":\"Position in the setlist\",\"type\":\"integer\"},\"set\":{\"description\":\"Set identifier (e.g., 1, 2, E for encore)\",\"type\":\"string\"},\"show_id\":{\"description\":\"ID of the show\",\"type\":\"integer\"},\"song_id\":{\"description\":\"ID of the song\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the track/song\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"venue_id\":{\"description\":\"ID of the venue\",\"type\":\"integer\"},\"venue_name\":{\"description\":\"Name of the venue\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"page\":{\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"},\"total_entries\":{\"type\":\"integer\"},\"total_pages\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/years/{year}",
+                  "q": {
+                    "exist": [
+                      "year"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/years/{year}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "years"
                     },
@@ -502,35 +595,30 @@
                       "var": "year"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "year"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
                 },
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /random-show",
-                    "json": "{\"operationId\":\"getRandomShow\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"date\":{\"description\":\"Date of the show\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the show\",\"type\":\"integer\"},\"location\":{\"description\":\"Location of the venue\",\"type\":\"string\"},\"tour_id\":{\"description\":\"ID of the tour\",\"type\":\"integer\"},\"tour_name\":{\"description\":\"Name of the tour\",\"type\":\"string\"},\"tracks\":{\"items\":{\"properties\":{\"duration\":{\"description\":\"Duration in seconds\",\"type\":\"integer\"},\"id\":{\"description\":\"Unique identifier for the track\",\"type\":\"integer\"},\"mp3\":{\"description\":\"URL to MP3 file\",\"type\":\"string\"},\"position\":{\"description\":\"Position in the setlist\",\"type\":\"integer\"},\"set\":{\"description\":\"Set identifier (e.g., 1, 2, E for encore)\",\"type\":\"string\"},\"show_id\":{\"description\":\"ID of the show\",\"type\":\"integer\"},\"song_id\":{\"description\":\"ID of the song\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the track/song\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"venue_id\":{\"description\":\"ID of the venue\",\"type\":\"integer\"},\"venue_name\":{\"description\":\"Name of the venue\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/random-show",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/random-show",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "random-show"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -539,14 +627,7 @@
             }
           },
           "relations": {
-            "ancestors": [
-              [
-                "on_date"
-              ],
-              [
-                "year"
-              ]
-            ]
+            "ancestors": []
           }
         },
         "song": {
@@ -554,52 +635,58 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "alias",
-              "req": false,
-              "short": "Alternative name or alias",
-              "type": "`$STRING`"
+          "fields": {
+            "alias": {
+              "a": true,
+              "h": "Alias",
+              "n": "alias",
+              "r": false,
+              "sh": "Alternative name or alias",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "debut",
-              "req": false,
-              "short": "Date of first performance",
-              "type": "`$STRING`"
+            "debut": {
+              "a": true,
+              "fo": "date",
+              "h": "Debut",
+              "n": "debut",
+              "r": false,
+              "sh": "Date of first performance",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the song",
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the song",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "last_played",
-              "req": false,
-              "short": "Date of most recent performance",
-              "type": "`$STRING`"
+            "last_played": {
+              "a": true,
+              "fo": "date",
+              "h": "Last Played",
+              "n": "last_played",
+              "r": false,
+              "sh": "Date of most recent performance",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "times_played",
-              "req": false,
-              "short": "Number of times the song has been played",
-              "type": "`$INTEGER`"
+            "times_played": {
+              "a": true,
+              "h": "Times Played",
+              "n": "times_played",
+              "r": false,
+              "sh": "Number of times the song has been played",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "Title of the song",
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "sh": "Title of the song",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -611,61 +698,55 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /songs",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 20,
-                        "kind": "query",
-                        "name": "per_page",
-                        "orig": "per_page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "per_page",
+                        "or": "per_page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "sort_attr",
-                        "orig": "sort_attr",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "sort_attr",
+                        "or": "sort_attr",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "asc",
-                        "kind": "query",
-                        "name": "sort_dir",
-                        "orig": "sort_dir",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "asc",
+                        "k": "query",
+                        "n": "sort_dir",
+                        "or": "sort_dir",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /songs",
-                    "json": "{\"operationId\":\"getSongs\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}},{\"description\":\"Number of results per page\",\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"default\":20,\"type\":\"integer\"}},{\"description\":\"Attribute to sort by\",\"in\":\"query\",\"name\":\"sort_attr\",\"required\":false,\"schema\":{\"enum\":[\"title\",\"times_played\"],\"type\":\"string\"}},{\"description\":\"Sort direction\",\"in\":\"query\",\"name\":\"sort_dir\",\"required\":false,\"schema\":{\"default\":\"asc\",\"enum\":[\"asc\",\"desc\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"alias\":{\"description\":\"Alternative name or alias\",\"type\":\"string\"},\"debut\":{\"description\":\"Date of first performance\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the song\",\"type\":\"integer\"},\"last_played\":{\"description\":\"Date of most recent performance\",\"format\":\"date\",\"type\":\"string\"},\"times_played\":{\"description\":\"Number of times the song has been played\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the song\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"page\":{\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"},\"total_entries\":{\"type\":\"integer\"},\"total_pages\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/songs",
-                  "segments": [
-                    {
-                      "lit": "songs"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/songs",
+                  "q": {
                     "exist": [
                       "page",
                       "per_page",
@@ -673,7 +754,13 @@
                       "sort_dir"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "songs"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -685,29 +772,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /songs/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /songs/{id}",
-                    "json": "{\"operationId\":\"getSongById\",\"parameters\":[{\"description\":\"Song ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"alias\":{\"description\":\"Alternative name or alias\",\"type\":\"string\"},\"debut\":{\"description\":\"Date of first performance\",\"format\":\"date\",\"type\":\"string\"},\"id\":{\"description\":\"Unique identifier for the song\",\"type\":\"integer\"},\"last_played\":{\"description\":\"Date of most recent performance\",\"format\":\"date\",\"type\":\"string\"},\"times_played\":{\"description\":\"Number of times the song has been played\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the song\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Song not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/songs/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/songs/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "songs"
                     },
@@ -715,12 +807,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -737,40 +824,45 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "format": "date",
-              "name": "end_date",
-              "req": false,
-              "type": "`$STRING`"
+          "fields": {
+            "end_date": {
+              "a": true,
+              "fo": "date",
+              "h": "End Date",
+              "n": "end_date",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "shows_count",
-              "req": false,
-              "type": "`$INTEGER`"
+            "shows_count": {
+              "a": true,
+              "h": "Shows Count",
+              "n": "shows_count",
+              "r": false,
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "date",
-              "name": "start_date",
-              "req": false,
-              "type": "`$STRING`"
+            "start_date": {
+              "a": true,
+              "fo": "date",
+              "h": "Start Date",
+              "n": "start_date",
+              "r": false,
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -782,24 +874,24 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /tours",
-                    "json": "{\"operationId\":\"getTours\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"end_date\":{\"format\":\"date\",\"type\":\"string\"},\"id\":{\"type\":\"integer\"},\"name\":{\"type\":\"string\"},\"shows_count\":{\"type\":\"integer\"},\"start_date\":{\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/tours",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/tours",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "tours"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -811,29 +903,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /tours/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /tours/{id}",
-                    "json": "{\"operationId\":\"getTourById\",\"parameters\":[{\"description\":\"Tour ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"end_date\":{\"format\":\"date\",\"type\":\"string\"},\"id\":{\"type\":\"integer\"},\"name\":{\"type\":\"string\"},\"shows_count\":{\"type\":\"integer\"},\"start_date\":{\"format\":\"date\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Tour not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/tours/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/tours/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "tours"
                     },
@@ -841,12 +938,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -863,64 +955,72 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "duration",
-              "req": false,
-              "short": "Duration in seconds",
-              "type": "`$INTEGER`"
+          "fields": {
+            "duration": {
+              "a": true,
+              "h": "Duration",
+              "n": "duration",
+              "r": false,
+              "sh": "Duration in seconds",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the track",
-              "type": "`$INTEGER`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the track",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "mp3",
-              "req": false,
-              "short": "URL to MP3 file",
-              "type": "`$STRING`"
+            "mp3": {
+              "a": true,
+              "h": "Mp3",
+              "n": "mp3",
+              "r": false,
+              "sh": "URL to MP3 file",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "position",
-              "req": false,
-              "short": "Position in the setlist",
-              "type": "`$INTEGER`"
+            "position": {
+              "a": true,
+              "h": "Position",
+              "n": "position",
+              "r": false,
+              "sh": "Position in the setlist",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "set",
-              "req": false,
-              "short": "Set identifier (e.g., 1, 2, E for encore)",
-              "type": "`$STRING`"
+            "set": {
+              "a": true,
+              "h": "Set",
+              "n": "set",
+              "r": false,
+              "sh": "Set identifier (e.g., 1, 2, E for encore)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "show_id",
-              "req": false,
-              "short": "ID of the show",
-              "type": "`$INTEGER`"
+            "show_id": {
+              "a": true,
+              "h": "Show Id",
+              "n": "show_id",
+              "r": false,
+              "sh": "ID of the show",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "song_id",
-              "req": false,
-              "short": "ID of the song",
-              "type": "`$INTEGER`"
+            "song_id": {
+              "a": true,
+              "h": "Song Id",
+              "n": "song_id",
+              "r": false,
+              "sh": "ID of the song",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "title",
-              "req": false,
-              "short": "Title of the track/song",
-              "type": "`$STRING`"
+            "title": {
+              "a": true,
+              "h": "Title",
+              "n": "title",
+              "r": false,
+              "sh": "Title of the track/song",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -932,29 +1032,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /tracks/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /tracks/{id}",
-                    "json": "{\"operationId\":\"getTrackById\",\"parameters\":[{\"description\":\"Track ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"duration\":{\"description\":\"Duration in seconds\",\"type\":\"integer\"},\"id\":{\"description\":\"Unique identifier for the track\",\"type\":\"integer\"},\"mp3\":{\"description\":\"URL to MP3 file\",\"type\":\"string\"},\"position\":{\"description\":\"Position in the setlist\",\"type\":\"integer\"},\"set\":{\"description\":\"Set identifier (e.g., 1, 2, E for encore)\",\"type\":\"string\"},\"show_id\":{\"description\":\"ID of the show\",\"type\":\"integer\"},\"song_id\":{\"description\":\"ID of the song\",\"type\":\"integer\"},\"title\":{\"description\":\"Title of the track/song\",\"type\":\"string\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Track not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/tracks/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/tracks/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "tracks"
                     },
@@ -962,12 +1067,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -984,50 +1084,56 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique identifier for the venue",
-              "type": "`$INTEGER`"
+          "fields": {
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique identifier for the venue",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "format": "float",
-              "name": "latitude",
-              "req": false,
-              "type": "`$NUMBER`"
+            "latitude": {
+              "a": true,
+              "fo": "float",
+              "h": "Latitude",
+              "n": "latitude",
+              "r": false,
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "location",
-              "req": false,
-              "short": "Location (city, state/country)",
-              "type": "`$STRING`"
+            "location": {
+              "a": true,
+              "h": "Location",
+              "n": "location",
+              "r": false,
+              "sh": "Location (city, state/country)",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "float",
-              "name": "longitude",
-              "req": false,
-              "type": "`$NUMBER`"
+            "longitude": {
+              "a": true,
+              "fo": "float",
+              "h": "Longitude",
+              "n": "longitude",
+              "r": false,
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Name of the venue",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Name of the venue",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "shows_count",
-              "req": false,
-              "short": "Number of shows at this venue",
-              "type": "`$INTEGER`"
+            "shows_count": {
+              "a": true,
+              "h": "Shows Count",
+              "n": "shows_count",
+              "r": false,
+              "sh": "Number of shows at this venue",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -1039,61 +1145,55 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /venues",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "example": 1,
-                        "kind": "query",
-                        "name": "page",
-                        "orig": "page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 1,
+                        "k": "query",
+                        "n": "page",
+                        "or": "page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 20,
-                        "kind": "query",
-                        "name": "per_page",
-                        "orig": "per_page",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 20,
+                        "k": "query",
+                        "n": "per_page",
+                        "or": "per_page",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "sort_attr",
-                        "orig": "sort_attr",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "sort_attr",
+                        "or": "sort_attr",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": "asc",
-                        "kind": "query",
-                        "name": "sort_dir",
-                        "orig": "sort_dir",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "ex": "asc",
+                        "k": "query",
+                        "n": "sort_dir",
+                        "or": "sort_dir",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /venues",
-                    "json": "{\"operationId\":\"getVenues\",\"parameters\":[{\"description\":\"Page number for pagination\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"type\":\"integer\"}},{\"description\":\"Number of results per page\",\"in\":\"query\",\"name\":\"per_page\",\"required\":false,\"schema\":{\"default\":20,\"type\":\"integer\"}},{\"description\":\"Attribute to sort by\",\"in\":\"query\",\"name\":\"sort_attr\",\"required\":false,\"schema\":{\"enum\":[\"name\",\"location\",\"shows_count\"],\"type\":\"string\"}},{\"description\":\"Sort direction\",\"in\":\"query\",\"name\":\"sort_dir\",\"required\":false,\"schema\":{\"default\":\"asc\",\"enum\":[\"asc\",\"desc\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"items\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the venue\",\"type\":\"integer\"},\"latitude\":{\"format\":\"float\",\"type\":\"number\"},\"location\":{\"description\":\"Location (city, state/country)\",\"type\":\"string\"},\"longitude\":{\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the venue\",\"type\":\"string\"},\"shows_count\":{\"description\":\"Number of shows at this venue\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"page\":{\"type\":\"integer\"},\"success\":{\"type\":\"boolean\"},\"total_entries\":{\"type\":\"integer\"},\"total_pages\":{\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/venues",
-                  "segments": [
-                    {
-                      "lit": "venues"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/venues",
+                  "q": {
                     "exist": [
                       "page",
                       "per_page",
@@ -1101,7 +1201,13 @@
                       "sort_dir"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "venues"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1113,29 +1219,34 @@
               "name": "load",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /venues/{id}",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "params": [
                       {
-                        "active": true,
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "id",
-                        "reqd": true,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "k": "param",
+                        "n": "id",
+                        "or": "id",
+                        "r": true,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /venues/{id}",
-                    "json": "{\"operationId\":\"getVenueById\",\"parameters\":[{\"description\":\"Venue ID\",\"in\":\"path\",\"name\":\"id\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"data\":{\"properties\":{\"id\":{\"description\":\"Unique identifier for the venue\",\"type\":\"integer\"},\"latitude\":{\"format\":\"float\",\"type\":\"number\"},\"location\":{\"description\":\"Location (city, state/country)\",\"type\":\"string\"},\"longitude\":{\"format\":\"float\",\"type\":\"number\"},\"name\":{\"description\":\"Name of the venue\",\"type\":\"string\"},\"shows_count\":{\"description\":\"Number of shows at this venue\",\"type\":\"integer\"}},\"type\":\"object\"},\"success\":{\"type\":\"boolean\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Venue not found\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/venues/{id}",
+                  "q": {
+                    "exist": [
+                      "id"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/venues/{id}",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "venues"
                     },
@@ -1143,12 +1254,7 @@
                       "var": "id"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.data`"
                   }
@@ -1156,18 +1262,6 @@
               ]
             }
           },
-          "relations": {
-            "ancestors": []
-          }
-        },
-        "year": {
-          "active": true,
-          "alias": {
-            "field": {}
-          },
-          "fields": [],
-          "name": "year",
-          "op": {},
           "relations": {
             "ancestors": []
           }
@@ -1589,13 +1683,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1615,17 +1709,17 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "search_ref01",
                 "srcdatavar": "search_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1645,13 +1739,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1661,17 +1755,17 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "show_ref01",
                 "srcdatavar": "show_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {},
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "m": {},
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1691,13 +1785,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1707,19 +1801,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "song_ref01",
                 "srcdatavar": "song_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "song01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1739,13 +1833,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1755,19 +1849,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "tour_ref01",
                 "srcdatavar": "tour_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "tour01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1787,19 +1881,19 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "track_ref01",
                 "srcdatavar": "track_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "track01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1819,13 +1913,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1835,19 +1929,19 @@
               ]
             },
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "venue_ref01",
                 "srcdatavar": "venue_ref01_data",
                 "suffix": "_dt0"
               },
-              "match": {
+              "m": {
                 "id": "venue01"
               },
-              "op": "load",
-              "spec": [],
-              "valid": [
+              "o": "load",
+              "s": [],
+              "v": [
                 {
                   "apply": "TextFieldMark",
                   "def": {
@@ -1857,15 +1951,6 @@
               ]
             }
           ]
-        },
-        "BasicYearFlow": {
-          "active": true,
-          "entity": "year",
-          "key$": "BasicYearFlow",
-          "kind": "basic",
-          "name": "BasicYearFlow",
-          "param": {},
-          "step": []
         }
       },
       "info": {

@@ -2,8 +2,8 @@
 
 # Typed models for the PhishIn SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Member types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Member types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Ruby types are unenforced; these YARD
 # annotations document the shapes. Do not edit by hand.
@@ -393,8 +393,4 @@ VenueListMatch = Struct.new(
   :sort_dir,
   keyword_init: true
 )
-
-# Year entity data model.
-class Year
-end
 

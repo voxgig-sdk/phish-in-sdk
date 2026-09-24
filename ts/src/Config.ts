@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -148,9 +141,6 @@ class Config {
         venue: {
         },
   
-        year: {
-        },
-  
     }
   }
 
@@ -159,22 +149,26 @@ class Config {
     "era": {
       "fields": [
         {
-          "format": "date",
           "name": "end_date",
-          "type": "`$STRING`"
+          "title": "End Date",
+          "type": "`$STRING`",
+          "format": "date"
         },
         {
           "name": "id",
+          "title": "Id",
           "type": "`$INTEGER`"
         },
         {
           "name": "name",
+          "title": "Name",
           "type": "`$STRING`"
         },
         {
-          "format": "date",
           "name": "start_date",
-          "type": "`$STRING`"
+          "title": "Start Date",
+          "type": "`$STRING`",
+          "format": "date"
         }
       ],
       "id": {
@@ -188,7 +182,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/eras",
@@ -197,14 +190,16 @@ class Config {
                   "lit": "eras"
                 }
               ],
-              "select": {},
+              "parts": [
+                "eras"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "eras"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -217,14 +212,17 @@ class Config {
       "fields": [
         {
           "name": "shows",
+          "title": "Shows",
           "type": "`$ARRAY`"
         },
         {
           "name": "songs",
+          "title": "Songs",
           "type": "`$ARRAY`"
         },
         {
           "name": "venues",
+          "title": "Venues",
           "type": "`$ARRAY`"
         }
       ],
@@ -235,17 +233,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "term",
-                    "orig": "term",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/search",
@@ -254,18 +241,30 @@ class Config {
                   "lit": "search"
                 }
               ],
-              "select": {
-                "exist": [
-                  "term"
-                ]
-              },
+              "parts": [
+                "search"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "search"
-              ]
+              "args": {
+                "query": [
+                  {
+                    "name": "term",
+                    "orig": "term",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "term"
+                ]
+              }
             }
           ]
         }
@@ -278,70 +277,85 @@ class Config {
       "fields": [
         {
           "name": "data",
+          "title": "Data",
           "type": "`$ARRAY`"
         },
         {
-          "format": "date",
           "name": "date",
+          "title": "Date",
+          "type": "`$STRING`",
           "short": "Date of the show",
-          "type": "`$STRING`"
+          "format": "date"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the show",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the show"
         },
         {
           "name": "location",
-          "short": "Location of the venue",
-          "type": "`$STRING`"
+          "title": "Location",
+          "type": "`$STRING`",
+          "short": "Location of the venue"
         },
         {
           "name": "page",
+          "title": "Page",
           "type": "`$INTEGER`"
         },
         {
           "name": "show_count",
+          "title": "Show Count",
           "type": "`$INTEGER`"
         },
         {
           "name": "success",
+          "title": "Success",
           "type": "`$BOOLEAN`"
         },
         {
           "name": "total_entries",
+          "title": "Total Entries",
           "type": "`$INTEGER`"
         },
         {
           "name": "total_pages",
+          "title": "Total Pages",
           "type": "`$INTEGER`"
         },
         {
           "name": "tour_id",
-          "short": "ID of the tour",
-          "type": "`$INTEGER`"
+          "title": "Tour Id",
+          "type": "`$INTEGER`",
+          "short": "ID of the tour"
         },
         {
           "name": "tour_name",
-          "short": "Name of the tour",
-          "type": "`$STRING`"
+          "title": "Tour Name",
+          "type": "`$STRING`",
+          "short": "Name of the tour"
         },
         {
           "name": "tracks",
+          "title": "Tracks",
           "type": "`$ARRAY`"
         },
         {
           "name": "venue_id",
-          "short": "ID of the venue",
-          "type": "`$INTEGER`"
+          "title": "Venue Id",
+          "type": "`$INTEGER`",
+          "short": "ID of the venue"
         },
         {
           "name": "venue_name",
-          "short": "Name of the venue",
-          "type": "`$STRING`"
+          "title": "Venue Name",
+          "type": "`$STRING`",
+          "short": "Name of the venue"
         },
         {
           "name": "year",
+          "title": "Year",
           "type": "`$INTEGER`"
         }
       ],
@@ -356,37 +370,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 20,
-                    "kind": "query",
-                    "name": "per_page",
-                    "orig": "per_page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort_attr",
-                    "orig": "sort_attr",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "desc",
-                    "kind": "query",
-                    "name": "sort_dir",
-                    "orig": "sort_dir",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/shows",
@@ -395,6 +378,45 @@ class Config {
                   "lit": "shows"
                 }
               ],
+              "parts": [
+                "shows"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.data`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "per_page",
+                    "orig": "per_page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 20
+                  },
+                  {
+                    "name": "sort_attr",
+                    "orig": "sort_attr",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort_dir",
+                    "orig": "sort_dir",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "desc"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "page",
@@ -402,17 +424,9 @@ class Config {
                   "sort_attr",
                   "sort_dir"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.data`"
-              },
-              "parts": [
-                "shows"
-              ]
+              }
             },
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/years",
@@ -421,14 +435,16 @@ class Config {
                   "lit": "years"
                 }
               ],
-              "select": {},
+              "parts": [
+                "years"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "years"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -437,17 +453,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "date",
-                    "orig": "date",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/shows/on-date/{date}",
@@ -462,33 +467,34 @@ class Config {
                   "var": "date"
                 }
               ],
-              "select": {
-                "exist": [
-                  "date"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
               "parts": [
                 "shows",
                 "on-date",
                 "{date}"
-              ]
-            },
-            {
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
               "args": {
                 "params": [
                   {
+                    "name": "date",
+                    "orig": "date",
+                    "type": "`$STRING`",
                     "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
+                    "reqd": true
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "date"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/shows/{id}",
@@ -500,32 +506,33 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "shows",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "shows",
-                "{id}"
-              ]
-            },
-            {
               "args": {
                 "params": [
                   {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
                     "kind": "param",
-                    "name": "year",
-                    "orig": "year",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
+                    "reqd": true
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/years/{year}",
@@ -537,22 +544,33 @@ class Config {
                   "var": "year"
                 }
               ],
-              "select": {
-                "exist": [
-                  "year"
-                ]
-              },
+              "parts": [
+                "years",
+                "{year}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "years",
-                "{year}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "year",
+                    "orig": "year",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "year"
+                ]
+              }
             },
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/random-show",
@@ -561,62 +579,63 @@ class Config {
                   "lit": "random-show"
                 }
               ],
-              "select": {},
+              "parts": [
+                "random-show"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "random-show"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "on_date"
-          ],
-          [
-            "year"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "song": {
       "fields": [
         {
           "name": "alias",
-          "short": "Alternative name or alias",
-          "type": "`$STRING`"
+          "title": "Alias",
+          "type": "`$STRING`",
+          "short": "Alternative name or alias"
         },
         {
-          "format": "date",
           "name": "debut",
+          "title": "Debut",
+          "type": "`$STRING`",
           "short": "Date of first performance",
-          "type": "`$STRING`"
+          "format": "date"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the song",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the song"
         },
         {
-          "format": "date",
           "name": "last_played",
+          "title": "Last Played",
+          "type": "`$STRING`",
           "short": "Date of most recent performance",
-          "type": "`$STRING`"
+          "format": "date"
         },
         {
           "name": "times_played",
-          "short": "Number of times the song has been played",
-          "type": "`$INTEGER`"
+          "title": "Times Played",
+          "type": "`$INTEGER`",
+          "short": "Number of times the song has been played"
         },
         {
           "name": "title",
-          "short": "Title of the song",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "Title of the song"
         }
       ],
       "id": {
@@ -630,37 +649,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 20,
-                    "kind": "query",
-                    "name": "per_page",
-                    "orig": "per_page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort_attr",
-                    "orig": "sort_attr",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "asc",
-                    "kind": "query",
-                    "name": "sort_dir",
-                    "orig": "sort_dir",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/songs",
@@ -669,6 +657,45 @@ class Config {
                   "lit": "songs"
                 }
               ],
+              "parts": [
+                "songs"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.data`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "per_page",
+                    "orig": "per_page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 20
+                  },
+                  {
+                    "name": "sort_attr",
+                    "orig": "sort_attr",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort_dir",
+                    "orig": "sort_dir",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "asc"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "page",
@@ -676,14 +703,7 @@ class Config {
                   "sort_attr",
                   "sort_dir"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.data`"
-              },
-              "parts": [
-                "songs"
-              ]
+              }
             }
           ]
         },
@@ -692,17 +712,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/songs/{id}",
@@ -714,19 +723,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "songs",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "songs",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -738,26 +759,31 @@ class Config {
     "tour": {
       "fields": [
         {
-          "format": "date",
           "name": "end_date",
-          "type": "`$STRING`"
+          "title": "End Date",
+          "type": "`$STRING`",
+          "format": "date"
         },
         {
           "name": "id",
+          "title": "Id",
           "type": "`$INTEGER`"
         },
         {
           "name": "name",
+          "title": "Name",
           "type": "`$STRING`"
         },
         {
           "name": "shows_count",
+          "title": "Shows Count",
           "type": "`$INTEGER`"
         },
         {
-          "format": "date",
           "name": "start_date",
-          "type": "`$STRING`"
+          "title": "Start Date",
+          "type": "`$STRING`",
+          "format": "date"
         }
       ],
       "id": {
@@ -771,7 +797,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/tours",
@@ -780,14 +805,16 @@ class Config {
                   "lit": "tours"
                 }
               ],
-              "select": {},
+              "parts": [
+                "tours"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "tours"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         },
@@ -796,17 +823,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/tours/{id}",
@@ -818,19 +834,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "tours",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "tours",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -843,43 +871,51 @@ class Config {
       "fields": [
         {
           "name": "duration",
-          "short": "Duration in seconds",
-          "type": "`$INTEGER`"
+          "title": "Duration",
+          "type": "`$INTEGER`",
+          "short": "Duration in seconds"
         },
         {
           "name": "id",
-          "short": "Unique identifier for the track",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the track"
         },
         {
           "name": "mp3",
-          "short": "URL to MP3 file",
-          "type": "`$STRING`"
+          "title": "Mp3",
+          "type": "`$STRING`",
+          "short": "URL to MP3 file"
         },
         {
           "name": "position",
-          "short": "Position in the setlist",
-          "type": "`$INTEGER`"
+          "title": "Position",
+          "type": "`$INTEGER`",
+          "short": "Position in the setlist"
         },
         {
           "name": "set",
-          "short": "Set identifier (e.g., 1, 2, E for encore)",
-          "type": "`$STRING`"
+          "title": "Set",
+          "type": "`$STRING`",
+          "short": "Set identifier (e.g., 1, 2, E for encore)"
         },
         {
           "name": "show_id",
-          "short": "ID of the show",
-          "type": "`$INTEGER`"
+          "title": "Show Id",
+          "type": "`$INTEGER`",
+          "short": "ID of the show"
         },
         {
           "name": "song_id",
-          "short": "ID of the song",
-          "type": "`$INTEGER`"
+          "title": "Song Id",
+          "type": "`$INTEGER`",
+          "short": "ID of the song"
         },
         {
           "name": "title",
-          "short": "Title of the track/song",
-          "type": "`$STRING`"
+          "title": "Title",
+          "type": "`$STRING`",
+          "short": "Title of the track/song"
         }
       ],
       "id": {
@@ -893,17 +929,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/tracks/{id}",
@@ -915,19 +940,31 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "tracks",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "tracks",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -940,33 +977,39 @@ class Config {
       "fields": [
         {
           "name": "id",
-          "short": "Unique identifier for the venue",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "Unique identifier for the venue"
         },
         {
-          "format": "float",
           "name": "latitude",
-          "type": "`$NUMBER`"
+          "title": "Latitude",
+          "type": "`$NUMBER`",
+          "format": "float"
         },
         {
           "name": "location",
-          "short": "Location (city, state/country)",
-          "type": "`$STRING`"
+          "title": "Location",
+          "type": "`$STRING`",
+          "short": "Location (city, state/country)"
         },
         {
-          "format": "float",
           "name": "longitude",
-          "type": "`$NUMBER`"
+          "title": "Longitude",
+          "type": "`$NUMBER`",
+          "format": "float"
         },
         {
           "name": "name",
-          "short": "Name of the venue",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "Name of the venue"
         },
         {
           "name": "shows_count",
-          "short": "Number of shows at this venue",
-          "type": "`$INTEGER`"
+          "title": "Shows Count",
+          "type": "`$INTEGER`",
+          "short": "Number of shows at this venue"
         }
       ],
       "id": {
@@ -980,37 +1023,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 20,
-                    "kind": "query",
-                    "name": "per_page",
-                    "orig": "per_page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort_attr",
-                    "orig": "sort_attr",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": "asc",
-                    "kind": "query",
-                    "name": "sort_dir",
-                    "orig": "sort_dir",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/venues",
@@ -1019,6 +1031,45 @@ class Config {
                   "lit": "venues"
                 }
               ],
+              "parts": [
+                "venues"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.data`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "per_page",
+                    "orig": "per_page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 20
+                  },
+                  {
+                    "name": "sort_attr",
+                    "orig": "sort_attr",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort_dir",
+                    "orig": "sort_dir",
+                    "type": "`$STRING`",
+                    "kind": "query",
+                    "example": "asc"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "page",
@@ -1026,14 +1077,7 @@ class Config {
                   "sort_attr",
                   "sort_dir"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.data`"
-              },
-              "parts": [
-                "venues"
-              ]
+              }
             }
           ]
         },
@@ -1042,17 +1086,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/venues/{id}",
@@ -1064,31 +1097,35 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
-              },
+              "parts": [
+                "venues",
+                "{id}"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.data`"
               },
-              "parts": [
-                "venues",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
       },
-      "relations": {
-        "ancestors": []
-      }
-    },
-    "year": {
-      "fields": [],
-      "name": "year",
-      "op": {},
       "relations": {
         "ancestors": []
       }

@@ -62,9 +62,6 @@ func init() {
 	core.NewVenueEntityFunc = func(client *core.PhishInSDK, entopts map[string]any) core.PhishInEntity {
 		return entity.NewVenueEntity(client, entopts)
 	}
-	core.NewYearEntityFunc = func(client *core.PhishInSDK, entopts map[string]any) core.PhishInEntity {
-		return entity.NewYearEntity(client, entopts)
-	}
 }
 
 // Constructor re-exports.

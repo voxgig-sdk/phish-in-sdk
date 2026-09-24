@@ -1,0 +1,73 @@
+# Entity: search
+
+main: kit: entity: search: {
+
+  alias: field: {}
+
+  fields: {
+    shows: {
+      h: "Shows"
+      n: "shows"
+      r: false
+      t: "`$ARRAY`"
+    }
+    songs: {
+      h: "Songs"
+      n: "songs"
+      r: false
+      t: "`$ARRAY`"
+    }
+    venues: {
+      h: "Venues"
+      n: "venues"
+      r: false
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "search"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /search"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "term"
+                or: "term"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/search"
+          q: {
+            exist: [
+              "term"
+            ]
+          }
+          s: [
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.data`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
